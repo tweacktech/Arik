@@ -17,13 +17,7 @@
                             </a>
                         </div>
                         <!--end::Step 2-->
-                        <!--begin::Step 3-->
-                        <div class="stepper-item" data-kt-stepper-element="nav">
-                            <a href="{{ route('featured_product') }}">
-                                <h3 class="stepper-title">Featured Product</h3>
-                            </a>
-                        </div>
-
+                      
                         <div class="stepper-item" data-kt-stepper-element="nav">
                             <a href="{{ route('web_content') }}">
                                 <h3 class="stepper-title">Web Content </h3>

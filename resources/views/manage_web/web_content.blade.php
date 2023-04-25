@@ -2,44 +2,10 @@
 
 @section('content')
 
-							<div class="card" style="100%">
-								<!--begin::Card body-->
-								<div class="card-body" >
-									<!--begin::Stepper-->
-									<div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper" >
-                                       
-										<!--begin::Nav-->
-										<div class="stepper stepper-links d-flex flex-column pt-15" id="kt_create_account_stepper" >
-                                            <div class="stepper-nav mb-5" style="width:100%;">
-		
-                                                <div class="stepper-item " data-kt-stepper-element="nav">
-                                                <a href="{{route('manage_web')}}"><h3 class="stepper-title">Top Products</h3></a>
-                                                </div>
-                                                <!--end::Step 2-->
-                                                <!--begin::Step 3-->
-                                                <div class="stepper-item " data-kt-stepper-element="nav">
-                                                    <a href="{{route("featured_product")}}"><h3 class="stepper-title">Featured Product</h3></a>
-                                                </div>
-                                    
-                                    
-                                                <div class="stepper-item current" data-kt-stepper-element="nav">
-                                                    <a href="{{route("web_content")}}"><h3 class="stepper-title">Web Content </h3></a>
-                                                </div>
-                                    
-                                    
-                                                <div class="stepper-item" data-kt-stepper-element="nav">
-                                                    <a href="{{ route('slider') }}"><h3 class="stepper-title">Slider</h3></a>
-                                                </div>
-
-                                                <div class="stepper-item" data-kt-stepper-element="nav">
-                                                    <a href="{{ route('website') }} "><h3 class="stepper-title">Website</h3></a>
-                                                </div>
-
-                                            </div>
-                                        </div>
+							  @include('layouts.webnav')
 										<!--end::Nav-->
 										<!--begin::Form-->
-										<div class="mx-auto pt-15 pb-10" novalidate="novalidate" id="kt_create_account_form" style="width:100%;">
+										<div class="mx-auto " novalidate="novalidate" id="kt_create_account_form" style="width:100%;">
 											<!--begin::Step 1-->
 											<div class="current" data-kt-stepper-element="content">
 												<!--begin::Wrapper-->

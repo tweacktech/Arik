@@ -14,7 +14,7 @@
                     <div class="col-6">
                         <div class="card card-stretch">
                             <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
+                                href="{{route('newsletter')}}">
                                 <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
                                 <span class="svg-icon svg-icon-3x mb-5">
                                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -31,14 +31,14 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Products</span>
+                                <span class="fs-4 fw-bolder">Manage NewsLetter</span>
                             </a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="card card-stretch">
                             <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
+                                href="{{route('NewsEvent')}}">
                                 <!--begin::Svg Icon | path: icons/duotune/technology/teh008.svg-->
                                 <span class="svg-icon svg-icon-3x mb-5">
                                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -52,14 +52,14 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Orders</span>
+                                <span class="fs-4 fw-bolder">Manage News and Event</span>
                             </a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="card card-stretch">
                             <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
+                                href="{{route('Overall')}}">
                                 <!--begin::Svg Icon | path: icons/duotune/technology/teh004.svg-->
                                 <span class="svg-icon svg-icon-3x mb-5">
                                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -73,14 +73,14 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Employees</span>
+                                <span class="fs-4 fw-bolder">Manage Menu</span>
                             </a>
                         </div>
                     </div>
                     <div class="col-6">
                         <div class="card card-stretch">
                             <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
+                                href="{{route('Feature')}}">
                                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs025.svg-->
                                 <span class="svg-icon svg-icon-3x mb-5">
                                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -94,59 +94,16 @@
                                     </svg>
                                 </span>
                                 <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Customers</span>
+                                <span class="fs-4 fw-bolder">Manage Feature</span>
                             </a>
                         </div>
                     </div>
+                    
+                  
                     <div class="col-6">
                         <div class="card card-stretch">
                             <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
-                                <!--begin::Svg Icon | path: icons/duotune/ecommerce/ecm002.svg-->
-                                <span class="svg-icon svg-icon-3x mb-5">
-                                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21 10H13V11C13 11.6 12.6 12 12 12C11.4 12 11 11.6 11 11V10H3C2.4 10 2 10.4 2 11V13H22V11C22 10.4 21.6 10 21 10Z"
-                                            fill="black" />
-                                        <path
-                                            d="M12 12C11.4 12 11 11.6 11 11V3C11 2.4 11.4 2 12 2C12.6 2 13 2.4 13 3V11C13 11.6 12.6 12 12 12Z"
-                                            fill="black" opacity="0.3" />
-                                        <path
-                                            d="M18.1 21H5.9C5.4 21 4.9 20.6 4.8 20.1L3 13H21L19.2 20.1C19.1 20.6 18.6 21 18.1 21ZM13 18V15C13 14.4 12.6 14 12 14C11.4 14 11 14.4 11 15V18C11 18.6 11.4 19 12 19C12.6 19 13 18.6 13 18ZM17 18V15C17 14.4 16.6 14 16 14C15.4 14 15 14.4 15 15V18C15 18.6 15.4 19 16 19C16.6 19 17 18.6 17 18ZM9 18V15C9 14.4 8.6 14 8 14C7.4 14 7 14.4 7 15V18C7 18.6 7.4 19 8 19C8.6 19 9 18.6 9 18Z"
-                                            fill="black" opacity="0.3" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Manufacturers</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card card-stretch">
-                            <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
-                                <span class="svg-icon svg-icon-3x mb-5">
-                                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.05424 15.1982C8.34524 7.76818 13.5782 3.26318 20.9282 2.01418C21.0729 1.98837 21.2216 1.99789 21.3618 2.04193C21.502 2.08597 21.6294 2.16323 21.7333 2.26712C21.8372 2.37101 21.9144 2.49846 21.9585 2.63863C22.0025 2.7788 22.012 2.92754 21.9862 3.07218C20.7372 10.4222 16.2322 15.6552 8.80224 19.9462L4.05424 15.1982ZM3.81924 17.3372L2.63324 20.4482C2.58427 20.5765 2.5735 20.7163 2.6022 20.8507C2.63091 20.9851 2.69788 21.1082 2.79503 21.2054C2.89218 21.3025 3.01536 21.3695 3.14972 21.3982C3.28408 21.4269 3.42387 21.4161 3.55224 21.3672L6.66524 20.1802L3.81924 17.3372ZM16.5002 5.99818C16.2036 5.99818 15.9136 6.08615 15.6669 6.25097C15.4202 6.41579 15.228 6.65006 15.1144 6.92415C15.0009 7.19824 14.9712 7.49984 15.0291 7.79081C15.0869 8.08178 15.2298 8.34906 15.4396 8.55884C15.6494 8.76862 15.9166 8.91148 16.2076 8.96935C16.4986 9.02723 16.8002 8.99753 17.0743 8.884C17.3484 8.77046 17.5826 8.5782 17.7474 8.33153C17.9123 8.08486 18.0002 7.79485 18.0002 7.49818C18.0002 7.10035 17.8422 6.71882 17.5609 6.43752C17.2796 6.15621 16.8981 5.99818 16.5002 5.99818Z"
-                                            fill="black" opacity="0.3" />
-                                        <path
-                                            d="M4.05423 15.1982L2.24723 13.3912C2.15505 13.299 2.08547 13.1867 2.04395 13.0632C2.00243 12.9396 1.9901 12.8081 2.00793 12.679C2.02575 12.5498 2.07325 12.4266 2.14669 12.3189C2.22013 12.2112 2.31752 12.1219 2.43123 12.0582L9.15323 8.28918C7.17353 10.3717 5.4607 12.6926 4.05423 15.1982ZM8.80023 19.9442L10.6072 21.7512C10.6994 21.8434 10.8117 21.9129 10.9352 21.9545C11.0588 21.996 11.1903 22.0083 11.3195 21.9905C11.4486 21.9727 11.5718 21.9252 11.6795 21.8517C11.7872 21.7783 11.8765 21.6809 11.9402 21.5672L15.7092 14.8442C13.6269 16.8245 11.3061 18.5377 8.80023 19.9442ZM7.04023 18.1832L12.5832 12.6402C12.7381 12.4759 12.8228 12.2577 12.8195 12.032C12.8161 11.8063 12.725 11.5907 12.5653 11.4311C12.4057 11.2714 12.1901 11.1803 11.9644 11.1769C11.7387 11.1736 11.5205 11.2583 11.3562 11.4132L5.81323 16.9562L7.04023 18.1832Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Purchases</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-6">
-                        <div class="card card-stretch">
-                            <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
+                                href="{{route('web_content')}}">
                                 <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
                                 <span class="svg-icon svg-icon-3x mb-5">
                                     <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -165,27 +122,7 @@
                         </div>
                     </div>
 
-                    <div class="col-6">
-                        <div class="card card-stretch">
-                            <a class="btn btn-flex btn-text-gray-800 btn-icon-gray-400 btn-active-color-primary bg-body flex-column justfiy-content-start align-items-start text-start w-100 p-10"
-                                href="">
-                                <!--begin::Svg Icon | path: icons/duotune/general/gen002.svg-->
-                                <span class="svg-icon svg-icon-3x mb-5">
-                                    <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M4.05424 15.1982C8.34524 7.76818 13.5782 3.26318 20.9282 2.01418C21.0729 1.98837 21.2216 1.99789 21.3618 2.04193C21.502 2.08597 21.6294 2.16323 21.7333 2.26712C21.8372 2.37101 21.9144 2.49846 21.9585 2.63863C22.0025 2.7788 22.012 2.92754 21.9862 3.07218C20.7372 10.4222 16.2322 15.6552 8.80224 19.9462L4.05424 15.1982ZM3.81924 17.3372L2.63324 20.4482C2.58427 20.5765 2.5735 20.7163 2.6022 20.8507C2.63091 20.9851 2.69788 21.1082 2.79503 21.2054C2.89218 21.3025 3.01536 21.3695 3.14972 21.3982C3.28408 21.4269 3.42387 21.4161 3.55224 21.3672L6.66524 20.1802L3.81924 17.3372ZM16.5002 5.99818C16.2036 5.99818 15.9136 6.08615 15.6669 6.25097C15.4202 6.41579 15.228 6.65006 15.1144 6.92415C15.0009 7.19824 14.9712 7.49984 15.0291 7.79081C15.0869 8.08178 15.2298 8.34906 15.4396 8.55884C15.6494 8.76862 15.9166 8.91148 16.2076 8.96935C16.4986 9.02723 16.8002 8.99753 17.0743 8.884C17.3484 8.77046 17.5826 8.5782 17.7474 8.33153C17.9123 8.08486 18.0002 7.79485 18.0002 7.49818C18.0002 7.10035 17.8422 6.71882 17.5609 6.43752C17.2796 6.15621 16.8981 5.99818 16.5002 5.99818Z"
-                                            fill="black" opacity="0.3" />
-                                        <path
-                                            d="M4.05423 15.1982L2.24723 13.3912C2.15505 13.299 2.08547 13.1867 2.04395 13.0632C2.00243 12.9396 1.9901 12.8081 2.00793 12.679C2.02575 12.5498 2.07325 12.4266 2.14669 12.3189C2.22013 12.2112 2.31752 12.1219 2.43123 12.0582L9.15323 8.28918C7.17353 10.3717 5.4607 12.6926 4.05423 15.1982ZM8.80023 19.9442L10.6072 21.7512C10.6994 21.8434 10.8117 21.9129 10.9352 21.9545C11.0588 21.996 11.1903 22.0083 11.3195 21.9905C11.4486 21.9727 11.5718 21.9252 11.6795 21.8517C11.7872 21.7783 11.8765 21.6809 11.9402 21.5672L15.7092 14.8442C13.6269 16.8245 11.3061 18.5377 8.80023 19.9442ZM7.04023 18.1832L12.5832 12.6402C12.7381 12.4759 12.8228 12.2577 12.8195 12.032C12.8161 11.8063 12.725 11.5907 12.5653 11.4311C12.4057 11.2714 12.1901 11.1803 11.9644 11.1769C11.7387 11.1736 11.5205 11.2583 11.3562 11.4132L5.81323 16.9562L7.04023 18.1832Z"
-                                            fill="black" />
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                                <span class="fs-4 fw-bolder">Manage OEMs</span>
-                            </a>
-                        </div>
-                    </div>
+                 
 
                 </div>
 
@@ -272,59 +209,11 @@
                     style="background-position: 100% 50px;background-size: 500px auto;background-image:url('assets/media/misc/city.png')">
                     <!--begin::Body-->
                     <div class="card-body d-flex flex-column justify-content-center"
-                        style="border-radius:15px; background-color:#6a4fb6">
+                        style="border-radius:15px; background-color:rgb(35, 49, 129)">
                         <div class="col-md-12" style="display: flex">
 
                             <div class="col-md-6 p-5">
-                                <!--begin::Title-->
-                                <h3 class="text-white fs-2x fw-bolder line-height-lg mb-5">Set Dollar Rate</h3>
-                                @php
-                                    $dolla = DB::table('dollar_rate')->get();
-                                @endphp
-                                <form action="{{ route('set_dollar_rate') }}" method="POST">
-                                    @csrf
-                                    @foreach ($dolla as $d)
-                                        <div class="input-group">
-                                            <input class="form-control" name="rate" placeholder="Set Dollar Rate"
-                                                type="text" value="{{ $d->rate }}" />
-                                            <input class="form-control" name="prevrate"
-                                                placeholder="Previous Dollar Rate" type="text" />
-                                        </div>
-                                    @endforeach
-                                    <!--begin::Action-->
-                                    <div class="mt-5">
-                                        <button class="btn btn-success fw-bold px-6 py-3" href='#'
-                                            style="background-color:#492F92" type="submit">Save</button>
-                                    </div>
-                                </form>
-
-                                <!--begin::Action-->
-                            </div>
-
-                            <div class="col-md-6 p-5">
-                                <!--begin::Title-->
-                                <h3 class="text-white fs-2x fw-bolder line-height-lg mb-5">Delivery Per KM</h3>
-                                @php
-                                    $delivery_rate = DB::table('delivery_rate_per_km')->get();
-                                @endphp
-                                <form action="{{ route('set_delivery_rate') }}" method="POST">
-                                    @csrf
-                                    @foreach ($delivery_rate as $d)
-                                        <input class="form-control" name="rate" placeholder="Set Doller Rate"
-                                            type="text" value="{{ $d->rate }}" />
-                                    @endforeach
-                                    <!--begin::Action-->
-                                    <div class="mt-5">
-                                        <button class="btn btn-success fw-bold px-6 py-3" href='#'
-                                            style="background-color:#492F92" type="submit">Save</button>
-                                    </div>
-                                </form>
-                                <!--begin::Action-->
-                            </div>
-
-                        </div>
-                        <div class="col-md-12" style="display: flex">
-                            <div class="container">
+                                 <div class="container">
                                 <h4>Manage Site</h4>
                                 <ul class="list-inline">
 
@@ -356,6 +245,32 @@
                                 <hr>
 
                             </div>
+                            </div>
+
+                            <div class="col-md-6 p-5">
+                                <!--begin::Title-->
+                                <h3 class="text-white fs-2x fw-bolder line-height-lg mb-5">Doller Rate</h3>
+                                @php
+                                    $delivery_rate = DB::table('delivery_rate_per_km')->get();
+                                @endphp
+                                <form action="{{ route('set_delivery_rate') }}" method="POST">
+                                    @csrf
+                                    @foreach ($delivery_rate as $d)
+                                        <input class="form-control" name="rate" placeholder="Set Doller Rate"
+                                            type="text" value="{{ $d->rate }}" />
+                                    @endforeach
+                                    <!--begin::Action-->
+                                    <div class="mt-5">
+                                        <button class="btn btn-success fw-bold px-6 py-3" href='#'
+                                            style="background-color:rgb(121, 0, 48)" type="submit">Save</button>
+                                    </div>
+                                </form>
+                                <!--begin::Action-->
+                            </div>
+
+                        </div>
+                        <div class="col-md-12" style="display: flex">
+                           
 
                         </div>
 

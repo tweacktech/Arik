@@ -116,7 +116,7 @@
                                         <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                             data-bs-toggle="tooltip" data-bs-trigger="hover" href="{{ route('home') }}"
                                             title="Dashboard">
-                                            <span class="menu-icon" style="background-color:#492F92; color:#fff">
+                                            <span class="menu-icon" style="background-color:rgb(121, 0, 48); color:#fff">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                                 <span class="svg-icon svg-icon-primary svg-icon-2x">
                                                     <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Home/Cupboard.svg--><svg
@@ -156,7 +156,7 @@
                                             <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 href="{{ $m->link }}" title="{{ $m->title }}">
-                                                <span class="menu-icon" style="background-color:#492F92; color:#fff">
+                                                <span class="menu-icon" style="background-color:rgb(121, 0, 48); color:#fff">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                                     <span class="svg-icon svg-icon-2x">
 
@@ -187,12 +187,11 @@
                                     href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();"
-                                    style="color:#492F92;">
-                                    {{ __('Logout') }}
+                                    style="color:rgb(35, 49, 129);">
 
                                     <span class="svg-icon">
                                         <svg fill="none" height="24"
-                                            style="background-color:#492F92; color:#fff" viewBox="0 0 24 24"
+                                            style="background-color:rgb(121, 0, 48); color:#fff" viewBox="0 0 24 24"
                                             width="24" xmlns="http://www.w3.org/2000/svg">
                                             <rect fill="black" height="2" opacity="0.3" rx="1"
                                                 transform="matrix(-1 0 0 1 15.5 11)" width="12" />
@@ -260,7 +259,7 @@
             @if (Auth::check())
                 <!--begin::Header-->
                 <div class="header py-6 py-lg-0" data-kt-sticky-name="header" data-kt-sticky-offset="{lg: '300px'}"
-                    data-kt-sticky="true" id="kt_header" style="background-color:#492F92;">
+                    data-kt-sticky="true" id="kt_header" style="background-color:rgb(121, 0, 48);">
                     <!--begin::Container-->
                     <div class="header-container container-xxl">
                         <!--begin::Page title-->
@@ -285,7 +284,7 @@
                                 <div class="me-3">
                                     <a class="btn btn-icon btn-custom btn-active-color-primary position-relative"
                                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end"
-                                        data-kt-menu-trigger="click" href="#" style="background-color:navy">
+                                        data-kt-menu-trigger="click" href="#" style="background-color:rgb(35, 49, 129)">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen007.svg-->
                                         <span class="svg-icon svg-icon-1 svg-icon-white">
                                             <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -4110,18 +4109,13 @@
         <script src="https://stockmgt.gapaautoparts.com/public/assets/js/custom/modals/new-target.js"></script>
 
         <script>
-            function getData(id) {
+            function getData() {
 
-                let property_value = document.getElementById("property_" + id).value;
-                let product_id = document.getElementById("product_id").value;
+                let faq = document.getElementById('editor_1').innerHTML;
 
+                $.post('/update_faq', {
 
-
-                $.post('/saveProductProperty', {
-
-                    property_id: id,
-                    property_value,
-                    product_id,
+                    faq: faq,
                     "_token": "{{ csrf_token() }}",
 
                 }).done((result) => {
@@ -4133,133 +4127,6 @@
                     Swal.fire("", "Sorry cant not find this product")
                 })
             }
-
-
-
-            function searchCode() {
-
-
-
-                let search_code = document.getElementById("search_code").value;
-                // Swal.fire({
-                // title: 'Are you sure?',
-                // text: "",
-                // icon: 'warning',
-                // showCancelButton: true,
-                // confirmButtonColor: '#3085d6',
-                // cancelButtonColor: '#d33',
-                // confirmButtonText: 'Yes, Save comment Please!'
-                // }).then((result) => {
-                // if (result.isConfirmed) {
-
-
-
-                // }
-                // })
-                $.post('/searchBarcode', {
-
-                    search_code: search_code,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-
-                    document.getElementById("part_id").innerHTML = result.message;
-                    document.getElementById("btnClose").click();
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find this product")
-                })
-
-            }
-
-
-            function getSubSubCat() {
-                let sub_category = document.getElementById("sub_category").value;
-                $.post('/getSubSubCat', {
-
-                    sub_category: sub_category,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    document.getElementById("sub_sub_category").innerHTML = result;
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find this product")
-                })
-            }
-
-            function GetSubModels() {
-                let model = document.getElementById("model").value;
-                $.post('/getSubModels', {
-
-                    model: model,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    document.getElementById("sub_model").innerHTML = result;
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-            }
-
-            function getCars() {
-                let brand = document.getElementById("brand").value;
-                $.post('/getCars', {
-
-                    brand: brand,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    document.getElementById("car").innerHTML = result;
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-            }
-
-            function getModels() {
-                let car = document.getElementById("car").value;
-                $.post('/getModels', {
-
-                    car: car,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    document.getElementById("model").innerHTML = result;
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-            }
-
-            function updateProductBrand() {
-                let brand = document.getElementById("brand").value;
-                let car = document.getElementById("car").value;
-                let model = document.getElementById("model").value;
-                let sub_model = document.getElementById("sub_model").value;
-                let product_id = document.getElementById("product_id").value;
-
-                $.post('/addrandmodel', {
-
-                    brand: brand,
-                    car: car,
-                    model: model,
-                    sub_model: sub_model,
-                    product_id: product_id,
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    Swal.fire("", result)
-
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-                location.reload();
-            }
-
 
 
 

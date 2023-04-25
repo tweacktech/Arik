@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Manage Website'])
+@extends('layouts.app', ['title' => 'Manage FAQ'])
 
 @section('content')
                   @include('layouts.webnav')
@@ -36,49 +36,23 @@
                                                 <div class="card">
                                                     <!--begin::Body-->
                                                     <div class="card-body">
-                                                       <h4>Update Company Info</h4>
+                                                       <h4>Frequently Asked Questions</h4>
                                                         <!--begin::Border-->
-                                                        <div class="separator separator-dashed my-8"></div>
-<!--                                                                
-                                                        <div class="mb-5">
-                                                            <label class="fs-6 form-label fw-bolder text-dark">Warehouse Code</label>
-                                                            <input type="text" class="form-control form-control form-control-solid" name="code" />
-                                                        </div> -->
-
+                                                        <div class="separator separator-dashed my-8"></div>                                        
                                                         
                                                         <div class="col-md-8">
                                                             <div class="mb-5">
-                                                                <label class="fs-6 form-label fw-bolder text-dark">About Us</label>
+                                                                <label class="fs-6 form-label fw-bolder text-dark">Frequently Asked Questions</label>
                                                                
-                                                                <div id="editor_1" name="about" >
-                                                                    <p>{!!$website->about!!}</p>
+                                                                <div id="editor_1" name="faq" >
+                                                                    <p>{!!$website->faq!!}</p>
                                                                     
                                                                   </div>
-                                                            </div>
-    
-                                                            <div class="mb-5">
-                                                                <label class="fs-6 form-label fw-bolder text-dark">Terms and Conditions</label>
-                                                                
-                                                                <div id="editor_2" name="terms" >
-                                                                    <p>{!!$website->terms!!}</p>
-                                                                    
-                                                                  </div>
-                                                            </div>
-    
-                                                            <div class="mb-5">
-                                                                <label class="fs-6  form-label fw-bolder text-dark">Privacy Policy</label>
-                                                               
-                                                                <div id="editor" name="policy">
-                                                                    <p>{!!$website->policy!!}</p>
-                                                                  </div>
-
-                                                                  
-                                                                  
                                                             </div>
     
                                                             <div class="mb-5">
                                         
-                                                                <input onclick="UpdatePolicy()" type="button" value="Update" class="btn btn-primary">
+                                                                <input onclick="getData()" type="button" value="Update" class="btn btn-primary">
                                                             </div>
                                                             <!--end::Action-->
                                                         </div>
