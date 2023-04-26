@@ -67,7 +67,7 @@ public function unhideNewsEvent(Request $req, $id)
     if ($update) {
       DB::table('activities')
         ->insert([
-          'activity' => 'a car was unhidden by' . Auth::user()->name,
+          'activity' => 'a NewsEvent was unhidden by' . Auth::user()->name,
           'activity_type' => 'unhide'
         ]);
 
@@ -83,7 +83,7 @@ public function unhideNewsEvent(Request $req, $id)
     if ($update) {
       DB::table('activities')
         ->insert([
-          'activity' => 'a car was hidden by' . Auth::user()->name,
+          'activity' => 'a NewsEvent was hidden by' . Auth::user()->name,
           'activity_type' => 'hide'
         ]);
       return redirect()->back();

@@ -3,7 +3,7 @@
 @section('content')
                            @include('layouts.webnav')
 										<!--begin::Form-->
-										<div class="mx-auto " novalidate="novalidate" id="kt_create_account_form" style="width:120%; padding-left:2% ;" >
+										<div class="mx-auto " novalidate="novalidate" id="kt_create_account_form" style="width:100%; padding-left:2% ;" >
 											<!--begin::Step 1-->
 											<div class="current" data-kt-stepper-element="content">
 												<!--begin::Wrapper-->

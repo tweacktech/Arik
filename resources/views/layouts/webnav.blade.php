@@ -20,6 +20,8 @@
                         <a class="nav-link text-active-primary me-6" href="{{ route('slider2') }}">Home Slider2</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('weblogo') }} ">Website logo</a>
+                    </li><li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{ route('website') }} ">Website</a>
                     </li>
                     <li class="nav-item">

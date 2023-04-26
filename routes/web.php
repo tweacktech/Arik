@@ -10,6 +10,9 @@ use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\WebMenuController;
 use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\FeatureController;
+use App\Http\Controllers\SocialController;
+use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\DealsOfferController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -38,7 +41,7 @@ Route::get('/offsite', function () {
 })->name('offsite');
 
 //set dollar 
-Route::post('/set-dollar', [StoreController::class, 'set_dollar_rate'])->name('set_dollar_rate');
+// Route::post('/set-dollar', [StoreController::class, 'set_dollar_rate'])->name('set_dollar_rate');
 
 //set delevery rate 
 Route::post('/set-delivery-rate-per-kilometer', function (Request $req) {
@@ -72,8 +75,6 @@ Route::get('/reset-password', [UserController::class, 'reset_password'])->name('
 
 
 
-
-
 Route::put('/update-web-content', [WebController::class, 'update_web_content'])->name('update_web_content');
 Route::put('/update-web-offer', [WebController::class, 'update_web_offer'])->name('update_web_offer');
 
@@ -92,6 +93,8 @@ Route::get('/web-content', [WebController::class, 'web_content'])->name('web_con
 Route::get('/manage-slider', [WebController::class, 'slider'])->name('slider');
 Route::get('/manage-slider2', [WebController::class, 'slider2'])->name('slider2');
 Route::get('/manage-website', [WebController::class, 'website'])->name('website');
+Route::get('/manage-logo', [WebController::class, 'logo'])->name('logo');
+Route::put('/manage-logo', [WebController::class, 'weblogo'])->name('weblogo');
 Route::get('/manage-faq', [WebController::class, 'faq'])->name('faq');
 
 
@@ -159,11 +162,31 @@ Route::get('/deleteFeature/{id}', [FeatureController::class, 'deleteFeature'])->
 
 
 
+// manage social media
+Route::get('/manage-Social', [SocialController::class, 'Social'])->name('Social');
+Route::post('/add-Social', [SocialController::class, 'addSocial'])->name('addSocial');
+Route::get('/hideSocial/{id}', [SocialController::class, 'hideSocial'])->name('hideSocial');
+Route::get('/unhideSocial/{id}', [SocialController::class, 'unhideSocial'])->name('unhideSocial');
+Route::get('/editSocial/{id}', [SocialController::class, 'editSocial'])->name('editSocial');
+Route::put('/updateSocial/{id}', [SocialController::class, 'updateSocial'])->name('updateSocial');
+Route::get('/deleteSocial/{id}', [SocialController::class, 'deleteSocial'])->name('deleteSocial');
 
-#messages
-Route::get('/messages', [MessagesController::class, 'index'])->name('messages');
-Route::get('/create-general-message', [MessagesController::class, 'create_general_message'])->name('create_general_message');
-Route::get('/create-staff-message', [MessagesController::class, 'create_staff_message'])->name('create_staff_message');
-Route::get('/create-customer-message', [MessagesController::class, 'create_customer_message'])->name('create_customer_message');
+// manage popurlar Destination
+Route::get('/manage-Destination', [DestinationController::class, 'Destination'])->name('Destination');
+Route::post('/add-Destination', [DestinationController::class, 'addDestination'])->name('addDestination');
+Route::get('/hideDestination/{id}', [DestinationController::class, 'hideDestination'])->name('hideDestination');
+Route::get('/unhideDestination/{id}', [DestinationController::class, 'unhideDestination'])->name('unhideDestination');
+Route::get('/editDestination/{id}', [DestinationController::class, 'editDestination'])->name('editDestination');
+Route::put('/updateDestination/{id}', [DestinationController::class, 'updateDestination'])->name('updateDestination');
+Route::get('/deleteDestination/{id}', [DestinationController::class, 'deleteDestination'])->name('deleteDestination');
 
 
+
+// manage popurlar DealsOffer
+Route::get('/manage-DealsOffer', [DealsOfferController::class, 'DealsOffer'])->name('DealsOffer');
+Route::post('/add-DealsOffer', [DealsOfferController::class, 'addDealsOffer'])->name('addDealsOffer');
+Route::get('/hideDealsOffer/{id}', [DealsOfferController::class, 'hideDealsOffer'])->name('hideDealsOffer');
+Route::get('/unhideDealsOffer/{id}', [DealsOfferController::class, 'unhideDealsOffer'])->name('unhideDealsOffer');
+Route::get('/editDealsOffer/{id}', [DealsOfferController::class, 'editDealsOffer'])->name('editDealsOffer');
+Route::put('/updateDealsOffer/{id}', [DealsOfferController::class, 'updateDealsOffer'])->name('updateDealsOffer');
+Route::get('/deleteDealsOffer/{id}', [DealsOfferController::class, 'deleteDealsOffer'])->name('deleteDealsOffer');

@@ -147,6 +147,7 @@
                                         $menu = DB::table('user_menu')
                                             ->join('menu', 'menu.id', 'user_menu.menu_id')
                                             ->where('user_menu.status', '1')
+                                            ->where('menu.status', '1')
                                             ->where('user_menu.user_id', Auth::user()->id)
                                             ->get();
                                     @endphp

@@ -174,11 +174,11 @@
                                     <!--end::Label-->
                                     <!--begin::Badge-->
                                     <div class="timeline-badge">
-                                        @if ($activity->activity_type == 'New Sales')
+                                        @if ($activity->activity_type == 'New')
                                             <i class="fa fa-genderless text-success fs-1"></i>
-                                        @elseif($activity->activity_type == 'New Order')
+                                        @elseif($activity->activity_type == 'New')
                                             <i class="fa fa-genderless text-danger fs-1"></i>
-                                        @elseif($activity->activity_type == 'New Deposit')
+                                        @elseif($activity->activity_type == 'New')
                                             <i class="fa fa-genderless text-primary fs-1"></i>
                                         @else
                                             <i class="fa fa-genderless text-inofo fs-1"></i>
@@ -249,7 +249,7 @@
 
                             <div class="col-md-6 p-5">
                                 <!--begin::Title-->
-                                <h3 class="text-white fs-2x fw-bolder line-height-lg mb-5">Doller Rate</h3>
+                                <h3 class="text-white fs-2x fw-bolder line-height-lg mb-5">Dollar Rate</h3>
                                 @php
                                     $delivery_rate = DB::table('delivery_rate_per_km')->get();
                                 @endphp
@@ -294,15 +294,23 @@
                                         <!--begin:Image-->
                                         <div class="symbol symbol-60px me-5">
                                             <span class="symbol-label bg-danger-light">
-                                                <img alt="" class="h-50 align-self-center"
-                                                    src="assets/media/svg/brand-logos/plurk.svg" />
-                                            </span>
+                                                 @php
+                                                  $slider = DB::table('web_logos')
+                                                         ->first();
+
+                                                 @endphp
+                                                                @if($slider)
+                                                               
+                                                  <img alt="" class="h-50 align-self-center"
+                                                    src="/uploads/logo/{{$slider->logo}}" />
+                                               @endif
+                                        </span>
                                         </div>
                                         <!--end:Image-->
                                         <!--begin:Title-->
                                         <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
                                             <a class="text-dark fw-bolder text-hover-primary fs-5"
-                                                href="#">Warehouses</a>
+                                                href="{{ route('weblogo') }}">Webside Logo</a>
 
                                         </div>
                                         <!--end:Title-->
@@ -311,7 +319,7 @@
                                     <!--begin:Menu-->
                                     <div class="ms-1">
                                         <a class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
-                                            href="">
+                                            href="{{ route('weblogo') }}">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg height="24px" viewBox="0 0 24 24" width="24px"
@@ -369,7 +377,7 @@
                                         <!--begin:Title-->
                                         <div class="d-flex flex-column flex-grow-1 my-lg-0 my-2 pr-3">
                                             <a class="text-dark fw-bolder text-hover-primary fs-5"
-                                                href="#">Stores</a>
+                                                href="{{route('Social')}}">Social Links</a>
 
                                         </div>
                                         <!--end:Title-->
@@ -379,7 +387,7 @@
                                     <div class="ms-1">
                                         <a class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
                                             data-kt-menu-placement="bottom-end" data-kt-menu-trigger="click"
-                                            href="">
+                                            href="{{route('Social')}}">
                                             <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
                                             <span class="svg-icon svg-icon-2">
                                                 <svg height="24px" viewBox="0 0 24 24" width="24px"
@@ -421,7 +429,7 @@
                     <!--begin::Header-->
                     <div class="card-header border-0 pt-5">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="card-label fw-bolder fs-3 mb-1">Recent Products</span>
+                            <span class="card-label fw-bolder fs-3 mb-1">Recent News/Event</span>
 
                         </h3>
 
@@ -440,33 +448,36 @@
                                         <thead>
                                             <tr class="border-0">
                                                 <th class="p-0 w-50px"></th>
-                                                <th class="p-0 min-w-150px"></th>
+                                                <th class="p-0 min-w-150px">Title</th>
                                                 <th class="p-0 min-w-140px"></th>
                                                 <th class="p-0 min-w-110px"></th>
-                                                <th class="p-0 min-w-50px"></th>
+                                                
                                             </tr>
                                         </thead>
                                         <!--end::Table head-->
-                                        <!--begin::Table body-->
+                                        <!--begin::Table body--> 
+
                                         <tbody>
-                                          
+                                            @php $data=DB::table('news_events')->latest()->take(5)->get(); @endphp
+                                          @foreach($data as $data)
                                                 <tr>
+                                                 
                                                     <td>
                                                         <div class="symbol symbol-45px me-2">
                                                             <span class="symbol-label">
                                                                 <img alt="" class="h-50 align-self-center"
-                                                                    src="" />
+                                                                    src="/Event/{{$data->image}}" />
                                                             </span>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <a class="text-dark fw-bolder text-hover-primary mb-1 fs-6"
-                                                            href="#">Name</a>
+                                                            href="#">
                                                         <span
-                                                            class="text-muted fw-bold d-block">category</span>
+                                                            class="text-muted fw-bold d-block">{{$data->title}}</span></a>
                                                     </td>
-                                                    <td class="text-end text-muted fw-bold">₦
-                                                        price</td>
+                                                    <td class="text-end text-muted fw-bold">{!!  substr(($data->description),0,20) !!}
+                                                        </td>
                                                     <td class="text-end">
                                                     </td>
                                                     <td class="text-end">
@@ -490,6 +501,7 @@
                                                         </a>
                                                     </td>
                                                 </tr>
+                                                @endforeach
                                           
                                         </tbody>
                                         <!--end::Table body-->

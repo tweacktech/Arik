@@ -22,13 +22,47 @@ class WebController extends Controller
 
   public function web_content()
   {
-
-    //get company 
     $company = DB::table('company')
       ->first();
 
     return view('manage_web.web_content', compact('company'));
   }
+
+
+
+  public function logo(){
+    return view('manage_web.logo');
+  }
+
+  public function weblogo(Request $req)
+  {
+    //first image
+    $file = $req->file('img');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('uploads/logo'), $file_name);
+
+    $data = [
+      'logo' => $file_name,
+
+    ];
+
+    $update = DB::table('web_logos')
+      ->update($data);
+
+    if ($update) {
+
+      DB::table('activities')
+        ->insert([
+          'activity' => 'Slider Updated by ' . Auth::user()->name,
+          'activity_type' => 'Upload Slider'
+        ]);
+
+      return redirect()->back()->with('message', 'Updated Successfully');
+    } else {
+      return redirect()->back()->with('message', 'Could not update Slider');
+    }
+  }
+
 
   public function update_web_content(Request $req)
   {
