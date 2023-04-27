@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Home Slider 1 '])
+@extends('layouts.app', ['title' => 'Home Slider '])
 
 @section('content')
                            @include('layouts.webnav')
@@ -7,14 +7,12 @@
                                             <!--begin::Step 1-->
                                             <div class="current" data-kt-stepper-element="content">
                                                 <!--begin::Wrapper-->
-                                               
-
+                                            
                                                 <div class="w-100">
                                                     <!--begin::Heading-->
                                                     <div class="pb-10 pb-lg-8">
                                                         <!--begin::Title-->
-                                                        <h2 class="fw-bolder d-flex align-items-center text-dark">Home Slider 1</h2>
-
+                                                        <h2 class="fw-bolder d-flex align-items-center text-dark">Home Slider</h2>
                                                     </div>
                                                     <!--end::Heading-->
                                                     <!--begin::Input group-->
@@ -30,9 +28,7 @@
                                                                     <!--begin::Info-->
                                                                     <span class="d-block fw-bold text-start">
                                                                   
-                                                                     <span class="text-muted fw-bold fs-3 badge badge-light-info" ><p  style = "color:red; text-align:center; align-items: center;display:flex; flex:1;"> {{Session('message')}}</p> </span>
-
-                                                                     
+                                                                     <span class="text-muted fw-bold fs-3 badge badge-light-info" ><p  style = "color:red; text-align:center; align-items: center;display:flex; flex:1;"> {{Session('message')}}</p> </span>  
                                                                         
                                                                     </span>
                                                                     <!--end::Info-->
@@ -53,14 +49,19 @@
                                                                     <div class="card">
                                                                         <!--begin::Body-->
                                                                         <div class="card-body">
-                                                                           <h4>Update Company Slider</h4>
+                                                                           <!-- <h4>Update Company Slider</h4> -->
                                                                             <!--begin::Border-->
                                                                             <div class="separator separator-dashed my-8"></div>
-            <!--                                                                
+                                                                           
                                                                             <div class="mb-5">
-                                                                                <label class="fs-6 form-label fw-bolder text-dark">Warehouse Code</label>
-                                                                                <input type="text" class="form-control form-control form-control-solid" name="code" />
-                                                                            </div> -->
+                                                                                <label class="fs-6 form-label fw-bolder text-dark">select HomePage</label>
+                                                                                <select class="form-control form-control form-control-solid" name="homepage" >
+                                                                                    <option value=""> Select homepage</option>
+                                                                                    <option value="1">Page 1</option>
+                                                                                    <option value="2">Page 2</option>
+                                                                                    <option value="3">Page 3</option>
+                                                                                 </select>
+                                                                            </div>
             
                                                                             
                                                                             <div class="mb-5">
@@ -77,6 +78,7 @@
                                                                                 <label class="fs-6 form-label fw-bolder text-dark">Image 3</label>
                                                                                 <input type="file" class="form-control form-control form-control-solid" name="img_3" required>
                                                                             </div>
+
             
                                                                             <div class="mb-5">
                                                                                 <input type="submit" value="Update" class="btn btn-primary">

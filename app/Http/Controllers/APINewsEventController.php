@@ -12,7 +12,7 @@ class APINewsEventController extends Controller
 {
     public function NewsEvent(){
 
-     $data =NewsEvent::all();
+     $data =NewsEvent::all()->where('status',1);
 
     return response()->json(['data' => $data]);
 }

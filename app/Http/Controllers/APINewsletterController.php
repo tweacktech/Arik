@@ -12,7 +12,7 @@ class APINewsletterController extends Controller
 {
       public function Promo(){
 
-  $data =Newsletter::all();
+  $data =Newsletter::all()->where('status',1);
 
   return response()->json(['data'=>$data]);
     }

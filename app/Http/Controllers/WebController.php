@@ -191,6 +191,79 @@ class WebController extends Controller
     return view('manage_web.slider');
   }
 
+  public function update_slider(Request $req)
+  {
+    //first image
+    $file = $req->file('img');
+    $filel = $req->file('img_2');
+    $filee = $req->file('img_3');
+    $home=$req->input('homepage');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('uploads/slider'), $file_name);
+    //second image
+    
+    $file_name2 = time() . $filel->getClientOriginalName();
+    $filel->move(public_path('uploads/slider'), $file_name2);
+    // third image
+    
+    $file_name3 = time() . $filee->getClientOriginalName();
+    $filee->move(public_path('uploads/slider'), $file_name3);
+
+    $slidercheck=DB::table('slider')->where('homepage',$req->input('homepage'))->first();
+
+    if ($slidercheck!=0) {
+      // code...
+    
+
+    $data = [
+      'img' => $file_name,
+      'img_2' => $file_name2,
+      'img_3' => $file_name2,
+    ];
+
+    $update = DB::table('slider')
+    ->where('homepage',$home)
+      ->update($data);
+
+    if ($update) {
+
+      DB::table('activities')
+        ->insert([
+          'activity' => 'Slider Updated by ' . Auth::user()->name,
+          'activity_type' => 'Upload Slider'
+        ]);
+      return redirect()->back()->with('message', 'Updated Successfully');
+    } else {
+      return redirect()->back()->with('message', 'Could not update Slider');
+    }
+  }else{
+
+    $data = [
+      'img' => $file_name,
+      'img_2' => $file_name2,
+      'img_3' => $file_name2,
+      'homepage' => $home,
+
+    ];
+
+    $update = DB::table('slider')
+      ->insert($data);
+
+    if ($update) {
+
+      DB::table('activities')
+        ->insert([
+          'activity' => 'Slider Added by ' . Auth::user()->name,
+          'activity_type' => 'Added Slider'
+        ]);
+      return redirect()->back()->with('message', 'Updated Successfully');
+    } else {
+      return redirect()->back()->with('message', 'Could not update Slider');
+    }
+
+  }
+  }
+
   public function update_slider2(Request $req)
   {
     //first image
@@ -213,44 +286,6 @@ class WebController extends Controller
     ];
 
     $update = DB::table('slider2')
-      ->update($data);
-
-    if ($update) {
-
-      DB::table('activities')
-        ->insert([
-          'activity' => 'Slider Updated by ' . Auth::user()->name,
-          'activity_type' => 'Upload Slider'
-        ]);
-
-      return redirect()->back()->with('message', 'Updated Successfully');
-    } else {
-      return redirect()->back()->with('message', 'Could not update Slider');
-    }
-  }
-
-  public function update_slider(Request $req)
-  {
-    //first image
-    $file = $req->file('img');
-    $file_name = time() . $file->getClientOriginalName();
-    $file->move(public_path('uploads/slider'), $file_name);
-    //second image
-    $filel = $req->file('img_2');
-    $file_name2 = time() . $filel->getClientOriginalName();
-    $filel->move(public_path('uploads/slider'), $file_name2);
-    // third image
-    $filee = $req->file('img_3');
-    $file_name3 = time() . $filee->getClientOriginalName();
-    $filee->move(public_path('uploads/slider'), $file_name3);
-
-    $data = [
-      'img' => $file_name,
-      'img_2' => $file_name2,
-      'img_3' => $file_name2,
-    ];
-
-    $update = DB::table('slider')
       ->update($data);
 
     if ($update) {

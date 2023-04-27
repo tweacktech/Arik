@@ -30,7 +30,8 @@ public function addDealsOffer(Request $req){
             'title' => 'required|string|max:255',
             'type' => 'required|string|max:255',
             'description' => 'required|string',
-            'image' => 'required|image'
+            'image' => 'required|image',
+            'homepage' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +49,7 @@ public function addDealsOffer(Request $req){
         $DealsOffer->title = $req->input('title');
         $DealsOffer->type = $req->input('type');
         $DealsOffer->description = $req->input('description');
+        $DealsOffer->homepage = $req->input('homepage');
         $DealsOffer->image = $file_name;
         $DealsOffer->save();
   return redirect()->back();}
@@ -108,6 +110,7 @@ if ($request->file('image')=="") {
     $DealsOffer->title = $request->input('title');
     $DealsOffer->type = $request->input('type');
     $DealsOffer->description = $request->input('description');
+    $DealsOffer->homepage = $request->input('homepage');
     $DealsOffer->save();
     return redirect()->back()->with('success', 'DealsOffer updated successfully.');
         }else{
@@ -120,6 +123,7 @@ if ($request->file('image')=="") {
     $DealsOffer->type = $request->input('type');
     $DealsOffer->description = $request->input('description');
     $DealsOffer->image = $file_name;
+    $DealsOffer->homepage = $request->input('homepage');
     $DealsOffer->save();
     return redirect()->back()->with('success', 'DealsOffer updated successfully.');
 }

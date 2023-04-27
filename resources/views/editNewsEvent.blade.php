@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit Promo'])
+@extends('layouts.app', ['title' => 'Edit News/Event'])
 
 @section('content')
     <div class="card card-flush m-20">
@@ -20,7 +20,7 @@
                         <div class="modal-header">
                             <!--begin::Modal title-->
    
-                            <h2>Edit Promo</h2>
+                            <h2>Edit News/Event</h2>
 
                         </div>
                         <!--end::Modal header-->

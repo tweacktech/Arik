@@ -181,7 +181,6 @@ Route::put('/updateDestination/{id}', [DestinationController::class, 'updateDest
 Route::get('/deleteDestination/{id}', [DestinationController::class, 'deleteDestination'])->name('deleteDestination');
 
 
-
 // manage popurlar DealsOffer
 Route::get('/manage-DealsOffer', [DealsOfferController::class, 'DealsOffer'])->name('DealsOffer');
 Route::post('/add-DealsOffer', [DealsOfferController::class, 'addDealsOffer'])->name('addDealsOffer');

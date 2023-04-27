@@ -65,7 +65,7 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-250px">Image/Title</th>
+                            <th class="min-w-250px">Image/Name</th>
                             <th class="min-w-250px">Description</th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text">Action</th>
@@ -174,7 +174,7 @@
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Title</span>
+                                                <span class="required">Name of Destination</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                     title="Specify your unique app name"></i>
                                             </label>
