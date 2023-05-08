@@ -1,11 +1,37 @@
 @extends('layouts.app', ['title' => 'Edit Newsletter'])
 
 @section('content')
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
+
     <div class="card card-flush m-20">
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
 
+<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -84,6 +110,8 @@
                                             </div>
                                         </div>
 
+                                        <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
+                                        
                                         <button type="submit" class="btn btn-lg btn-primary">Update
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                             <span class="svg-icon svg-icon-3 ms-1 me-0">

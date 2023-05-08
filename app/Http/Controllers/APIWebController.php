@@ -13,7 +13,7 @@ public function aboutus(){
 
     $data=DB::table('website')->select('about')->get();
    
-
+    // $data=html_entity_decode($dat);
     return response()->json(['data'=>$data]);
 }
 public function terms(){
@@ -37,9 +37,9 @@ public function slider(){
     return response()->json(['data'=>$data]);
 }
 
-public function slider2(){
+public function web(){
 
-    $data=DB::table('slider2')->get();
+    $data=DB::table('manage_site')->get();
     
     return response()->json(['data'=>$data]);
 }

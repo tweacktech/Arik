@@ -16,11 +16,12 @@ class NewsEventController extends Controller
     }
 
 
-public function NewsEvent(){
+public function NewsEvent($id){
 
-  $data =NewsEvent::all();
+  $id=$id;
+  $data =NewsEvent::all()->where('homepage_id',$id);
 
-  return view('manage_NewsEvent',compact('data'));
+  return view('manage_NewsEvent',compact('data','id'));
 }
 
 public function addNewsEvent(Request $req){
@@ -29,6 +30,8 @@ public function addNewsEvent(Request $req){
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'homepage_id' => 'required|numeric',
+            'eventdate' => 'required',
             'image' => 'required|image'
         ]);
 
@@ -46,6 +49,8 @@ public function addNewsEvent(Request $req){
         $NewsEvent = new NewsEvent();
         $NewsEvent->title = $req->input('title');
         $NewsEvent->description = $req->input('description');
+        $NewsEvent->homepage_id = $req->input('homepage_id');
+        $NewsEvent->eventdate = $req->input('eventdate');
         $NewsEvent->image = $file_name;
         $NewsEvent->save();
   return redirect()->back();}
@@ -105,6 +110,8 @@ if ($request->file('image')=="") {
      $NewsEvent = NewsEvent::find($id);
     $NewsEvent->title = $request->input('title');
     $NewsEvent->description = $request->input('description');
+    $NewsEvent->homepage_id = $request->input('homepage_id');
+    $NewsEvent->eventdate = $request->input('eventdate');
     $NewsEvent->save();
     return redirect()->back()->with('success', 'NewsEvent updated successfully.');
         }else{
@@ -115,6 +122,8 @@ if ($request->file('image')=="") {
     $NewsEvent = NewsEvent::find($id);
     $NewsEvent->title = $request->input('title');
     $NewsEvent->description = $request->input('description');
+    $NewsEvent->homepage_id = $request->input('homepage_id');
+    $NewsEvent->eventdate = $request->input('eventdate');
     $NewsEvent->image = $file_name;
     $NewsEvent->save();
     return redirect()->back()->with('success', 'NewsEvent updated successfully.');

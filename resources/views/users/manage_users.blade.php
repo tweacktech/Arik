@@ -62,9 +62,9 @@
                                                                     <label class="fs-6 form-label fw-bolder text-dark">Account Type</label>
 																	<select class="form-control form-control form-control-solid" name="type" >
 																		<option value=""></option>
-																		<option value="Account">Account</option>
-																		<option value="storemanager">Store Manager</option>
-																		<option value="wherehousemanager">Wherehouse Manager</option>
+																		<option value="Account">User</option>
+																		<option value="storemanager">Owner</option>
+																		<option value="wherehousemanager"> Supper</option>
 
 																	</select>
                                                                 </div>

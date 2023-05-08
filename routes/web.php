@@ -13,6 +13,11 @@ use App\Http\Controllers\FeatureController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\DealsOfferController;
+use App\Http\Controllers\CommercialController;  
+use App\Http\Controllers\FooterController;  
+use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -50,6 +55,7 @@ Route::post('/set-delivery-rate-per-kilometer', function (Request $req) {
 
   return redirect()->back();
 })->name('set_delivery_rate');
+
 
 
 
@@ -99,7 +105,7 @@ Route::get('/manage-faq', [WebController::class, 'faq'])->name('faq');
 
 
 // manage newsletter
-Route::get('/manage-newsletter', [NewsletterController::class, 'newsletter'])->name('newsletter');
+Route::get('/manage-Newsletter/{id}', [NewsletterController::class, 'newsletter'])->name('newsletter');
 Route::post('/add-newsletter', [NewsletterController::class, 'addnewsletter'])->name('addnewsletter');
 Route::get('/hideNews/{id}', [NewsletterController::class, 'hideNews'])->name('hideNews');
 Route::get('/unhideNews/{id}', [NewsletterController::class, 'unhideNews'])->name('unhideNews');
@@ -109,7 +115,7 @@ Route::get('/deleteNewsletter/{id}', [NewsletterController::class, 'deleteNewsle
 
 
 // manage promo
-Route::get('/manage-Promo', [PromoController::class, 'Promo'])->name('Promo');
+Route::get('/manage-Promo/{id}', [PromoController::class, 'Promo'])->name('Promo');
 Route::post('/add-Promo', [PromoController::class, 'addPromo'])->name('addpromo');
 Route::get('/hidePromo/{id}', [PromoController::class, 'hidePromo'])->name('hidePromo');
 Route::get('/unhidePromo/{id}', [PromoController::class, 'unhidePromo'])->name('unhidePromo');
@@ -121,7 +127,7 @@ Route::get('/deletePromo/{id}', [PromoController::class, 'deletePromo'])->name('
 
 
 // News and Offer
-Route::get('/manage-NewsEvent', [NewsEventController::class, 'NewsEvent'])->name('NewsEvent');
+Route::get('/manage-NewsEvent/{id}', [NewsEventController::class, 'NewsEvent'])->name('NewsEvent');
 Route::post('/add-NewsEvent', [NewsEventController::class, 'addNewsEvent'])->name('addNewsEvent');
 Route::get('/hideNewsEvent/{id}', [NewsEventController::class, 'hideNewsEvent'])->name('hideNewsEvent');
 Route::get('/unhideNewsEvent/{id}', [NewsEventController::class, 'unhideNewsEvent'])->name('unhideNewsEvent');
@@ -151,7 +157,7 @@ Route::get('/deleteSubMenu/{id}', [SubMenuController::class, 'deleteSubMenu'])->
 
 
 // manage Feature
-Route::get('/manage-Feature', [FeatureController::class, 'Feature'])->name('Feature');
+Route::get('/manage-Feature/{id}', [FeatureController::class, 'Feature'])->name('Feature');
 Route::post('/add-Feature', [FeatureController::class, 'addFeature'])->name('addFeature');
 Route::get('/hideFeature/{id}', [FeatureController::class, 'hideFeature'])->name('hideFeature');
 Route::get('/unhideFeature/{id}', [FeatureController::class, 'unhideFeature'])->name('unhideFeature');
@@ -172,7 +178,7 @@ Route::put('/updateSocial/{id}', [SocialController::class, 'updateSocial'])->nam
 Route::get('/deleteSocial/{id}', [SocialController::class, 'deleteSocial'])->name('deleteSocial');
 
 // manage popurlar Destination
-Route::get('/manage-Destination', [DestinationController::class, 'Destination'])->name('Destination');
+Route::get('/manage-Destination/{id}', [DestinationController::class, 'Destination'])->name('Destination');
 Route::post('/add-Destination', [DestinationController::class, 'addDestination'])->name('addDestination');
 Route::get('/hideDestination/{id}', [DestinationController::class, 'hideDestination'])->name('hideDestination');
 Route::get('/unhideDestination/{id}', [DestinationController::class, 'unhideDestination'])->name('unhideDestination');
@@ -182,10 +188,61 @@ Route::get('/deleteDestination/{id}', [DestinationController::class, 'deleteDest
 
 
 // manage popurlar DealsOffer
-Route::get('/manage-DealsOffer', [DealsOfferController::class, 'DealsOffer'])->name('DealsOffer');
+Route::get('/manage-DealsOffer/{id}', [DealsOfferController::class, 'DealsOffer'])->name('DealsOffer');
 Route::post('/add-DealsOffer', [DealsOfferController::class, 'addDealsOffer'])->name('addDealsOffer');
 Route::get('/hideDealsOffer/{id}', [DealsOfferController::class, 'hideDealsOffer'])->name('hideDealsOffer');
 Route::get('/unhideDealsOffer/{id}', [DealsOfferController::class, 'unhideDealsOffer'])->name('unhideDealsOffer');
 Route::get('/editDealsOffer/{id}', [DealsOfferController::class, 'editDealsOffer'])->name('editDealsOffer');
 Route::put('/updateDealsOffer/{id}', [DealsOfferController::class, 'updateDealsOffer'])->name('updateDealsOffer');
 Route::get('/deleteDealsOffer/{id}', [DealsOfferController::class, 'deleteDealsOffer'])->name('deleteDealsOffer');
+
+
+// manage Commercial
+Route::get('/manage-Commercial/{id}', [CommercialController::class, 'Commercial'])->name('Commercial');
+Route::post('/add-Commercial', [CommercialController::class, 'addCommercial'])->name('addCommercial');
+Route::get('/hideCommercial/{id}', [CommercialController::class, 'hideCommercial'])->name('hideCommercial');
+Route::get('/unhideCommercial/{id}', [CommercialController::class, 'unhideCommercial'])->name('unhideCommercial');
+Route::get('/editCommercial/{id}', [CommercialController::class, 'editCommercial'])->name('editCommercial');
+Route::put('/updateCommercial/{id}', [CommercialController::class, 'updateCommercial'])->name('updateCommercial');
+Route::get('/deleteCommercial/{id}', [CommercialController::class, 'deleteCommercial'])->name('deleteCommercial');
+
+
+
+
+Route::get('/home-role/{id}', [HomePageController::class, 'home_role'])->name('home_role');
+Route::get('/active-homepage/{id}', [App\Http\Controllers\HomePageController::class, 'switchStatus'])->name('switchStatus');
+
+Route::get('/add-homepage/{id}', [HomePageController::class, 'add_homepage'])->name('add_homepage');
+Route::get('/remove-hompage/{id}', [HomePageController::class, 'remove_homepage'])->name('remove_homepage');
+
+
+// manage popurlar Footer
+Route::get('/manage-Footer/{id}', [FooterController::class, 'Footer'])->name('Footer');
+Route::post('/add-Footer', [FooterController::class, 'addFooter'])->name('addFooter');
+Route::get('/hideFooter/{id}', [FooterController::class, 'hideFooter'])->name('hideFooter');
+Route::get('/unhideFooter/{id}', [FooterController::class, 'unhideFooter'])->name('unhideFooter');
+Route::get('/editFooter/{id}', [FooterController::class, 'editFooter'])->name('editFooter');
+Route::put('/updateFooter/{id}', [FooterController::class, 'updateFooter'])->name('updateFooter');
+Route::get('/deleteFooter/{id}', [FooterController::class, 'deleteFooter'])->name('deleteFooter');
+
+
+
+
+// Category and Subm
+// Route::get('/Overall', [WebMenuController::class, 'index'])->name('Overall');
+Route::get('/manage-Category', [CategoryController::class, 'Category'])->name('Category');
+Route::post('/add-Category', [CategoryController::class, 'addCategory'])->name('addCategory');
+Route::get('/hideCategory/{id}', [CategoryController::class, 'hideCategory'])->name('hideCategory');
+Route::get('/unhideCategory/{id}', [CategoryController::class, 'unhideCategory'])->name('unhideCategory');
+Route::get('/editCategory/{id}', [CategoryController::class, 'editCategory'])->name('editCategory');
+Route::put('/updateCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory');
+Route::get('/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
+// subMenus
+Route::get('/manage-SubCategory', [SubCategoryController::class, 'SubCategory'])->name('SubCategory');
+Route::post('/add-SubCategory', [SubCategoryController::class, 'addSubCategory'])->name('addSubCategory');
+Route::get('/hideSubCategory/{id}', [SubCategoryController::class, 'hideSubCategory'])->name('hideSubCategory');
+Route::get('/unhideSubCategory/{id}', [SubCategoryController::class, 'unhideSubCategory'])->name('unhideSubCategory');
+Route::get('/editSubCategory/{id}', [SubCategoryController::class, 'editSubCategory'])->name('editSubCategory');
+Route::put('/updateSubCategory/{id}', [SubCategoryController::class, 'updateSubCategory'])->name('updateSubCategory');
+Route::get('/deleteSubCategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('deleteSubCategory');
+

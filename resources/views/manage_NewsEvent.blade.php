@@ -3,7 +3,6 @@
 @section('content')
     <div class="card mb-6 mb-xl-9">
         <div class="card-body pt-9 pb-0">
-
             <!--end::Details-->
             <div class="separator"></div>
             <!--begin::Nav wrapper-->
@@ -15,14 +14,40 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
-                    
-
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('home_role', ['id' => md5($id) ]) }}">Back  </a>
+                    </li>
             </ul>
 
             </div>
             <!--end::Nav wrapper-->
         </div>
     </div>
+    
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
+
 
 
     <div class="card card-flush m-6">
@@ -67,6 +92,7 @@
 
                             <th class="min-w-250px">Image/Title</th>
                             <th class="min-w-250px">Description</th>
+                            <th class="min-w-50px">Event Date</th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text">Action</th>
                         </tr>
@@ -85,7 +111,8 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/Event/{{ $data->image }}" />
+                                                <img alt="Pic" src="{{ asset('/Event/'.$data->image) }}" 
+                                                 />
                                             </div>
                                             <!--end::Avatar-->
                                         </div>
@@ -103,6 +130,11 @@
                                
                                 <td>
                                      {{$data->description}}
+
+                                </td> 
+
+                                <td>
+                                     {{$data->eventdate}}
 
                                 </td> 
                               
@@ -168,6 +200,7 @@
                                 enctype="multipart/form-data" action="{{ route('addNewsEvent') }}" method="POST">
                                 @csrf
                                 <!--begin::Step 1-->
+                                <input type="hidden" name="homepage_id" value="{{$id}}">
                                 <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
@@ -189,29 +222,7 @@
                                     </div>
                                 </div>
 
-
                                 <div class="row">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Description</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                    title="Specify your unique app name"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="description" placeholder="Enter" required />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                    </div>
-                                </div>
-
-                                 <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-10">
@@ -232,11 +243,56 @@
                                     </div>
                                 </div>
 
+
+                                <div class="row">
+                                    <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Description</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="description" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Event Date</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="date" class="form-control form-control-lg form-control-solid" value="{{ old('my_date') }}" min="{{ now()->format('Y-m-d') }}" name="eventdate">
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                 
+
                               
 
                                 
 
-                                <button type="submit" class="btn btn-lg btn-primary">Create Promo
+                                <button type="submit" class="btn btn-lg btn-primary">Create
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-3 ms-1 me-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

@@ -1,11 +1,37 @@
 @extends('layouts.app', ['title' => 'Edit Deals and offer'])
 
 @section('content')
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
+
     <div class="card card-flush m-20">
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
 
+<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -88,31 +114,7 @@
                                     </div>
                                 </div>
                                 
-                                <div class="row">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Home</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                    title="Specify your unique app name"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <select type="text" class="form-control form-control-lg form-control-solid"
-                                                         name="homepage" >
-                                                         <option value="{{ $update->homepage }}">Page {{ $update->homepage }}</option>
-                                                          <option value="1">Page 1</option>
-                                                         <option value="2">Page 2</option>
-                                                         <option value="3">Page 3</option>
-                                                     </select>
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                    </div>
-                                </div>
+                                <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
 
 
                                         <div class="row">
@@ -146,7 +148,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/deals/{{ $update->image }}" />
+                                                <img alt="Pic" src="{{ asset('/deals/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
@@ -167,6 +169,7 @@
 
                                             </div>
                                         </div>
+                                        <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
 
 
                                         <button type="submit" class="btn btn-lg btn-primary">Update

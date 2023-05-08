@@ -21,6 +21,7 @@ public function SubMenu(){
   $data =DB::table('sub_menus')
   ->join('web_menus','web_menus.id','sub_menus.menu_id')
   ->select('sub_menus.*','web_menus.title as tite')
+  ->latest()
   ->get();
 
   return view('manage_SubMenu',compact('data'));

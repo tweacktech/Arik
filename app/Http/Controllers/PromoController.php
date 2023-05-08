@@ -16,33 +16,46 @@ class PromoController extends Controller
     }
 
 
-public function Promo(){
+public function Promo($id){
 
-  $data =Promo::all();
+$id=$id;
+  $data =Promo::all()->where('homepage_id',$id);
 
-  return view('manage_promo',compact('data'));
+  return view('manage_promo',compact('data','id'));
 }
 
 public function addPromo(Request $req){
 
-
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'price' => 'required|numeric'
+            'url_link' => 'required|string',
+            'price' => 'required|numeric',
+            'homepage_id' => 'required|numeric',
+            'color' => 'required',
+            'image' => 'required|image'
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+         if ($req->file('image')=="") {
+            
+        }else{
+        $file = $req->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('promo/'), $file_name);
         // Create a new Promo with validated data
         $Promo = new Promo();
         $Promo->title = $req->input('title');
+        $Promo->homepage_id = $req->input('homepage_id');
         $Promo->description = $req->input('description');
         $Promo->price = $req->input('price');
+        $Promo->color = $req->input('color');
+        $Promo->image = $file_name;
         $Promo->save();
-  return redirect()->back();
+        return redirect()->back();
+      }
 }
 
 public function deletePromo($id) {
@@ -51,9 +64,6 @@ public function deletePromo($id) {
     
     return redirect()->back()->with('success', 'Promo deleted successfully.');
 }
-
-
-
 
 
 public function unhidePromo(Request $req, $id)
@@ -95,12 +105,31 @@ public function editPromo(Request $req, $id)
   }
 
 public function updatePromo(Request $request, $id) {
+  if ($request->file('image')=="") {
     $Promo = Promo::find($id);
     $Promo->title = $request->input('title');
     $Promo->description = $request->input('description');
+    $Promo->homepage_id = $request->input('homepage_id');
     $Promo->price = $request->input('price');
+    $Promo->color = $request->input('color');
     $Promo->save();
     return redirect()->back()->with('success', 'Promo updated successfully.');
+       }else{
+         $file = $request->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('promo/'), $file_name);
+      $Promo = new Promo();
+        $Promo->title = $request->input('title');
+        $Promo->description = $request->input('description');
+        $Promo->homepage_id = $request->input('homepage_id');
+        $Promo->price = $request->input('price');
+        $Promo->color = $request->input('color');
+        $Promo->image = $file_name;
+        $Promo->save();
+        return redirect()->back()->with('success', 'Promo updated successfully.');
+
+}
+
 }
 
 }

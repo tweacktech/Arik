@@ -12,7 +12,7 @@ class APIPromoController extends Controller
 {
     public function Promo(){
 
-  $data =Promo::all()->where('status',1);
+  $data =Promo::all();
 
   return response()->json(['data'=>$data]);
     }

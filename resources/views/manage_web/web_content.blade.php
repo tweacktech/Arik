@@ -56,12 +56,7 @@
                                                                    <h4>Update Company Info</h4>
                                                                     <!--begin::Border-->
                                                                     <div class="separator separator-dashed my-8"></div>
-    <!--                                                                
-                                                                    <div class="mb-5">
-                                                                        <label class="fs-6 form-label fw-bolder text-dark">Warehouse Code</label>
-                                                                        <input type="text" class="form-control form-control form-control-solid" name="code" />
-                                                                    </div> -->
-    
+                                                                 
                                                                     
                                                                     <div class="mb-5">
                                                                         <label class="fs-6 form-label fw-bolder text-dark">Company Name</label>

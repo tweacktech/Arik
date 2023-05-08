@@ -19,19 +19,21 @@ class DestinationController extends Controller
     }
 
 
-public function Destination(){
-
+public function Destination($id){
+$id=$id;
   $data =Destination::all();
 
-  return view('manage_Destination',compact('data'));
+  return view('manage_Destination',compact('data','id'));
 }
 
 public function addDestination(Request $req){
 
 
       $validator = Validator::make($req->all(), [
-            'name' => 'required|string|max:255',
+            'state' => 'required|string|max:255',
             'description' => 'required|string',
+            'homepage_id' => 'required|numeric',
+            'color' => 'required',
             'image' => 'required|image'
         ]);
 
@@ -47,8 +49,10 @@ public function addDestination(Request $req){
     $file->move(public_path('destination/'), $file_name);
         // Create a new Destination with validated data
         $Destination = new Destination();
-        $Destination->name = $req->input('name');
+        $Destination->state = $req->input('state');
         $Destination->description = $req->input('description');
+        $Destination->homepage_id = $req->input('homepage_id');
+        $Destination->color = $req->input('color');
         $Destination->image = $file_name;
         $Destination->save();
   return redirect()->back();}
@@ -106,8 +110,10 @@ public function updateDestination(Request $request, $id) {
 
 if ($request->file('image')=="") {
      $Destination = Destination::find($id);
-    $Destination->name = $request->input('name');
+    $Destination->state = $request->input('state');
     $Destination->description = $request->input('description');
+    $Destination->homepage_id = $request->input('homepage_id');
+    $Destination->color = $request->input('color');
     $Destination->save();
     return redirect()->back()->with('success', 'Destination updated successfully.');
         }else{
@@ -116,8 +122,10 @@ if ($request->file('image')=="") {
     $file->move(public_path('destination/'), $file_name);
 
     $Destination = Destination::find($id);
-    $Destination->name = $request->input('name');
+    $Destination->state = $request->input('state');
     $Destination->description = $request->input('description');
+    $Destination->homepage_id = $request->input('homepage_id');
+    $Destination->color = $request->input('color');
     $Destination->image = $file_name;
     $Destination->save();
     return redirect()->back()->with('success', 'Destination updated successfully.');

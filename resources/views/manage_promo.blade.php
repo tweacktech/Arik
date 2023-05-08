@@ -15,7 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
-                    
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('home_role', ['id' => md5($id) ]) }}">Back  </a>
+                    </li>
 
             </ul>
 
@@ -23,6 +25,30 @@
             <!--end::Nav wrapper-->
         </div>
     </div>
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
 
 
     <div class="card card-flush m-6">
@@ -68,7 +94,8 @@
                             <th class="min-w-250px">Image/Title</th>
                             <th class="min-w-250px">Description</th>
                             <th class="min-w-90px">Price</th>
-                            <th class="min-w-90px">Status</th>
+                            <th class="min-w-40px">Color</th>
+                            <th class="min-w-50px">Status</th>
                             <th class="min-w-50px text">Action</th>
                         </tr>
                     </thead>
@@ -85,7 +112,11 @@
                                         <!--begin::Wrapper-->
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
-                                            
+                                            <div class="symbol symbol-35px symbol-circle">
+                                                <img alt="Pic" 
+                                               src=" {{ asset('/promo/'.$data->image) }}"
+                                                  />
+                                            </div>
                                             <!--end::Avatar-->
                                         </div>
                                         <!--end::Wrapper-->
@@ -106,6 +137,10 @@
                                 </td> 
                                 <td>
                                      {{$data->price}}
+
+                                </td>
+                                <td style=" color: {{$data->color}};">
+                                     {{$data->color}}
 
                                 </td>
 
@@ -170,6 +205,8 @@
                                 enctype="multipart/form-data" action="{{ route('addpromo') }}" method="POST">
                                 @csrf
                                 <!--begin::Step 1-->
+
+                                <input type="hidden" name="homepage_id" value="{{$id}}">
                                 <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
@@ -191,6 +228,27 @@
                                     </div>
                                 </div>
 
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">slider/Image</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="file" min="100" class="form-control form-control-lg form-control-solid"
+                                                name="image" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
 
                                 <div class="row">
                                     <div class="w-100">
@@ -204,7 +262,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                            <input type="text" id="editor" class="form-control form-control-lg form-control-solid"
                                                 name="description" placeholder="Enter" required />
                                             <!--end::Input-->
                                         </div>
@@ -213,6 +271,7 @@
                                     </div>
                                 </div>
 
+                                
                                  <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
@@ -227,6 +286,27 @@
                                             <!--begin::Input-->
                                             <input type="number" min="100" class="form-control form-control-lg form-control-solid"
                                                 name="price" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                 <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Color</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="color" min="100" class="form-control form-control-lg form-control-solid"
+                                                name="color" placeholder="Enter" required />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

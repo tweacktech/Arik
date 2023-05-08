@@ -12,7 +12,7 @@ class APISocialController extends Controller
 {
     public function Social(){
 
-  $data =Social::all()->where('status',1);
+  $data =Social::all();
 
   return response()->json(['data'=>$data]);
     }

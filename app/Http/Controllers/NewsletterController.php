@@ -14,11 +14,12 @@ class NewsletterController extends Controller
         $this->middleware('auth');
     }
 
-public function newsletter(){
+public function newsletter($id){
 
-  $data =Newsletter::all();
+$id=$id;
+  $data =Newsletter::all()->where('homepage_id',$id);
 
-  return view('manage_newsletter',compact('data'));
+  return view('manage_newsletter',compact('data','id'));
 }
 
 public function addnewsletter(Request $req){
@@ -27,6 +28,7 @@ public function addnewsletter(Request $req){
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'homepage_id' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
@@ -37,6 +39,7 @@ public function addnewsletter(Request $req){
         $newsletter = new Newsletter();
         $newsletter->title = $req->input('title');
         $newsletter->description = $req->input('description');
+        $newsletter->homepage_id = $req->input('homepage_id');
         $newsletter->save();
   return redirect()->back();
 }
@@ -94,6 +97,7 @@ public function updateNewsletter(Request $request, $id) {
     $newsletter = Newsletter::find($id);
     $newsletter->title = $request->input('title');
     $newsletter->description = $request->input('description');
+    $newsletter->homepage_id = $request->input('homepage_id');
     $newsletter->save();
     return redirect()->back()->with('success', 'Newsletter updated successfully.');
 }

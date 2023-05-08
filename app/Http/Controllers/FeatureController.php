@@ -16,11 +16,12 @@ class FeatureController extends Controller
     }
 
 
-public function Feature(){
+public function Feature($id){
 
-  $data =Feature::all();
+$id=$id;
+  $data =Feature::all()->where('homepage_id',$id);
 
-  return view('manage_Feature',compact('data'));
+  return view('manage_Feature',compact('data','id'));
 }
 
 public function addFeature(Request $req){
@@ -30,6 +31,7 @@ public function addFeature(Request $req){
             'name' => 'required|string|max:255',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'homepage_id' => 'required|numeric',
             'image' => 'required|image',
             'icon' => 'required|image'
         ]);
@@ -53,6 +55,7 @@ public function addFeature(Request $req){
         $Feature->name = $req->input('name');
         $Feature->title = $req->input('title');
         $Feature->description = $req->input('description');
+        $Feature->homepage_id = $req->input('homepage_id');
         $Feature->image = $file_name;
         $Feature->icon = $file_names;
         $Feature->save();
@@ -115,6 +118,7 @@ if ($request->file('image')=="") {
     $Feature->name = $request->input('name');
     $Feature->title = $request->input('title');
     $Feature->description = $request->input('description');
+    $Feature->homepage_id = $request->input('homepage_id');
     $Feature->save();
     return redirect()->back()->with('success', 'Feature updated successfully.');
         }else{
@@ -130,6 +134,7 @@ if ($request->file('image')=="") {
     $Feature->name = $request->input('name');
     $Feature->title = $request->input('title');
     $Feature->description = $request->input('description');
+    $Feature->homepage_id = $request->input('homepage_id');
     $Feature->image = $file_name;
     $Feature->icon = $file_names;
     $Feature->save();

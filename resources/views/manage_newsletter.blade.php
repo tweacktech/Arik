@@ -15,7 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
-                    
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('home_role', ['id' => md5($id) ]) }}">Back  </a>
+                    </li>
 
             </ul>
 
@@ -23,6 +25,31 @@
             <!--end::Nav wrapper-->
         </div>
     </div>
+
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
 
 
     <div class="card card-flush m-6">
@@ -41,7 +68,7 @@
                                     fill="black" />
                             </svg>
                         </span>
-                        <!--end::Svg Icon-->New Category
+                        <!--end::Svg Icon-->New Newsletter
                     </a>
                 </div>
             </div>
@@ -164,6 +191,7 @@
                             <form class="form" novalidate="novalidate" id="kt_modal_create_app_form"
                                 enctype="multipart/form-data" action="{{ route('addnewsletter') }}" method="POST">
                                 @csrf
+                                <input type="hidden" name="homepage_id" value="{{$id}}">
                                 <!--begin::Step 1-->
                                 <div class="row">
                                     <div class="w-100">
@@ -212,7 +240,7 @@
 
                                 
 
-                                <button type="submit" class="btn btn-lg btn-primary">Create Category
+                                <button type="submit" class="btn btn-lg btn-primary">Create Newsletter
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-3 ms-1 me-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"

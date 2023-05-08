@@ -10,9 +10,9 @@ use Auth;
 
 class APINewsletterController extends Controller
 {
-      public function Promo(){
+      public function newsletter(){
 
-  $data =Newsletter::all()->where('status',1);
+  $data =Newsletter::all();
 
   return response()->json(['data'=>$data]);
     }

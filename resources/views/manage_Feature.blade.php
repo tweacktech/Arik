@@ -15,7 +15,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
-                    
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('home_role', ['id' => md5($id) ]) }}">Back  </a>
+                    </li>
 
             </ul>
 
@@ -23,6 +25,31 @@
             <!--end::Nav wrapper-->
         </div>
     </div>
+
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
 
 
     <div class="card card-flush m-6">
@@ -65,7 +92,7 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-150px">Icon/Title</th>
+                            <th class="min-w-120px">Icon/Title</th>
                             <th class="min-w-250px">Description</th>
                             <th class="min-w-50px">Image</th>
                             <th class="min-w-90px">Status</th>
@@ -87,7 +114,7 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/feature/{{ $data->icon }}"
+                                                <img alt="Pic" src="{{ asset('/feature/'.$data->icon) }}" 
                                                  />
                                                  {{$data->name}}
                                             </div>
@@ -112,7 +139,8 @@
 
                                 <td>
                                      <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/feature/{{ $data->image }}"
+                                                <img alt="Pic"
+                                                 src="{{ asset('/feature/'.$data->image) }}" 
                                                  />
                                             </div>
 
@@ -181,6 +209,7 @@
                                 enctype="multipart/form-data" action="{{ route('addFeature') }}" method="POST">
                                 @csrf
                                 <!--begin::Step 1-->
+                                <input type="hidden" name="homepage_id" value="{{$id}}">
                                 <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->

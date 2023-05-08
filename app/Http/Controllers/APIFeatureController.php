@@ -14,7 +14,7 @@ class APIFeatureController extends Controller
 
       public function Feature(){
 
-     $data =Feature::all()->where('status',1);
+     $data =Feature::all();
 
     return response()->json(['data' => $data]);
 }

@@ -12,7 +12,7 @@ class APIDealsOfferController extends Controller
 {
     public function DealsOffer(){
 
-  $data =DealsOffer::all()->where('status',1);
+  $data =DealsOffer::all();
 
   return response()->json(['data'=>$data]);
     }

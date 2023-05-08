@@ -12,7 +12,7 @@ class APIDestinationController extends Controller
 {
     public function Destination(){
 
-  $data =Destination::all()->where('status',1);
+  $data =Destination::all();
 
   return response()->json(['data'=>$data]);
     }

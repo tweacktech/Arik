@@ -31,6 +31,30 @@
     </div>
 
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
+
     <div class="card card-flush m-6">
         <!--begin::Card header-->
         <div class="card-header mt-5">
@@ -73,6 +97,7 @@
 
                             <th class="min-w-250px">Title</th>
                             <th class="min-w-250px">Description</th>
+                            <th class="min-w-90px">Order</th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text">Action</th>
                         </tr>
@@ -107,6 +132,11 @@
                                
                                 <td>
                                      {{$data->description}}
+
+                                </td> 
+                                <td>
+                                    <button class="btn-change-order" data-id="{{ $data->id }}">Change Order</button>
+                                     {{$data->orderby}}
 
                                 </td> 
                                

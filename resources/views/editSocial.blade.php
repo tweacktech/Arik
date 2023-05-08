@@ -1,6 +1,31 @@
 @extends('layouts.app', ['title' => 'Edit Social'])
 
 @section('content')
+
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+@if (session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+@endif
+
+<script>
+    setTimeout(function() {
+        $('.alert').alert('close');
+    }, 5000);
+</script>
+
     <div class="card card-flush m-20">
         <!--begin::Card header-->
         <div class="card-header mt-5">
@@ -92,7 +117,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/social/{{ $update->image }}" />
+                                                <img alt="Pic" src="{{ asset('/social/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"

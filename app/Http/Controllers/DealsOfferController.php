@@ -16,11 +16,12 @@ class DealsOfferController extends Controller
     }
 
 
-public function DealsOffer(){
+public function DealsOffer($id){
 
-  $data =DealsOffer::all();
+$id=$id;
+  $data =DealsOffer::all()->where('homepage_id',$id);
 
-  return view('manage_DealsOffer',compact('data'));
+  return view('manage_DealsOffer',compact('data','id'));
 }
 
 public function addDealsOffer(Request $req){
@@ -31,7 +32,7 @@ public function addDealsOffer(Request $req){
             'type' => 'required|string|max:255',
             'description' => 'required|string',
             'image' => 'required|image',
-            'homepage' => 'required'
+            'homepage_id' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -49,10 +50,12 @@ public function addDealsOffer(Request $req){
         $DealsOffer->title = $req->input('title');
         $DealsOffer->type = $req->input('type');
         $DealsOffer->description = $req->input('description');
-        $DealsOffer->homepage = $req->input('homepage');
+        $DealsOffer->homepage_id = $req->input('homepage_id');
         $DealsOffer->image = $file_name;
         $DealsOffer->save();
-  return redirect()->back();}
+return redirect()->back()->with('success', 'successfully added');
+}
+  return redirect()->back()->with('error', 'Could not perform this action');
 }
 
 public function deleteDealsOffer($id) {
@@ -75,9 +78,9 @@ public function unhideDealsOffer(Request $req, $id)
           'activity_type' => 'unhide'
         ]);
 
-      return redirect()->back();
+      return redirect()->back()->with('success', 'DealsOffer unhide successfully.');
     }
-    return redirect()->back();
+  return redirect()->back()->with('error', 'Could not perform this action');
   }
 
   public function hideDealsOffer(Request $req, $id)
@@ -90,9 +93,9 @@ public function unhideDealsOffer(Request $req, $id)
           'activity' => 'a DealsOffer was hidden by' . Auth::user()->name,
           'activity_type' => 'hide'
         ]);
-      return redirect()->back();
+    return redirect()->back()->with('success', 'DealsOffer hidden successfully.');
     }
-    return redirect()->back();
+   return redirect()->back()->with('error', 'Could not perform this action');
   }
 public function editDealsOffer(Request $req, $id)
   {
@@ -110,7 +113,7 @@ if ($request->file('image')=="") {
     $DealsOffer->title = $request->input('title');
     $DealsOffer->type = $request->input('type');
     $DealsOffer->description = $request->input('description');
-    $DealsOffer->homepage = $request->input('homepage');
+    $DealsOffer->homepage_id = $request->input('homepage_id');
     $DealsOffer->save();
     return redirect()->back()->with('success', 'DealsOffer updated successfully.');
         }else{
@@ -123,10 +126,11 @@ if ($request->file('image')=="") {
     $DealsOffer->type = $request->input('type');
     $DealsOffer->description = $request->input('description');
     $DealsOffer->image = $file_name;
-    $DealsOffer->homepage = $request->input('homepage');
+    $DealsOffer->homepage_id = $request->input('homepage_id');
     $DealsOffer->save();
     return redirect()->back()->with('success', 'DealsOffer updated successfully.');
 }
+return redirect()->back()->with('error', 'Could not perform this action');
 }
 
 }
