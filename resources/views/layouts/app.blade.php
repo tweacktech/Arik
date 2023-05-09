@@ -34,6 +34,10 @@
 
     <link href="https://stockmgt.gapaautoparts.com/public/assets/plugins/custom/datatables/datatables.bundle.css"
         rel="stylesheet" type="text/css" />
+<!-- for drag and drop -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.js"
         integrity="sha512-vX/u24VoVNEFnY4hejf35cn0a3id3sciX/7WHtSO0DjjeViFQI0OgpGdQykHTjW+IKpLRDN6jWwvnGX98QiRIA=="

@@ -97,7 +97,47 @@
 
                             <th class="min-w-250px">Title</th>
                             <th class="min-w-250px">Description</th>
-                            <th class="min-w-90px">Order</th>
+                            <th class="min-w-90px"> 
+                                <div class="symbol symbol-35px symbol-circle">
+                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoModal">Order</button>
+                                            </div>
+
+                                    <!-- Video Modal -->
+                                    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                          <div class="modal-header">
+                                            <h5 class="modal-title" id="videoModalLabel">Video</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                          </div>
+                                          <div class="modal-body">
+                                            <!-- Video Player -->
+                                         
+
+                                       <table>
+    <thead>
+        <tr>
+            <th>Item Name</th>
+            <th>Order</th>
+        </tr>
+    </thead>
+    <tbody id="sortable">
+        @foreach ($data as $item)
+        <tr id="item-{{ $item->id }}">
+            <td>{{ $item->title }}</td>
+            <td>{{ $item->orderby }}</td>
+            <td><i class="fa fa-bars"></i></td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+
+                            </th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text">Action</th>
                         </tr>
@@ -107,7 +147,7 @@
                     <tbody class="fs-6">
                         
                         @foreach ($data as $data)
-                            <tr>
+                            <tr data-id="{{ $data->id }}" data-position="{{ $data->order }}">
 
                                 <td>
                                     <!--begin::User-->
@@ -135,7 +175,7 @@
 
                                 </td> 
                                 <td>
-                                    <button class="btn-change-order" data-id="{{ $data->id }}">Change Order</button>
+                                    <!-- <button class="btn-change-order" data-id="{{ $data->id }}">Change Order</button> -->
                                      {{$data->orderby}}
 
                                 </td> 
@@ -276,3 +316,30 @@
     </div>
     <!--end::Modal content-->
 @endsection
+<script>
+ $(function() {
+    // Make the table rows sortable by drag and drop
+    $('#sortable').sortable({
+        update: function(event, ui) {
+            // Get the new order of the items
+            var newOrder = $(this).sortable('toArray');
+
+            // Send an AJAX request to update the order of the items in the database
+            $.ajax({
+                url: '/items/update-order',
+                type: 'POST',
+                data: {
+                    newOrder: newOrder
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+    });
+});
+
+</script>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit Category'])
+@extends('layouts.app', ['title' => 'Edit Bonus'])
 
 @section('content')
 
@@ -30,7 +30,8 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
-<a href="{{route('Category')}}" class="btn-md btn btn-primary">Back</a>
+<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -45,7 +46,7 @@
                         <div class="modal-header">
                             <!--begin::Modal title-->
    
-                            <h2>Edit Menu</h2>
+                            <h2>Edit Bonus</h2>
 
                         </div>
                         <!--end::Modal header-->
@@ -58,7 +59,7 @@
                                 <div class="flex-row-fluid py-lg-5 px-lg-15">
                                     <!--begin::Form-->
                                     <form class="form" novalidate="novalidate" id="kt_modal_create_app_form"
-                                        method="POST" action="{{ route('updateCategory', ['id' => $update->id]) }}"
+                                        method="POST" action="{{ route('updateBonus', ['id' => $update->id]) }}"
                                         enctype="multipart/form-data">
                                         @csrf
                                         @method('put')
@@ -84,7 +85,90 @@
 
                                             </div>
                                         </div>
-                                            
+
+
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required"> description</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description" placeholder=""
+                                                        value="{{ $update->description }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                            <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <div class="symbol symbol-35px symbol-circle">
+                                                <img alt="Pic" src="{{ asset('/Bonus/'.$update->image) }}" />
+                                                      </div>
+                                                        <span class="required">  Image</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"> 
+                                                        </i>
+
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="file"
+                                                        class="form-control form-control-lg form-control-solid" min="100" 
+                                                        name="image" placeholder=""
+                                                        />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+
+                                <div class="row">
+                                    <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">URL</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="url_link" placeholder=""
+                                                        value="{{ $update->url_link }}" />
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
+
+
                                         <button type="submit" class="btn btn-lg btn-primary">Update
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                             <span class="svg-icon svg-icon-3 ms-1 me-0">

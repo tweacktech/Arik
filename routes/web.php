@@ -18,6 +18,7 @@ use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\BonusController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -44,18 +45,6 @@ Route::get('/offsite', function () {
 
   return redirect()->back();
 })->name('offsite');
-
-//set dollar 
-// Route::post('/set-dollar', [StoreController::class, 'set_dollar_rate'])->name('set_dollar_rate');
-
-//set delevery rate 
-Route::post('/set-delivery-rate-per-kilometer', function (Request $req) {
-  DB::table('delivery_rate_per_km')
-    ->update(['rate' => $req->rate]);
-
-  return redirect()->back();
-})->name('set_delivery_rate');
-
 
 
 
@@ -229,7 +218,6 @@ Route::get('/deleteFooter/{id}', [FooterController::class, 'deleteFooter'])->nam
 
 
 // Category and Subm
-// Route::get('/Overall', [WebMenuController::class, 'index'])->name('Overall');
 Route::get('/manage-Category', [CategoryController::class, 'Category'])->name('Category');
 Route::post('/add-Category', [CategoryController::class, 'addCategory'])->name('addCategory');
 Route::get('/hideCategory/{id}', [CategoryController::class, 'hideCategory'])->name('hideCategory');
@@ -237,7 +225,7 @@ Route::get('/unhideCategory/{id}', [CategoryController::class, 'unhideCategory']
 Route::get('/editCategory/{id}', [CategoryController::class, 'editCategory'])->name('editCategory');
 Route::put('/updateCategory/{id}', [CategoryController::class, 'updateCategory'])->name('updateCategory');
 Route::get('/deleteCategory/{id}', [CategoryController::class, 'deleteCategory'])->name('deleteCategory');
-// subMenus
+// subCat
 Route::get('/manage-SubCategory', [SubCategoryController::class, 'SubCategory'])->name('SubCategory');
 Route::post('/add-SubCategory', [SubCategoryController::class, 'addSubCategory'])->name('addSubCategory');
 Route::get('/hideSubCategory/{id}', [SubCategoryController::class, 'hideSubCategory'])->name('hideSubCategory');
@@ -246,3 +234,12 @@ Route::get('/editSubCategory/{id}', [SubCategoryController::class, 'editSubCateg
 Route::put('/updateSubCategory/{id}', [SubCategoryController::class, 'updateSubCategory'])->name('updateSubCategory');
 Route::get('/deleteSubCategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('deleteSubCategory');
 
+
+//Bonus
+Route::get('/manage-Bonus/{id}', [BonusController::class, 'Bonus'])->name('Bonus');
+Route::post('/add-Bonus', [BonusController::class, 'addBonus'])->name('addBonus');
+Route::get('/hideBonus/{id}', [BonusController::class, 'hideBonus'])->name('hideBonus');
+Route::get('/unhideBonus/{id}', [BonusController::class, 'unhideBonus'])->name('unhideBonus');
+Route::get('/editBonus/{id}', [BonusController::class, 'editBonus'])->name('editBonus');
+Route::put('/updateBonus/{id}', [BonusController::class, 'updateBonus'])->name('updateBonus');
+Route::get('/deleteBonus/{id}', [BonusController::class, 'deleteBonus'])->name('deleteBonus');
