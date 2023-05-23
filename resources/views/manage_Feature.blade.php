@@ -92,11 +92,12 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-120px">Icon/Title</th>
-                            <th class="min-w-250px">Description</th>
+                            <th class="min-w-120px">Icon/name</th>
+                            <th class="min-w-100px">Title</th>
+                            <th class="min-w-120px">Description</th>
                             <th class="min-w-50px">Image</th>
-                            <th class="min-w-90px">Status</th>
-                            <th class="min-w-100px text">Action</th>
+                            <th class="min-w-20px">Status</th>
+                            <th class="min-w-150px text">Action</th>
                             <!-- <th class="min-w-100px text"></th> -->
                         </tr>
                     </thead>
@@ -114,7 +115,7 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/feature/'.$data->icon) }}" 
+                                                <img alt="Pic" src="{{ asset('public/feature/'.$data->icon) }}" 
                                                  />
                                                  {{$data->name}}
                                             </div>
@@ -122,16 +123,16 @@
                                         </div>
                                         <!--end::Wrapper-->
                                         <!--begin::Info-->
-                                        <div class="d-flex flex-column justify-content-center">
-                                            <a href=""
-                                                class="fs-6 text-gray-800 text-hover-primary">{{ $data->title }}</a>
-
-                                        </div>
+                                        
                                         <!--end::Info-->
                                     </div>
                                     <!--end::User-->
                                 </td>
-                               
+                               <td><div class="d-flex flex-column justify-content-center">
+                                            <a href=""
+                                                class="fs-6 text-gray-800 text-hover-primary">{{ $data->title }}</a>
+
+                                        </div></td>
                                 <td>
                                      {{$data->description}}
 
@@ -140,7 +141,7 @@
                                 <td>
                                      <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic"
-                                                 src="{{ asset('/feature/'.$data->image) }}" 
+                                                 src="{{ asset('public/feature/'.$data->image) }}" 
                                                  />
                                             </div>
 
@@ -252,28 +253,6 @@
                                     </div>
                                 </div>
 
-
-                                <div class="row">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Description</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                    title="Specify your unique app name"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="description" placeholder="Enter" required />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                    </div>
-                                </div>
-
                                  <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
@@ -309,6 +288,30 @@
                                             <!--begin::Input-->
                                             <input type="file" min="100" class="form-control form-control-lg form-control-solid"
                                                 name="image" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Description</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder="Enter"
+                                                        > </textarea>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

@@ -29,7 +29,7 @@ public function addPromo(Request $req){
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'url_link' => 'required|string',
+            // 'url_link' => 'required|string',
             'price' => 'required|numeric',
             'homepage_id' => 'required|numeric',
             'color' => 'required',

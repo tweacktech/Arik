@@ -19,7 +19,7 @@ class FeatureController extends Controller
 public function Feature($id){
 
 $id=$id;
-  $data =Feature::all()->where('homepage_id',$id);
+  $data =Feature::all();
 
   return view('manage_Feature',compact('data','id'));
 }
@@ -111,18 +111,11 @@ public function editFeature(Request $req, $id)
     return view('editFeature',compact('update'));
   }
 
+
 public function updateFeature(Request $request, $id) {
 
-if ($request->file('image')=="") {
-    $Feature = Feature::find($id);
-    $Feature->name = $request->input('name');
-    $Feature->title = $request->input('title');
-    $Feature->description = $request->input('description');
-    $Feature->homepage_id = $request->input('homepage_id');
-    $Feature->save();
-    return redirect()->back()->with('success', 'Feature updated successfully.');
-        }else{
-        $file = $request->file('image');
+  if ($request->file('image')!="" && $request->file('icon')!="") {
+     $file = $request->file('image');
     $file_name = time() . $file->getClientOriginalName();
     $file->move(public_path('feature/'), $file_name);
 
@@ -139,7 +132,48 @@ if ($request->file('image')=="") {
     $Feature->icon = $file_names;
     $Feature->save();
     return redirect()->back()->with('success', 'Feature updated successfully.');
-}
+
+  }elseif ($request->file('image')!="") {
+    $file = $request->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('feature/'), $file_name);
+
+    $Feature = Feature::find($id);
+    $Feature->name = $request->input('name');
+    $Feature->title = $request->input('title');
+    $Feature->description = $request->input('description');
+    $Feature->homepage_id = $request->input('homepage_id');
+    $Feature->image = $file_name;
+    $Feature->save();
+    return redirect()->back()->with('success', 'Feature updated successfully.');
+
+  }elseif($request->file('icon')!=""){
+
+     $files = $request->file('icon');
+    $file_names = time() . $files->getClientOriginalName();
+    $files->move(public_path('feature/'), $file_names);
+
+    $Feature = Feature::find($id);
+    $Feature->name = $request->input('name');
+    $Feature->title = $request->input('title');
+    $Feature->description = $request->input('description');
+    $Feature->homepage_id = $request->input('homepage_id');
+    $Feature->icon = $file_names;
+    $Feature->save();
+    return redirect()->back()->with('success', 'Feature updated successfully.');
+
+  }else{
+
+   $Feature = Feature::find($id);
+    $Feature->name = $request->input('name');
+    $Feature->title = $request->input('title');
+    $Feature->description = $request->input('description');
+    $Feature->homepage_id = $request->input('homepage_id');
+    $Feature->save();
+    return redirect()->back()->with('success', 'Feature updated successfully.');
+
+  }
+
 }
 
 }

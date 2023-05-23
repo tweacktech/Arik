@@ -102,15 +102,15 @@
                                                                 @if($slider)
                                                                
                                                                 <div class="col-md-4">
-                                                                    <img style="margin:auto;width:250px; height:150px" src="/uploads/slider/{{$slider->img}}" alt="Slider 1">
+                                                                    <img style="margin:auto;width:250px; height:150px" src="public/uploads/slider/{{$slider->img}}" alt="Slider 1">
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <img style="margin:auto;width:250px; height:150px" src="/uploads/slider/{{$slider->img_2}}" alt="Slider 2">
+                                                                    <img style="margin:auto;width:250px; height:150px" src="public/uploads/slider/{{$slider->img_2}}" alt="Slider 2">
                                                                 </div>
 
                                                                 <div class="col-md-4">
-                                                                    <img style="margin:auto;width:250px; height:150px" src="/uploads/slider/{{$slider->img_2}}" alt="Slider 3">
+                                                                    <img style="margin:auto;width:250px; height:150px" src="public/uploads/slider/{{$slider->img_2}}" alt="Slider 3">
                                                                 </div>
 
                                                                 @endif

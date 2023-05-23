@@ -39,7 +39,7 @@ class WebController extends Controller
     //first image
     $file = $req->file('img');
     $file_name = time() . $file->getClientOriginalName();
-    $file->move(public_path('uploads/logo'), $file_name);
+    $file->move(public_path('/logo'), $file_name);
 
     $data = [
       'logo' => $file_name,

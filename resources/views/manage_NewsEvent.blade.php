@@ -47,15 +47,80 @@
         $('.alert').alert('close');
     }, 5000);
 </script>
+  <div class="modal fade" id="category" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered ">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header">
+                    <!--begin::Modal title-->
+                    <h2>Create Category NewsEvent</h2>
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <form method="POST" action="{{route('addEventCat')}}" >
+                         @csrf
+                        <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Title</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="title" placeholder="Add category" require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
 
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" name="">
+                        
+                    </form>
 
+                    <table>
+                        <thead>
+                         <th class="min-w-250px">Title</th>
+                            <th class="min-w-250px">Action</th>
+                    </thead>
+                    <tbody>
+                        @php $tata=DB::table('event_cats')->get(); @endphp
+                        @foreach($tata as $da)
+                        <tr>
+                            <td>{{$da->title}}</td>
+                            <td> <a href="{{ route('deleteEventCat', ['id' => $da->id]) }}"
+                                        class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#category" data-bs-toggle="modal">
+                        Event Category
+                    </a>
+                </div>
 
     <div class="card card-flush m-6">
         <!--begin::Card header-->
         <div class="card-header mt-5">
             <div class="card-header">
                 <div class="card-toolbar">
-                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#create_category" data-bs-toggle="modal">
+                    <a href="#" class="btn btn-flex btn-primary me-3" data-bs-target="#create_category" data-bs-toggle="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -67,6 +132,9 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->New News Room or Event
+                    </a>
+                    <a href="{{route('NewsEventLabel')}}" class="btn btn-flex btn-info" >
+                        Add/Edit Label
                     </a>
                 </div>
             </div>
@@ -111,7 +179,7 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/Event/'.$data->image) }}" 
+                                                <img alt="Pic" src="{{ asset('public/Event/'.$data->image) }}" 
                                                  />
                                             </div>
                                             <!--end::Avatar-->
@@ -243,21 +311,21 @@
                                     </div>
                                 </div>
 
-
+                                
                                 <div class="row">
                                     <div class="w-100">
                                        <!--begin::Input group-->
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Description</span>
+                                                <span class="required">Location</span>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                     title="Specify your unique app name"></i>
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-lg form-control-solid"
-                                                name="description" placeholder="Enter" required />
+                                                name="location" placeholder="Enter" required />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -266,7 +334,42 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="w-100">
+                                    <div class="col-md-4">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Start time</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="time" class="form-control form-control-lg form-control-solid" value="{{ old('my_date') }}" min="{{ now()->format('Y-m-d') }}" name="start_time">
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                    <div class="col-md-4">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">End time</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="time" class="form-control form-control-lg form-control-solid" value="{{ old('my_date') }}" min="{{ now()->format('Y-m-d') }}" name="end_time">
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <div class="col-md-4">
                                        <!--begin::Input group-->
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
@@ -285,13 +388,57 @@
 
                                     </div>
                                 </div>
+    
 
-                                 
+                                <div class="row">
+                                    <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Categories</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                             <select name="categories[]" class="form-control form-control-lg form-control-solid" id="categories" multiple>
+         @php $categories=DB::table('event_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+        @endforeach
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
 
-                              
+                                    </div>
+                                </div>   
 
-                                
+                                <div class="row">
+                                    <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Description</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                             <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        ></textarea>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
 
+                                    </div>
+                                </div>                             
+
+           
                                 <button type="submit" class="btn btn-lg btn-primary">Create
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                     <span class="svg-icon svg-icon-3 ms-1 me-0">

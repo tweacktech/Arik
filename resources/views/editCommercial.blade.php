@@ -30,7 +30,7 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -100,10 +100,58 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
+                                                    <textarea style="height: 100px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        >{{ $update->description }} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Title2</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
                                                     <input type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="description" placeholder=""
-                                                        value="{{ $update->description }}" />
+                                                        name="title2" placeholder="" value="{{ $update->title2 }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required"> description2</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                     <textarea style="height: 100px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description2"  placeholder=""
+                                                        >{{ $update->description2 }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -118,7 +166,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/Commercial/{{ $update->image }}" />
+                                                <img alt="Pic" src="{{ asset('public/Commercial/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
@@ -148,7 +196,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="/Commercial/{{ $update->image2 }}" />
+                                                <img alt="Pic" src="{{ asset('public/Commercial/'.$update->image2)}}" />
                                                       </div>
                                                         <span class="required">  Image2</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
@@ -177,51 +225,18 @@
                                                 <div class="fv-row mb-10">
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">  Video</span>
+                                                       <label for="url">Enter video URL</label>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
                                                             data-bs-toggle="tooltip"
                                                             title="Specify your unique app name"> 
                                                         </i>
 
                                                     </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <!-- <input type="file"
-                                                        class="form-control form-control-lg form-control-solid" min="100" 
-                                                        name="video" placeholder=""
-                                                        /> -->
+                                                   
 
-                                                    <div>
-  <input type="radio" id="upload" name="video-type" value="upload" checked>
-  <label for="upload">Upload video</label>
-  <input type="radio" id="url" name="video-type" value="url">
-  <label for="url">Enter video URL</label>
-</div>
-
-<div id="video-input">
-  <input type="file" id="video-file" class="form-control form-control-lg form-control-solid" name="video" placeholder="" accept="video/*">
-</div>
-
-<div id="video-url" style="display:none">
-  <label for="video-url-input">Video URL:</label>
+<div id="video-url" style="">
   <input type="text" id="video-url-input" value="{{$update->video}}" class="form-control form-control-lg form-control-solid" name="video_url" placeholder="Enter video URL">
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-$(document).ready(function() {
-  $('input[type=radio][name=video-type]').change(function() {
-    if (this.value == 'upload') {
-      $('#video-input').show();
-      $('#video-url').hide();
-    }
-    else if (this.value == 'url') {
-      $('#video-input').hide();
-      $('#video-url').show();
-    }
-  });
-});
-</script>
 
                                                     <!--end::Input-->
                                                 </div>

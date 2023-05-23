@@ -42,11 +42,12 @@ public function addSubCategory(Request $req){
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+       $link ='/'.str_replace(' ', '', $req->input('title'));
         // Create a new SubCategory with validated data
         $SubCategory = new SubCategory();
         $SubCategory->title = $req->input('title');
         $SubCategory->category_id = $req->input('category_id');
+        $SubCategory->link = $link;
         $SubCategory->save();
   return redirect()->back();
 }
@@ -105,9 +106,11 @@ public function editSubCategory(Request $req, $id)
   }
 
 public function updateSubCategory(Request $request, $id) {
+    $link ='/'.str_replace(' ', '', $request->input('title'));
     $SubCategory = SubCategory::find($id);
     $SubCategory->title = $request->input('title');
     $SubCategory->category_id = $request->input('category_id');
+    $SubCategory->link = $link;
     $SubCategory->save();
     return redirect()->back()->with('success', 'SubCategory updated successfully.');
 }

@@ -53,10 +53,11 @@ public function addCategory(Request $req){
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+            $link ='/'.str_replace(' ', '', $req->input('title'));
         // Create a new Category with validated data
         $Category = new Category();
         $Category->title = $req->input('title');
+        $Category->link = $link;
         $Category->save();
   return redirect()->back();
     }
@@ -114,8 +115,10 @@ public function editCategory(Request $req, $id)
   }
 
 public function updateCategory(Request $request, $id) {
+      $link ='/'.str_replace(' ', '', $request->input('title'));
     $Category = Category::find($id);
     $Category->title = $request->input('title');
+    $Category->link = $link;
     $Category->save();
     return redirect()->back()->with('success', 'Category updated successfully.');
 }

@@ -11,7 +11,7 @@ class APIWebMenuController extends Controller
 
     public function menu(){
 
-    $data=DB::table('web_menus')->get();
+    $data=DB::table('web_menus')->orderBy('orderby','ASC')->get();
     return response()->json(['data'=>$data]);
 }
     public function submenu(){

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Destination;
+use App\Models\DestinationLabel;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use Auth;
@@ -17,6 +18,39 @@ class DestinationController extends Controller
     {
         $this->middleware('auth');
     }
+
+
+public function DestinationLabel(){
+
+     $update=DB::table('destination_labels')->where('id',1)->first();
+
+        return view('DestinationLabel', compact('update'));
+}
+
+
+public function DestinationLabelstore(Request $request,$id)
+    {
+        
+if ($request->file('image')=="") {
+     $DestinationLabel = DestinationLabel::find($id);
+    $DestinationLabel->title = $request->input('title');
+    $DestinationLabel->description = $request->input('description');
+    $DestinationLabel->save();
+    return redirect()->back()->with('success', 'DestinationLabel updated successfully.');
+        }else{
+        $file = $request->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('destination/'), $file_name);
+
+    $DestinationLabel = DestinationLabel::find($id);
+    $DestinationLabel->title = $request->input('title');
+    $DestinationLabel->description = $request->input('description');
+    $DestinationLabel->image = $file_name;
+    $DestinationLabel->save();
+    return redirect()->back()->with('success', 'DealsOffer updated successfully.');
+}
+return redirect()->back()->with('error', 'Could not perform this action');
+}
 
 
 public function Destination($id){

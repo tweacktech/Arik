@@ -1,6 +1,7 @@
 @extends('layouts.app', ['title' => 'Manage Web Menu'])
 
 @section('content')
+
     <div class="card mb-6 mb-xl-9">
         <div class="card-body pt-9 pb-0">
 
@@ -55,7 +56,8 @@
     }, 5000);
 </script>
 
-    <div class="card card-flush m-6">
+
+    <div class="card card-flush ">
         <!--begin::Card header-->
         <div class="card-header mt-5">
             <div class="card-header">
@@ -83,73 +85,33 @@
             </div>
             <!--begin::Card toolbar-->
         </div>
+
+
         <!--end::Card header-->
         <!--begin::Card body-->
-        <div class="card-body pt-0">
+        <div class="card-body">
             <!--begin::Table container-->
             <div class="table-responsive">
                 <!--begin::Table-->
-                <table id="kt_profile_overview_table"
-                    class="table table-row-bordered table-row-dashed gy-4 align-middle fw-bolder">
-                    <!--begin::Head-->
-                    <thead class="fs-7 text-gray-400 text-uppercase">
-                        <tr>
-
-                            <th class="min-w-250px">Title</th>
+                  <div class="row ">
+        <div class="col-md-12 offset-ms-1">
+            <table id="table" class="table table-bordered">
+              <thead>
+                <tr>
+                  <th width="30px">#</th>  
+                  <th class="min-w-250px">Title</th>
                             <th class="min-w-250px">Description</th>
-                            <th class="min-w-90px"> 
-                                <div class="symbol symbol-35px symbol-circle">
-                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#videoModal">Order</button>
-                                            </div>
-
-                                    <!-- Video Modal -->
-                                    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                          <div class="modal-header">
-                                            <h5 class="modal-title" id="videoModalLabel">Video</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                          </div>
-                                          <div class="modal-body">
-                                            <!-- Video Player -->
-                                         
-
-                                       <table>
-    <thead>
-        <tr>
-            <th>Item Name</th>
-            <th>Order</th>
-        </tr>
-    </thead>
-    <tbody id="sortable">
-        @foreach ($data as $item)
-        <tr id="item-{{ $item->id }}">
-            <td>{{ $item->title }}</td>
-            <td>{{ $item->orderby }}</td>
-            <td><i class="fa fa-bars"></i></td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-
-                            </th>
-                            <th class="min-w-90px">Status</th>
+                            <th class="min-w-90px"> order</th>
+                  <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text">Action</th>
-                        </tr>
-                    </thead>
-                    <!--end::Head-->
-                    <!--begin::Body-->
-                    <tbody class="fs-6">
-                        
-                        @foreach ($data as $data)
-                            <tr data-id="{{ $data->id }}" data-position="{{ $data->order }}">
-
-                                <td>
+                </tr>
+              </thead>
+              <tbody id="tablecontents">
+              <!-- get all data from Table by Controller -->
+                @foreach($data as $data)
+                    <tr class="row1" data-id="{{ $data->orderby }}">
+                      <td class="pl-3"><i class="fa fa-sort"></i></td>
+                     <td>
                                     <!--begin::User-->
                                     <div class="d-flex align-items-center">
                                         <!--begin::Wrapper-->
@@ -203,10 +165,12 @@
                                         class="btn btn-danger btn-sm">Delete</a>
                                </td>
                             </tr>
-                        @endforeach
-                    </tbody>
-                    <!--end::Body-->
-                </table>
+                @endforeach
+              </tbody>                  
+            </table>
+            <hr> 
+        </div>
+    </div>
                 <!--end::Table-->
             </div>
             <!--end::Table container-->
@@ -315,31 +279,49 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
-@endsection
-<script>
- $(function() {
-    // Make the table rows sortable by drag and drop
-    $('#sortable').sortable({
-        update: function(event, ui) {
-            // Get the new order of the items
-            var newOrder = $(this).sortable('toArray');
-
-            // Send an AJAX request to update the order of the items in the database
-            $.ajax({
-                url: '/items/update-order',
-                type: 'POST',
-                data: {
-                    newOrder: newOrder
-                },
-                success: function(response) {
-                    console.log(response);
-                },
-                error: function(xhr) {
-                    console.log(xhr.responseText);
-                }
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#table").DataTable();
+// this is need to Move Ordera accordin user wish Arrangement
+        $( "#tablecontents" ).sortable({
+          items: "tr",
+          cursor: 'move',
+          opacity: 0.6,
+          update: function() {
+              sendOrderToServer();
+          }
+        });
+        function sendOrderToServer() {
+          var order = [];
+          var token = $('meta[name="csrf-token"]').attr('content');
+        //   by this function User can Update hisOrders or Move to top or under
+          $('tr.row1').each(function(index,element) {
+            order.push({
+              id: $(this).attr('data-id'),
+              position: index+1
             });
+          });
+// the Ajax Post update 
+          $.ajax({
+            type: "POST", 
+            dataType: "json", 
+            url: "{{ url('Custom-sortable') }}",
+                data: {
+              order: order,
+              _token: token
+            },
+            success: function(response) {
+                if (response.status == "success") {
+                  console.log(response);
+                } else {
+                  console.log(response);
+                }
+            }
+          });
         }
-    });
-});
-
-</script>
+      });
+    </script>
+@endsection

@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
@@ -10,7 +9,7 @@ use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\WebMenuController;
 use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\FeatureController;
-use App\Http\Controllers\SocialController;
+use App\Http\Controllers\SocialController;  
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\DealsOfferController;
 use App\Http\Controllers\CommercialController;  
@@ -19,6 +18,15 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\BonusController;
+use App\Http\Controllers\QuickBoxController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\MissionVissionController;
+use App\Http\Controllers\FaqController;
+use App\Http\Controllers\CompanyHistoryController;
+use App\Http\Controllers\AppStoreController;
+use App\Http\Controllers\RoutingController;
+use App\Http\Controllers\EventCatController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -45,6 +53,12 @@ Route::get('/offsite', function () {
 
   return redirect()->back();
 })->name('offsite');
+
+
+Route::get('/api', function () {
+    $routes = Route::getRoutes()->getRoutesByMethod();
+    return view('APIs', ['routes' => $routes]);
+});
 
 
 
@@ -82,7 +96,6 @@ Route::post('/update_category_slider', [WebController::class, 'update_category_s
 Route::get('/manage-web', [WebController::class, 'manage_web'])->name('manage_web');
 Route::get('/manage_offer_slider', [WebController::class, 'manage_offer_slider'])->name('manage_offer_slider');
 Route::put('/update-slider', [WebController::class, 'update_slider'])->name('update_slider');
-Route::put('/update-slider2', [WebController::class, 'update_slider2'])->name('update_slider2');
 Route::get('/web-content', [WebController::class, 'web_content'])->name('web_content');
 // Route::get('/web-offer', [WebController::class, 'web_offer'])->name('web_offer');
 Route::get('/manage-slider', [WebController::class, 'slider'])->name('slider');
@@ -123,6 +136,9 @@ Route::get('/unhideNewsEvent/{id}', [NewsEventController::class, 'unhideNewsEven
 Route::get('/editNewsEvent/{id}', [NewsEventController::class, 'editNewsEvent'])->name('editNewsEvent');
 Route::put('/updateNewsEvent/{id}', [NewsEventController::class, 'updateNewsEvent'])->name('updateNewsEvent');
 Route::get('/deleteNewsEvent/{id}', [NewsEventController::class, 'deleteNewsEvent'])->name('deleteNewsEvent');
+Route::get('/NewsEventLabel', [NewsEventController::class, 'NewsEventLabel'])->name('NewsEventLabel');
+Route::put('/NewsEventLabel/{id}', [NewsEventController::class, 'NewsEventLabelstore'])->name('NewsEventLabelstore');
+
 
 
 // menu and submenu
@@ -134,6 +150,7 @@ Route::get('/unhideWebMenu/{id}', [WebMenuController::class, 'unhideWebMenu'])->
 Route::get('/editWebMenu/{id}', [WebMenuController::class, 'editWebMenu'])->name('editWebMenu');
 Route::put('/updateWebMenu/{id}', [WebMenuController::class, 'updateWebMenu'])->name('updateWebMenu');
 Route::get('/deleteWebMenu/{id}', [WebMenuController::class, 'deleteWebMenu'])->name('deleteWebMenu');
+Route::post('Custom-sortable', [WebMenuController::class, 'updateO'])->name('updateO');
 // subMenus
 Route::get('/manage-SubMenu', [SubMenuController::class, 'SubMenu'])->name('SubMenu');
 Route::post('/add-SubMenu', [SubMenuController::class, 'addSubMenu'])->name('addSubMenu');
@@ -175,15 +192,24 @@ Route::get('/editDestination/{id}', [DestinationController::class, 'editDestinat
 Route::put('/updateDestination/{id}', [DestinationController::class, 'updateDestination'])->name('updateDestination');
 Route::get('/deleteDestination/{id}', [DestinationController::class, 'deleteDestination'])->name('deleteDestination');
 
+Route::get('/DestinationLabel', [DestinationController::class, 'DestinationLabel'])->name('DestinationLabel');
+Route::put('/DestinationLabel/{id}', [DestinationController::class, 'DestinationLabelstore'])->name('DestinationLabelstore');
+
 
 // manage popurlar DealsOffer
 Route::get('/manage-DealsOffer/{id}', [DealsOfferController::class, 'DealsOffer'])->name('DealsOffer');
 Route::post('/add-DealsOffer', [DealsOfferController::class, 'addDealsOffer'])->name('addDealsOffer');
 Route::get('/hideDealsOffer/{id}', [DealsOfferController::class, 'hideDealsOffer'])->name('hideDealsOffer');
 Route::get('/unhideDealsOffer/{id}', [DealsOfferController::class, 'unhideDealsOffer'])->name('unhideDealsOffer');
+Route::get('/editDealIcons/{id}', [DealsOfferController::class, 'editDealIcons'])->name('editDealIcons');
 Route::get('/editDealsOffer/{id}', [DealsOfferController::class, 'editDealsOffer'])->name('editDealsOffer');
 Route::put('/updateDealsOffer/{id}', [DealsOfferController::class, 'updateDealsOffer'])->name('updateDealsOffer');
 Route::get('/deleteDealsOffer/{id}', [DealsOfferController::class, 'deleteDealsOffer'])->name('deleteDealsOffer');
+Route::get('/deletedealsicon/{id}', [DealsOfferController::class, 'deletedealsicon'])->name('deletedealsicon');
+Route::get('/DealLabel', [DealsOfferController::class, 'DealLabel'])->name('DealLabel');
+Route::put('/storeOrUpdate/{id}', [DealsOfferController::class, 'storeOrUpdate'])->name('storeOrUpdate');
+
+Route::post('/update_dealicons', [DealsOfferController::class, 'update_dealicons'])->name('update_dealicons');
 
 
 // manage Commercial
@@ -205,17 +231,6 @@ Route::get('/add-homepage/{id}', [HomePageController::class, 'add_homepage'])->n
 Route::get('/remove-hompage/{id}', [HomePageController::class, 'remove_homepage'])->name('remove_homepage');
 
 
-// manage popurlar Footer
-Route::get('/manage-Footer/{id}', [FooterController::class, 'Footer'])->name('Footer');
-Route::post('/add-Footer', [FooterController::class, 'addFooter'])->name('addFooter');
-Route::get('/hideFooter/{id}', [FooterController::class, 'hideFooter'])->name('hideFooter');
-Route::get('/unhideFooter/{id}', [FooterController::class, 'unhideFooter'])->name('unhideFooter');
-Route::get('/editFooter/{id}', [FooterController::class, 'editFooter'])->name('editFooter');
-Route::put('/updateFooter/{id}', [FooterController::class, 'updateFooter'])->name('updateFooter');
-Route::get('/deleteFooter/{id}', [FooterController::class, 'deleteFooter'])->name('deleteFooter');
-
-
-
 
 // Category and Subm
 Route::get('/manage-Category', [CategoryController::class, 'Category'])->name('Category');
@@ -235,7 +250,7 @@ Route::put('/updateSubCategory/{id}', [SubCategoryController::class, 'updateSubC
 Route::get('/deleteSubCategory/{id}', [SubCategoryController::class, 'deleteSubCategory'])->name('deleteSubCategory');
 
 
-//Bonus
+//Bonus this appears in homepage 1 and 3
 Route::get('/manage-Bonus/{id}', [BonusController::class, 'Bonus'])->name('Bonus');
 Route::post('/add-Bonus', [BonusController::class, 'addBonus'])->name('addBonus');
 Route::get('/hideBonus/{id}', [BonusController::class, 'hideBonus'])->name('hideBonus');
@@ -243,3 +258,95 @@ Route::get('/unhideBonus/{id}', [BonusController::class, 'unhideBonus'])->name('
 Route::get('/editBonus/{id}', [BonusController::class, 'editBonus'])->name('editBonus');
 Route::put('/updateBonus/{id}', [BonusController::class, 'updateBonus'])->name('updateBonus');
 Route::get('/deleteBonus/{id}', [BonusController::class, 'deleteBonus'])->name('deleteBonus');
+
+//footer Quick box
+Route::get('/manage-QuickBox/{id}', [QuickBoxController::class, 'QuickBox'])->name('QuickBox');
+Route::post('/add-QuickBox', [QuickBoxController::class, 'addQuickBox'])->name('addQuickBox');
+Route::get('/hideQuickBox/{id}', [QuickBoxController::class, 'hideQuickBox'])->name('hideQuickBox');
+Route::get('/unhideQuickBox/{id}', [QuickBoxController::class, 'unhideQuickBox'])->name('unhideQuickBox');
+Route::get('/editQuickBox/{id}', [QuickBoxController::class, 'editQuickBox'])->name('editQuickBox');
+Route::put('/updateQuickBox/{id}', [QuickBoxController::class, 'updateQuickBox'])->name('updateQuickBox');
+Route::get('/deleteQuickBox/{id}', [QuickBoxController::class, 'deleteQuickBox'])->name('deleteQuickBox');
+
+
+// manage  Footer
+Route::get('/manage-Footer/{id}', [FooterController::class, 'Footer'])->name('Footer');
+Route::post('/add-Footer', [FooterController::class, 'addFooter'])->name('addFooter');
+Route::get('/hideFooter/{id}', [FooterController::class, 'hideFooter'])->name('hideFooter');
+Route::get('/unhideFooter/{id}', [FooterController::class, 'unhideFooter'])->name('unhideFooter');
+Route::get('/editFooter/{id}', [FooterController::class, 'editFooter'])->name('editFooter');
+Route::put('/updateFooter/{id}', [FooterController::class, 'updateFooter'])->name('updateFooter');
+Route::get('/deleteFooter/{id}', [FooterController::class, 'deleteFooter'])->name('deleteFooter');
+
+
+// manage  About
+Route::get('/manage-About', [AboutController::class, 'About'])->name('About');
+Route::post('/add-About', [AboutController::class, 'addAbout'])->name('addAbout');
+Route::get('/hideAbout/{id}', [AboutController::class, 'hideAbout'])->name('hideAbout');
+Route::get('/unhideAbout/{id}', [AboutController::class, 'unhideAbout'])->name('unhideAbout');
+Route::get('/editAbout/{id}', [AboutController::class, 'editAbout'])->name('editAbout');
+Route::put('/updateAbout/{id}', [AboutController::class, 'updateAbout'])->name('updateAbout');
+Route::get('/deleteAbout/{id}', [AboutController::class, 'deleteAbout'])->name('deleteAbout');
+
+// manage  Policy
+Route::get('/manage-Policy', [PolicyController::class, 'Policy'])->name('Policy');
+Route::post('/add-Policy', [PolicyController::class, 'addPolicy'])->name('addPolicy');
+Route::get('/hidePolicy/{id}', [PolicyController::class, 'hidePolicy'])->name('hidePolicy');
+Route::get('/unhidePolicy/{id}', [PolicyController::class, 'unhidePolicy'])->name('unhidePolicy');
+Route::get('/editPolicy/{id}', [PolicyController::class, 'editPolicy'])->name('editPolicy');
+Route::put('/updatePolicy/{id}', [PolicyController::class, 'updatePolicy'])->name('updatePolicy');
+Route::get('/deletePolicy/{id}', [PolicyController::class, 'deletePolicy'])->name('deletePolicy');
+
+
+// manage  MissionVission
+Route::get('/manage-MissionVission', [MissionVissionController::class, 'MissionVission'])->name('MissionVission');
+Route::post('/add-MissionVission', [MissionVissionController::class, 'addMissionVission'])->name('addMissionVission');
+Route::get('/hideMissionVission/{id}', [MissionVissionController::class, 'hideMissionVission'])->name('hideMissionVission');
+Route::get('/unhideMissionVission/{id}', [MissionVissionController::class, 'unhideMissionVission'])->name('unhideMissionVission');
+Route::get('/editMissionVission/{id}', [MissionVissionController::class, 'editMissionVission'])->name('editMissionVission');
+Route::put('/updateMissionVission/{id}', [MissionVissionController::class, 'updateMissionVission'])->name('updateMissionVission');
+Route::get('/deleteMissionVission/{id}', [MissionVissionController::class, 'deleteMissionVission'])->name('deleteMissionVission');
+
+//FREQUENTLY ASKED QUESTIONS
+Route::get('/manage-Faq', [FaqController::class, 'Faq'])->name('Faq');
+Route::post('/add-Faq', [FaqController::class, 'addFaq'])->name('addFaq');
+Route::get('/hideFaq/{id}', [FaqController::class, 'hideFaq'])->name('hideFaq');
+Route::get('/unhideFaq/{id}', [FaqController::class, 'unhideFaq'])->name('unhideFaq');
+Route::get('/editFaq/{id}', [FaqController::class, 'editFaq'])->name('editFaq');
+Route::put('/updateFaq/{id}', [FaqController::class, 'updateFaq'])->name('updateFaq');
+Route::get('/deleteFaq/{id}', [FaqController::class, 'deleteFaq'])->name('deleteFaq');
+
+
+//Company History
+Route::get('/manage-CompanyHistory', [CompanyHistoryController::class, 'CompanyHistory'])->name('CompanyHistory');
+Route::post('/add-CompanyHistory', [CompanyHistoryController::class, 'addCompanyHistory'])->name('addCompanyHistory');
+Route::get('/hideCompanyHistory/{id}', [CompanyHistoryController::class, 'hideCompanyHistory'])->name('hideCompanyHistory');
+Route::get('/unhideCompanyHistory/{id}', [CompanyHistoryController::class, 'unhideCompanyHistory'])->name('unhideCompanyHistory');
+Route::get('/editCompanyHistory/{id}', [CompanyHistoryController::class, 'editCompanyHistory'])->name('editCompanyHistory');
+Route::put('/updateCompanyHistory/{id}', [CompanyHistoryController::class, 'updateCompanyHistory'])->name('updateCompanyHistory');
+Route::get('/deleteCompanyHistory/{id}', [CompanyHistoryController::class, 'deleteCompanyHistory'])->name('deleteCompanyHistory');
+
+
+//App store links
+Route::get('/manage-AppStore', [AppStoreController::class, 'AppStore'])->name('AppStore');
+Route::post('/add-AppStore', [AppStoreController::class, 'addAppStore'])->name('addAppStore');
+Route::get('/hideAppStore/{id}', [AppStoreController::class, 'hideAppStore'])->name('hideAppStore');
+Route::get('/unhideAppStore/{id}', [AppStoreController::class, 'unhideAppStore'])->name('unhideAppStore');
+Route::get('/editAppStore/{id}', [AppStoreController::class, 'editAppStore'])->name('editAppStore');
+Route::put('/updateAppStore/{id}', [AppStoreController::class, 'updateAppStore'])->name('updateAppStore');
+Route::get('/deleteAppStore/{id}', [AppStoreController::class, 'deleteAppStore'])->name('deleteAppStore');
+
+
+//App store links
+Route::get('/manage-Routing', [RoutingController::class, 'Routing'])->name('Routing');
+Route::post('/add-Routing', [RoutingController::class, 'addRouting'])->name('addRouting');
+Route::get('/hideRouting/{id}', [RoutingController::class, 'hideRouting'])->name('hideRouting');
+Route::get('/unhideRouting/{id}', [RoutingController::class, 'unhideRouting'])->name('unhideRouting');
+Route::get('/editRouting/{id}', [RoutingController::class, 'editRouting'])->name('editRouting');
+Route::put('/updateRouting/{id}', [RoutingController::class, 'updateRouting'])->name('updateRouting');
+Route::get('/deleteRouting/{id}', [RoutingController::class, 'deleteRouting'])->name('deleteRouting');
+
+
+//App store links
+Route::post('/add-EventCat', [EventCatController::class, 'addEventCat'])->name('addEventCat');
+Route::get('/deleteEventCat/{id}', [EventCatController::class, 'deleteEventCat'])->name('deleteEventCat');

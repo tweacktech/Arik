@@ -143,7 +143,7 @@
                                 <td>
                                      <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic"
-                                                 src="{{ asset('/Commercial/'.$data->image) }}" 
+                                                 src="{{ asset('public/Commercial/'.$data->image) }}" 
                                                  />
                                             </div>
 
@@ -152,7 +152,7 @@
                                 <td>
                                      <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic"
-                                                 src="{{ asset('/Commercial/'.$data->image) }}" 
+                                                 src="{{ asset('public/Commercial/'.$data->image) }}" 
                                                  />
                                             </div>
 
@@ -172,10 +172,12 @@
                                           </div>
                                           <div class="modal-body">
                                             <!-- Video Player -->
-                                            <video width="100%" height="auto" controls>
-                                             <source src="{{ asset('/Commercial/video/'.$data->video) }}" 
+                                           <!--  <video width="100%" height="auto" controls>
+                                             <source src="" 
                                                 type="video/*">
-                                            </video>
+                                            </video> -->
+                                            <iframe width="100%" height="315" src="{{$data->video}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
                                           </div>
                                         </div>
                                       </div>
@@ -203,8 +205,8 @@
                                         <a href="{{ route('unhideCommercial', ['id' => $data->id]) }}"
                                             class="btn btn-light btn-sm">Unhide</a>
                                     @endif
-                                    <a href="{{ route('deleteCommercial', ['id' => $data->id]) }}"
-                                        class="btn btn-danger btn-sm">Delete</a>
+                                    <!-- <a href="{{ route('deleteCommercial', ['id' => $data->id]) }}"
+                                        class="btn btn-danger btn-sm">Delete</a> -->
                                </td>
 
                             </tr>
@@ -290,6 +292,49 @@
                                     </div>
                                 </div>
 
+                                   <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Title2</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="title2" placeholder=""require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Description2</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="description2" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
 
                                  <div class="row">
                                     <div class="w-100">
@@ -340,46 +385,18 @@
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
                                             <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Video</span>
+                                                <label for="video-url-input">Video URL:</label>
                                                 <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                                     title="Specify your unique app name"></i>
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                                                                        
-                                            <div>
-                                              <input type="radio" id="upload" name="video-type" value="upload" checked>
-                                              <label for="upload">Upload video</label>
-                                              <input type="radio" id="url" name="video-type" value="url">
-                                              <label for="url">Enter video URL</label>
-                                            </div>
 
-                                            <div id="video-input">
-                                              <input type="file" id="video-file" class="form-control form-control-lg form-control-solid" name="video" placeholder="" accept="video/*">
-                                            </div>
-
-                                            <div id="video-url" style="display:none">
-                                              <label for="video-url-input">Video URL:</label>
+                                            <div id="video-url">
                                               <input type="text" id="video-url-input" class="form-control form-control-lg form-control-solid" name="video_url" placeholder="Enter video URL">
                                             </div>
 
-                                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                            <script>
-                                            $(document).ready(function() {
-                                              $('input[type=radio][name=video-type]').change(function() {
-                                                if (this.value == 'upload') {
-                                                  $('#video-input').show();
-                                                  $('#video-url').hide();
-                                                }
-                                                else if (this.value == 'url') {
-                                                  $('#video-input').hide();
-                                                  $('#video-url').show();
-                                                }
-                                              });
-                                            });
-                                            </script>
-
-                                            <!--end::Input-->
+                                            
                                         </div>
                                         <!--end::Input group-->
 

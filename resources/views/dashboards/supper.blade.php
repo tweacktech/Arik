@@ -74,7 +74,7 @@
                                     <!--begin:Image-->
                                     <div class="symbol symbol-60px me-5">
                                         <span class="symbol-label bg-danger-light">
-                                            <img src=" {{ asset('/menu/icon1.png')}}" class="h-50 align-self-center" alt="" />
+                                            <img src="public/menu/icon1.png" class="h-50 align-self-center" alt="" />
                                         </span>
                                     </div>
                                     <!--end:Image-->
@@ -129,7 +129,7 @@
                                     <!--begin:Image-->
                                     <div class="symbol symbol-60px me-1">
                                         <span class="symbol-label bg-danger-light btn-color-primary btn-active-light-primary">
-                                            <img src=" {{ asset('/menu/icon2.png')}}" class="h-50 align-self-center" alt="" />
+                                            <img src="public/menu/icon2.png" class="h-50 align-self-center" alt="" />
                                         </span>
                                     </div>
                                     <!--end:Image-->
@@ -179,7 +179,7 @@
 
          <div class="row g-5 g-xl-8 pt-3">
                     <!--begin::Col-->@php
-                                                  $homepage = DB::table('home_pages')
+                                          $homepage = DB::table('home_pages')
                                                          ->get();
 
                                                  @endphp

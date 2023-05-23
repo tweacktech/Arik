@@ -39,11 +39,12 @@ public function addSubMenu(Request $req){
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+         $link ='/'.str_replace(' ', '', $req->input('title'));
         // Create a new SubMenu with validated data
         $SubMenu = new SubMenu();
         $SubMenu->title = $req->input('title');
         $SubMenu->menu_id = $req->input('menu_id');
+        $SubMenu->link = $link;
         $SubMenu->save();
   return redirect()->back();
 }
@@ -102,9 +103,11 @@ public function editSubMenu(Request $req, $id)
   }
 
 public function updateSubMenu(Request $request, $id) {
+    $link ='/'.str_replace(' ', '', $request->input('title'));
     $SubMenu = SubMenu::find($id);
     $SubMenu->title = $request->input('title');
     $SubMenu->menu_id = $request->input('menu_id');
+    $SubMenu->link = $link;
     $SubMenu->save();
     return redirect()->back()->with('success', 'SubMenu updated successfully.');
 }

@@ -89,7 +89,7 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic"  src="{{ asset('/social/'.$data->image) }}" />
+                                                <img alt="Pic"  src="{{ asset('public/social/'.$data->image) }}" />
                                             </div>
                                             <!--end::Avatar-->
                                         </div>

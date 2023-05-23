@@ -30,7 +30,7 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
 
             <!--begin::Card toolbar-->
         </div>
@@ -101,10 +101,10 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <input type="text"
+                                                     <textarea style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="description" placeholder=""
-                                                        value="{{ $update->description }}" />
+                                                        name="description"  placeholder=""
+                                                        >{{ $update->description }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -119,7 +119,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/Bonus/'.$update->image) }}" />
+                                                <img alt="Pic" src="{{ asset('public/Bonus/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"

@@ -11,8 +11,7 @@ use Auth;
 
 class FooterController extends Controller
 {
-    //
-
+   
 
    public function __construct()
     {
@@ -34,6 +33,7 @@ public function addFooter(Request $req){
 
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
+            'background_color' => 'required|string|max:255',
             'color' => 'required|string|max:255',
             'image' => 'required|image',
             'homepage_id' => 'required'
@@ -53,6 +53,7 @@ public function addFooter(Request $req){
         $Footer = new Footer();
         $Footer->title = $req->input('title');
         $Footer->color = $req->input('color');
+        $Footer->background_color = $req->input('background_color');
         $Footer->homepage_id = $req->input('homepage_id');
         $Footer->image = $file_name;
         $Footer->save();
@@ -73,7 +74,7 @@ public function deleteFooter($id) {
 
 public function unhideFooter(Request $req, $id)
   {
-    $update = DB::table('deals_offers')->where('id', $id)->update(['status' => '1']);
+    $update = DB::table('footers')->where('id', $id)->update(['status' => '1']);
     if ($update) {
       DB::table('activities')
         ->insert([
@@ -89,7 +90,7 @@ public function unhideFooter(Request $req, $id)
   public function hideFooter(Request $req, $id)
   {
     //$data = ['status' => 0];
-    $update = DB::table('deals_offers')->where('id', $id)->update(['status' => '0']);
+    $update = DB::table('footers')->where('id', $id)->update(['status' => '0']);
     if ($update) {
       DB::table('activities')
         ->insert([
@@ -115,6 +116,7 @@ if ($request->file('image')=="") {
      $Footer = Footer::find($id);
     $Footer->title = $request->input('title');
     $Footer->color = $request->input('color');
+    $Footer->background_color = $request->input('background_color');
     $Footer->homepage_id = $request->input('homepage_id');
     $Footer->save();
     return redirect()->back()->with('success', 'Footer updated successfully.');
@@ -126,6 +128,7 @@ if ($request->file('image')=="") {
     $Footer = Footer::find($id);
     $Footer->title = $request->input('title');
     $Footer->color = $request->input('color');
+    $Footer->background_color = $request->input('background_color');
     $Footer->image = $file_name;
     $Footer->homepage_id = $request->input('homepage_id');
     $Footer->save();

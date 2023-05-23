@@ -19,7 +19,7 @@ class CommercialController extends Controller
 public function Commercial($id){
 
 $id=$id;
-  $data =Commercial::all()->where('homepage_id',$id);
+  $data =Commercial::all();
 
   return view('manage_Commercial',compact('data','id'));
 }
@@ -30,8 +30,10 @@ public function addCommercial(Request $req){
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'homepage_id' => 'required|numeric',
             'image' => 'required|image',
+             'title2' => 'required|string|max:255',
+            'description2' => 'required|string',
+            'homepage_id' => 'required|numeric',
             'image2' => 'required|image',
         ]);
 
@@ -55,6 +57,8 @@ public function addCommercial(Request $req){
       $Commercial = new Commercial();
         $Commercial->title = $req->input('title');
         $Commercial->description = $req->input('description');
+         $Commercial->title2 = $req->input('title2');
+        $Commercial->description2 = $req->input('description2');
         $Commercial->homepage_id = $req->input('homepage_id');
         $Commercial->image = $file_name;
         $Commercial->image2 = $file_names;
@@ -68,6 +72,8 @@ public function addCommercial(Request $req){
         $Commercial = new Commercial();
         $Commercial->title = $req->input('title');
         $Commercial->description = $req->input('description');
+        $Commercial->title2 = $req->input('title2');
+        $Commercial->description2 = $req->input('description2');
         $Commercial->homepage_id = $req->input('homepage_id');
         $Commercial->image = $file_name;
         $Commercial->image2 = $file_names;
@@ -130,16 +136,8 @@ public function editCommercial(Request $req, $id)
 
 public function updateCommercial(Request $request, $id) {
 
-if ($request->file('image')=="" && $request->file('image2')=="") {
+if ($request->file('image')!="" && $request->file('image2')!="") {
   
-    $Commercial = Commercial::find($id);
-    $Commercial->title = $request->input('title');
-    $Commercial->description = $request->input('description');
-    $Commercial->homepage_id = $request->input('homepage_id');
-    $Commercial->save();
-
-    return redirect()->back()->with('success', 'Commercial updated successfully.');
-        }else{
         $file = $request->file('image');
     $file_name = time() . $file->getClientOriginalName();
     $file->move(public_path('Commercial/'), $file_name);
@@ -147,39 +145,70 @@ if ($request->file('image')=="" && $request->file('image2')=="") {
      $files = $request->file('image2');
     $file_names = time() . $files->getClientOriginalName();
     $files->move(public_path('Commercial/'), $file_names);
-     $video = $req->file('video');
-    if ($video=="") {
-      $Commercial = new Commercial();
+   
+      $Commercial = Commercial::find($id);
         $Commercial->title = $request->input('title');
         $Commercial->description = $request->input('description');
+         $Commercial->title2 = $request->input('title2');
+         $Commercial->description2 = $request->input('description2');
         $Commercial->homepage_id = $request->input('homepage_id');
         $Commercial->image = $file_name;
         $Commercial->image2 = $file_names;
         $Commercial->video = $request->input('video_url');
         $Commercial->save();
    return redirect()->back()->with('success', 'Commercial added successfully.');
-    }else{
 
-    $video_names = time() . $video->getClientOriginalName();
-    $video->move(public_path('Commercial/video/'), $file_names);
+  }elseif ($request->file('image')!="") {
+    
 
-    $Commercial = Commercial::find($id);
-    $Commercial->title = $request->input('title');
-    $Commercial->description = $request->input('description');
-    $Commercial->homepage_id = $request->input('homepage_id');
-    $Commercial->image = $file_name;
-    $Commercial->image2 = $file_names;
-    $Commercial->video = $video_names;
-    $Commercial->save();
-  
-    return redirect()->back()->with('success', 'Commercial updated successfully.');
-  }
-  
+          $file = $request->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('Commercial/'), $file_name);
+   
+      $Commercial = Commercial::find($id);
+        $Commercial->title = $request->input('title');
+        $Commercial->description = $request->input('description');
+         $Commercial->title2 = $request->input('title2');
+         $Commercial->description2 = $request->input('description2');
+        $Commercial->homepage_id = $request->input('homepage_id');
+        $Commercial->image = $file_name;
+        $Commercial->video = $request->input('video_url');
+        $Commercial->save();
+   return redirect()->back()->with('success', 'Commercial added successfully.');
+
+
+  }elseif($request->file('image2')!=""){
+    
+     $files = $request->file('image2');
+    $file_names = time() . $files->getClientOriginalName();
+    $files->move(public_path('Commercial/'), $file_names);
+   
+      $Commercial = Commercial::find($id);
+        $Commercial->title = $request->input('title');
+        $Commercial->description = $request->input('description');
+         $Commercial->title2 = $request->input('title2');
+         $Commercial->description2 = $request->input('description2');
+        $Commercial->homepage_id = $request->input('homepage_id');
+        $Commercial->image2 = $file_names;
+        $Commercial->video = $request->input('video_url');
+        $Commercial->save();
+   return redirect()->back()->with('success', 'Commercial added successfully.');
+
+}else{
+
+        $Commercial = Commercial::find($id);
+        $Commercial->title = $request->input('title');
+        $Commercial->description = $request->input('description');
+         $Commercial->title2 = $request->input('title2');
+         $Commercial->description2 = $request->input('description2');
+        $Commercial->homepage_id = $request->input('homepage_id');
+        $Commercial->video = $request->input('video_url');
+        $Commercial->save();
+         return redirect()->back()->with('success', 'Commercial added successfully.');
 }
 
 
   return redirect()->back();
 
 }
-
 }

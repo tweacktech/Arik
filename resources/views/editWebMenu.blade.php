@@ -109,7 +109,7 @@
 
                                             </div>
                                         </div>
-
+                                        <input type="hidden" name="orderby" value="{{$update->orderby}}">
                                             
                                         <button type="submit" class="btn btn-lg btn-primary">Update
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->

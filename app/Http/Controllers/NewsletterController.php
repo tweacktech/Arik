@@ -17,7 +17,7 @@ class NewsletterController extends Controller
 public function newsletter($id){
 
 $id=$id;
-  $data =Newsletter::all()->where('homepage_id',$id);
+  $data =Newsletter::all();
 
   return view('manage_newsletter',compact('data','id'));
 }
@@ -40,6 +40,7 @@ public function addnewsletter(Request $req){
         $newsletter->title = $req->input('title');
         $newsletter->description = $req->input('description');
         $newsletter->homepage_id = $req->input('homepage_id');
+        $newsletter->link = $req->input('link');
         $newsletter->save();
   return redirect()->back();
 }
@@ -98,6 +99,7 @@ public function updateNewsletter(Request $request, $id) {
     $newsletter->title = $request->input('title');
     $newsletter->description = $request->input('description');
     $newsletter->homepage_id = $request->input('homepage_id');
+    $newsletter->link = $request->input('link');
     $newsletter->save();
     return redirect()->back()->with('success', 'Newsletter updated successfully.');
 }

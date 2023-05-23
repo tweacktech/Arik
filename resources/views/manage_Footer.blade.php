@@ -103,6 +103,7 @@
                         <tr>
 
                             <th class="min-w-50px">Image/Title</th>
+                            <th class="min-w-50px">Background Color</th>
                             <th class="min-w-50px">Color</th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-250px text">Action</th>
@@ -123,7 +124,7 @@
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic" 
-                                                src="{{ asset('/footerlogo/'.$data->image) }}" 
+                                                src="{{ asset('public/footerlogo/'.$data->image) }}" 
                                                 />
                                             </div>
                                             <!--end::Avatar-->
@@ -140,7 +141,11 @@
                                     <!--end::User-->
                                 </td>
                                
-                               <td style=" color: {{$data->color}};">
+                               <td style=" color: {{$data->background_color}};">
+                                     {{$data->background_color}}
+
+                                </td>
+                                <td style=" color: {{$data->color}};">
                                      {{$data->color}}
 
                                 </td>
@@ -165,8 +170,8 @@
                                         <a href="{{ route('unhideFooter', ['id' => $data->id]) }}"
                                             class="btn btn-light btn-sm">Unhide</a>
                                     @endif
-                                    <a href="{{ route('deleteFooter', ['id' => $data->id]) }}"
-                                        class="btn btn-danger btn-sm">Delete</a>
+                                   <!--  <a href="{{ route('deleteFooter', ['id' => $data->id]) }}"
+                                        class="btn btn-danger btn-sm">Delete</a> -->
                                </td>
                             </tr>
                         @endforeach
@@ -252,6 +257,26 @@
                                
 
                                 <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Background Color</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="color"class="form-control form-control-lg form-control-solid"
+                                                name="background_color" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+                                 <div class="row">
                                     <div class="w-100">
                                         <!--begin::Input group-->
                                         <div class="fv-row mb-10">

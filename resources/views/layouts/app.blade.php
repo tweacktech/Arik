@@ -35,9 +35,11 @@
     <link href="https://stockmgt.gapaautoparts.com/public/assets/plugins/custom/datatables/datatables.bundle.css"
         rel="stylesheet" type="text/css" />
 <!-- for drag and drop -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+ <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- this is for drop and drog in this arrange of wish order (need) -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/> 
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.js"
         integrity="sha512-vX/u24VoVNEFnY4hejf35cn0a3id3sciX/7WHtSO0DjjeViFQI0OgpGdQykHTjW+IKpLRDN6jWwvnGX98QiRIA=="
@@ -116,7 +118,7 @@
                                 <div class="menu menu-column menu-title-gray-600 menu-state-primary menu-state-icon-primary menu-state-bullet-primary menu-icon-gray-400 menu-arrow-gray-400 fw-bold fs-6"
                                     data-kt-menu="true" id="kt_aside_menu">
 
-                                    <div class="menu-item py-5" style="marging-top:40px;">
+                                    <div class="menu-item py-3" style="marging-top:40px;">
                                         <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                             data-bs-toggle="tooltip" data-bs-trigger="hover" href="{{ route('home') }}"
                                             title="Dashboard">
@@ -157,7 +159,7 @@
                                     @endphp
 
                                     @foreach ($menu as $m)
-                                        <div class="menu-item py-3">
+                                        <div class="menu-item py-2">
                                             <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 href="{{ $m->link }}" title="{{ $m->title }}">
@@ -4161,158 +4163,7 @@
 
 
             }
-
-
-
-            function updateMessageSettings() {
-                let welcome = document.getElementById('editor_3').innerHTML;
-                let confirmation = document.getElementById('editor_4').innerHTML;
-                let processing = document.getElementById('editor_5').innerHTML;
-
-                //update_website
-
-                $.post('/updateMessageSettings', {
-
-                    welcome: welcome,
-                    confirmation: confirmation,
-                    processing: processing,
-
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    Swal.fire("", result)
-
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-
-
-            }
-
-
-
-            function update_sorting(cat) {
-                let sort = document.getElementById('sorting_' + cat).value;
-                let sub_cat_id = cat;
-                $.post('/update_sorting', {
-
-                    sub_cat_id: sub_cat_id,
-                    sort: sort,
-
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    Swal.fire("", result.message)
-
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not find any record")
-                })
-
-
-            }
-
-            function getLgA() {
-                let state_id = document.getElementById('state').value;
-
-
-
-                document.getElementById('lga').innerHTML = '<option>----- Select LGA ------ </option>';
-                $.get('/getLgA', {
-
-                    state_id: state_id,
-
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    document.getElementById('lga').innerHTML = result.data;
-
-
-                }).fail(() => {
-                    console.log("Something went wrong")
-                })
-
-            }
-
-            function processOrder() {
-                let order_id = document.getElementById('order_id').value;
-
-                $.post('https://new.gapaautoparts.com/api/processorder', {
-
-                    order_id: order_id,
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-
-                    Swal.fire("", result.message)
-                    location.reload();
-
-                }).fail(() => {
-                    Swal.fire("", "Sorry cant not Process Order at the moment")
-                    console.log(result);
-                })
-
-
-
-            }
-
-
-            function addSuitablityModel() {
-                var model = document.getElementById('suitabilitymodel').value;
-                var product_id = document.getElementById('suitabilityproduct_id').value;
-
-
-
-                $.post('/addSuitablityModel', {
-
-                    model: model,
-                    product_id: product_id,
-
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    Swal.fire("", result.message)
-
-
-                }).fail((result) => {
-                    Swal.fire("", 'Something went wrong, Please try again')
-                })
-
-                location.reload();
-
-            }
-
-
-            function AddSuitSubSubModel() {
-                var submodel = document.getElementById('editor_2').innerHTML;
-                var model_id = document.getElementById('model_id').value;
-
-                console.log(submodel);
-
-                $.post('/add_suitSubsubModel', {
-
-                    submodel: submodel,
-                    model_id: model_id,
-
-
-                    "_token": "{{ csrf_token() }}",
-
-                }).done((result) => {
-                    Swal.fire("", result.error)
-                    location.reload();
-
-                }).fail((result) => {
-                    Swal.fire("", 'Something went wrong, Please try again')
-                })
-
-
-
-            }
+      
         </script>
 
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -4359,6 +4210,57 @@
                                         console.error( error );
                                 } );
                 </script>
+
+
+
+
+
+                
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        $("#table").DataTable();
+// this is need to Move Ordera accordin user wish Arrangement
+        $( "#tablecontents" ).sortable({
+          items: "tr",
+          cursor: 'move',
+          opacity: 0.6,
+          update: function() {
+              sendOrderToServer();
+          }
+        });
+        function sendOrderToServer() {
+          var order = [];
+          var token = $('meta[name="csrf-token"]').attr('content');
+        //   by this function User can Update hisOrders or Move to top or under
+          $('tr.row1').each(function(index,element) {
+            order.push({
+              id: $(this).attr('data-id'),
+              position: index+1
+            });
+          });
+// the Ajax Post update 
+          $.ajax({
+            type: "POST", 
+            dataType: "json", 
+            url: "{{ url('Custom-sortable') }}",
+                data: {
+              order: order,
+              _token: token
+            },
+            success: function(response) {
+                if (response.status == "success") {
+                  console.log(response);
+                } else {
+                  console.log(response);
+                }
+            }
+          });
+        }
+      });
+    </script>
 
     </body>
 

@@ -31,7 +31,7 @@
         <div class="card-header mt-5">
 
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -113,8 +113,32 @@
 
                                     </div>
                                 </div>
-                                
-                                <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
+                                      <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <div class="symbol symbol-35px symbol-circle">
+                                                <img alt="Pic" src="{{ asset('public/deals/'.$update->image) }}" />
+                                                      </div>
+                                                        <span class="required">  Image</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"> 
+                                                        </i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="file"
+                                                        class="form-control form-control-lg form-control-solid" min="100" 
+                                                        name="image" placeholder=""
+                                                        />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div> 
 
 
                                         <div class="row">
@@ -130,10 +154,32 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
+                                                    <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        >{{ $update->description }} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+
+                                             <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Kid</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
                                                     <input type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="description" placeholder=""
-                                                        value="{{ $update->description }}" />
+                                                        name="kid" placeholder="" value="{{ $update->kid }}" />
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -141,36 +187,80 @@
                                             </div>
                                         </div>
 
-                                            <div class="row">
+                                             <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Kid Title</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="kid_title" placeholder="" value="{{ $update->kid_title }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                         <div class="row">
                                             <div class="w-100">
                                                 <!--begin::Input group-->
                                                 <div class="fv-row mb-10">
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/deals/'.$update->image) }}" />
+                                                <img alt="Pic" src="{{ asset('public/deals/'.$update->kid_image) }}" />
                                                       </div>
-                                                        <span class="required">  Image</span>
+                                                        <span class="required">kid_image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
                                                             data-bs-toggle="tooltip"
                                                             title="Specify your unique app name"> 
                                                         </i>
-
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
                                                     <input type="file"
-                                                        class="form-control form-control-lg form-control-solid" min="100" 
-                                                        name="image" placeholder=""
-                                                        />
+                                                        class="form-control form-control-lg form-control-solid" min="100" name="kid_image" value="{{$update->kid_image}}"  />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div> 
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Background Color</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="color"
+                                                        class="form-control form-control-lg form-control-solid"  
+                                                        name="background_color" placeholder=""
+                                                        value="{{ $update->background_color }}" />
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
 
                                             </div>
                                         </div>
-                                        <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
+                                        
 
+                                        <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
 
                                         <button type="submit" class="btn btn-lg btn-primary">Update
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->

@@ -117,7 +117,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/social/'.$update->image) }}" />
+                                                <img alt="Pic" src="{{ asset('public/social/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"

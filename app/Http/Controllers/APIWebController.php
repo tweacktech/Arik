@@ -9,11 +9,28 @@ class APIWebController extends Controller
 {
     //
 
+public function Logo(){
+
+    $data=DB::table('web_logos')->get();
+
+    return response()->json(['data'=>$data]);
+}
+public function history(){
+
+    $data=DB::table('company_histories')->get();
+   
+    return response()->json(['data'=>$data]);
+}
 public function aboutus(){
 
-    $data=DB::table('website')->select('about')->get();
-   
-    // $data=html_entity_decode($dat);
+    $data=DB::table('abouts')->get();
+
+    return response()->json(['data'=>$data]);
+}
+public function aboutimage(){
+
+    $data=DB::table('abouts')->select('image')->get();
+
     return response()->json(['data'=>$data]);
 }
 public function terms(){
@@ -25,7 +42,28 @@ public function terms(){
 }
 public function policy(){
 
-    $data=DB::table('website')->select('policy')->get();
+    $data=DB::table('policies')->get();
+
+    return response()->json(['data'=>$data]);
+}
+
+public function policyimage(){
+
+    $data=DB::table('policies')->select('image')->get();
+
+    return response()->json(['data'=>$data]);
+}
+
+    public function baggage(){
+
+    $data=DB::table('policies')->where('name','baggage')->get();
+
+    return response()->json(['data'=>$data]);
+}
+
+public function baggageimage(){
+
+    $data=DB::table('policies')->where('name','baggage')->select('image','content')->get();
 
     return response()->json(['data'=>$data]);
 }

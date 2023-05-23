@@ -92,8 +92,9 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-250px">Image/Title</th>
+                            <th class="min-w-100px">Title</th>
                             <th class="min-w-250px">Description</th>
+                            <th class="min-w-90px">Link</th>
                             <th class="min-w-90px">Status</th>
                             <th class="min-w-50px text-end">Action</th>
                         </tr>
@@ -128,6 +129,10 @@
                                
                                 <td>
                                      {{$data->description}}
+
+                                </td>
+                                 <td>
+                                     {{$data->link}}
 
                                 </td>
 
@@ -229,6 +234,27 @@
                                             <!--begin::Input-->
                                             <input type="text" class="form-control form-control-lg form-control-solid"
                                                 name="description" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                  <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Link</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="link" placeholder="Enter" required />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

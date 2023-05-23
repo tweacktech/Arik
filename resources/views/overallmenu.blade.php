@@ -93,7 +93,6 @@
 											<li class="nav-item">
 												<a class="nav-link text-active-primary me-6" href="{{route('WebMenu')}}">Manage Menu</a>
 											</li>
-                                          
 
 
                                             <li class="nav-item">

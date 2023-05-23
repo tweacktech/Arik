@@ -13,19 +13,25 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{route('web_content')}}">Web Content</a>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link text-active-primary me-6" href="{{ route('slider') }}">Home Slider</a>
-                    </li> -->
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('MissionVission') }}">Mission and Vission</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('CompanyHistory') }}">Company History</a>
+                    </li> 
+                    
+                    
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('Routing') }} ">Routings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{ route('Policy') }} ">Policy</a>
+                    </li>
                      <li class="nav-item">
-                        <a class="nav-link text-active-primary me-6" href="{{ route('Social') }}">Social Link</a>
+                        <a class="nav-link text-active-primary me-6" href="{{ route('About') }} ">About Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-active-primary me-6" href="{{ route('weblogo') }} ">Website logo</a>
-                    </li><li class="nav-item">
-                        <a class="nav-link text-active-primary me-6" href="{{ route('website') }} ">Website</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-active-primary me-6" href="{{ route('faq') }} ">FAQ</a>
+                        <a class="nav-link text-active-primary me-6" href="{{ route('Faq') }} ">FAQ</a>
                     </li>
                     
 

@@ -92,11 +92,11 @@
                         <tr>
 
                             <th class="min-w-250px">Image/Title</th>
-                            <th class="min-w-250px">Description</th>
-                            <th class="min-w-90px">Price</th>
-                            <th class="min-w-40px">Color</th>
-                            <th class="min-w-50px">Status</th>
-                            <th class="min-w-50px text">Action</th>
+                            <th class="min-w-230px">Description</th>
+                            <th class="min-w-50px">Price</th>
+                            <th class="min-w-20px">Color</th>
+                            <th class="min-w-20px">Status</th>
+                            <th class="min-w-150px text">Action</th>
                         </tr>
                     </thead>
                     <!--end::Head-->
@@ -114,7 +114,7 @@
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic" 
-                                               src=" {{ asset('/promo/'.$data->image) }}"
+                                               src=" {{ asset('public/promo/'.$data->image) }}"
                                                   />
                                             </div>
                                             <!--end::Avatar-->
@@ -248,29 +248,6 @@
 
                                     </div>
                                 </div>
-
-
-                                <div class="row">
-                                    <div class="w-100">
-                                        <!--begin::Input group-->
-                                        <div class="fv-row mb-10">
-                                            <!--begin::Label-->
-                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                <span class="required">Description</span>
-                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                                    title="Specify your unique app name"></i>
-                                            </label>
-                                            <!--end::Label-->
-                                            <!--begin::Input-->
-                                            <input type="text" id="editor" class="form-control form-control-lg form-control-solid"
-                                                name="description" placeholder="Enter" required />
-                                            <!--end::Input-->
-                                        </div>
-                                        <!--end::Input group-->
-
-                                    </div>
-                                </div>
-
                                 
                                  <div class="row">
                                     <div class="w-100">
@@ -307,6 +284,31 @@
                                             <!--begin::Input-->
                                             <input type="color" min="100" class="form-control form-control-lg form-control-solid"
                                                 name="color" placeholder="Enter" required />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Description</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        ></textarea>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->

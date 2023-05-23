@@ -57,7 +57,7 @@
         <div class="card-header mt-5">
             <div class="card-header">
                 <div class="card-toolbar">
-                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#create_category" data-bs-toggle="modal">
+                    <a href="#" class="btn btn-flex btn-primary me-3" data-bs-target="#create_category" data-bs-toggle="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -69,6 +69,10 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->New Destination
+                    </a>
+
+                    <a href="{{route('DestinationLabel')}}" class="btn btn-flex btn-info" >
+                        Add/Edit Label
                     </a>
                 </div>
             </div>
@@ -114,7 +118,7 @@
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic" 
-                                                 src="{{ asset('/destination/'.$data->image)}}" 
+                                                 src="{{ asset('public/destination/'.$data->image)}}" 
                                                  />
                                             </div>
                                             <!--end::Avatar-->

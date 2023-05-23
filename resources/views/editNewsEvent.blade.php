@@ -30,7 +30,7 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
 
             <!--begin::Card toolbar-->
         </div>
@@ -82,35 +82,9 @@
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
-
                                             </div>
                                         </div>
 
-
-
-                                        <div class="row">
-                                            <div class="w-100">
-                                                <!--begin::Input group-->
-                                                <div class="fv-row mb-10">
-                                                    <!--begin::Label-->
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required"> description</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Specify your unique app name"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input type="text"
-                                                        class="form-control form-control-lg form-control-solid"
-                                                        name="description" placeholder=""
-                                                        value="{{ $update->description }}" />
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Input group-->
-
-                                            </div>
-                                        </div>
 
                                             <div class="row">
                                             <div class="w-100">
@@ -119,7 +93,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/Event/'.$update->image) }}" />
+                                                <img alt="Pic" src="{{ asset('public/Event/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">  Image</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
@@ -141,9 +115,74 @@
                                             </div>
                                         </div>
 
+                                           <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required"> Location</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="location" placeholder=""
+                                                        value="{{ $update->location }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+
 
                                 <div class="row">
-                                    <div class="w-100">
+                                    <div class="col-md-4">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Start Time</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="time" class="form-control form-control-lg form-control-solid" value="{{ $update->start_time }}" name="start_time">
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                
+
+                                    
+                                    <div class="col-md-4">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">End Time</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                           <input type="time" class="form-control form-control-lg form-control-solid" value="{{ $update->end_time }}" name="end_time">
+
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                
+
+                                
+                                    <div class="col-md-4">
                                        <!--begin::Input group-->
                                         <div class="fv-row mb-10">
                                             <!--begin::Label-->
@@ -154,14 +193,61 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                           <input type="date" class="form-control form-control-lg form-control-solid" value="{{ old('eventdate') }}" min="{{ now()->format('Y-m-d') }}" name="eventdate">
+                                           <input type="date" class="form-control form-control-lg form-control-solid" value="{{ $update->eventdate }}" name="eventdate">
 
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                </div>
+
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required"> description</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        >{{ $update->description }} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div>
+
+                                          <div class="w-100">
+                                       <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Categories</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                             <select name="categories[]" class="form-control form-control-lg form-control-solid" id="categories" multiple>
+         @php $categories=DB::table('event_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+        @endforeach
+                                            </select>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
 
                                     </div>
-                                </div>
+                                  
 
                                 <input type="hidden" name="homepage_id" value="{{$update->homepage_id}}">
 

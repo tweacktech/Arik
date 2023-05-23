@@ -31,7 +31,7 @@
         <div class="card-header mt-5">
 
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -96,6 +96,29 @@
                                                 <div class="fv-row mb-10">
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Background Color</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="color"
+                                                        class="form-control form-control-lg form-control-solid"                                                   name="background_color" placeholder=""
+                                                        value="{{ $update->background_color }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <span class="required"> Color</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"
                                                             data-bs-toggle="tooltip"
@@ -121,7 +144,7 @@
                                                     <!--begin::Label-->
                                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                                         <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/footerlogo/'.$update->image) }}" />
+                                                <img alt="Pic" src="{{ asset('public/footerlogo/'.$update->image) }}" />
                                                       </div>
                                                         <span class="required">Footer Logo</span>
                                                         <i class="fas fa-exclamation-circle ms-2 fs-7"

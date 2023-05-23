@@ -31,7 +31,7 @@
         <div class="card-header mt-5">
 
 
-<a href="{{ url()->previous() }}" class="btn btn-primary">Back</a>
+<a href="javascript:history.back()" class="btn btn-primary">Back</a>
             <!--begin::Card toolbar-->
         </div>
         <!--end::Card header-->
@@ -103,6 +103,30 @@
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="description" placeholder=""
                                                         value="{{ $update->description }}" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                         <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required"> Link</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="link" placeholder=""
+                                                        value="{{ $update->link }}" />
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->

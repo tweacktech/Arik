@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\NewsEvent;
+use App\Models\NewsEventLabel;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use Auth;
@@ -16,6 +17,39 @@ class NewsEventController extends Controller
     }
 
 
+
+public function NewsEventLabel(){
+
+     $update=DB::table('news_event_labels')->where('id',1)->first();
+
+        return view('newseventlabel', compact('update'));
+}
+
+
+public function NewsEventLabelstore(Request $request,$id)
+    {
+        
+if ($request->file('image')=="") {
+     $NewsEventLabel = NewsEventLabel::find($id);
+    $NewsEventLabel->title = $request->input('title');
+    $NewsEventLabel->description = $request->input('description');
+    $NewsEventLabel->save();
+    return redirect()->back()->with('success', 'NewsEventLabel updated successfully.');
+        }else{
+        $file = $request->file('image');
+    $file_name = time() . $file->getClientOriginalName();
+    $file->move(public_path('Event/'), $file_name);
+
+    $NewsEventLabel = NewsEventLabel::find($id);
+    $NewsEventLabel->title = $request->input('title');
+    $NewsEventLabel->description = $request->input('description');
+    $NewsEventLabel->image = $file_name;
+    $NewsEventLabel->save();
+    return redirect()->back()->with('success', 'DealsOffer updated successfully.');
+}
+return redirect()->back()->with('error', 'Could not perform this action');
+}
+
 public function NewsEvent($id){
 
   $id=$id;
@@ -26,12 +60,18 @@ public function NewsEvent($id){
 
 public function addNewsEvent(Request $req){
 
+ $r=$req->all();
+$categories = $r['categories'];
+
 
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'homepage_id' => 'required|numeric',
             'eventdate' => 'required',
+            'location' => 'required',
+            'start_time' => 'required',
+            'end_time' => 'required',
             'image' => 'required|image'
         ]);
 
@@ -49,12 +89,20 @@ public function addNewsEvent(Request $req){
         $NewsEvent = new NewsEvent();
         $NewsEvent->title = $req->input('title');
         $NewsEvent->description = $req->input('description');
+        $NewsEvent->location = $req->input('location');
         $NewsEvent->homepage_id = $req->input('homepage_id');
         $NewsEvent->eventdate = $req->input('eventdate');
+        $NewsEvent->start_time = $req->input('start_time');
+        $NewsEvent->end_time = $req->input('end_time');
         $NewsEvent->image = $file_name;
+        $NewsEvent->category_id =$req->input('categories[]');
         $NewsEvent->save();
-  return redirect()->back();}
-}
+        if ($NewsEvent==True) {
+            return redirect()->back()->with('success','NewsEvent added successfully');
+        }
+  return redirect()->back()->with('success','An error');
+}}
+
 
 public function deleteNewsEvent($id) {
     $NewsEvent = NewsEvent::find($id);
@@ -105,13 +153,18 @@ public function editNewsEvent(Request $req, $id)
   }
 
 public function updateNewsEvent(Request $request, $id) {
-
+ 
+ // return $request->input('categories',[]);
 if ($request->file('image')=="") {
      $NewsEvent = NewsEvent::find($id);
     $NewsEvent->title = $request->input('title');
     $NewsEvent->description = $request->input('description');
+    $NewsEvent->location = $request->input('location');
     $NewsEvent->homepage_id = $request->input('homepage_id');
     $NewsEvent->eventdate = $request->input('eventdate');
+    $NewsEvent->start_time = $request->input('start_time');
+    $NewsEvent->end_time = $request->input('end_time');
+     $NewsEvent->category_id =$request->input('categories[]');
     $NewsEvent->save();
     return redirect()->back()->with('success', 'NewsEvent updated successfully.');
         }else{
@@ -122,9 +175,13 @@ if ($request->file('image')=="") {
     $NewsEvent = NewsEvent::find($id);
     $NewsEvent->title = $request->input('title');
     $NewsEvent->description = $request->input('description');
+    $NewsEvent->location = $request->input('location');
     $NewsEvent->homepage_id = $request->input('homepage_id');
+    $NewsEvent->start_time = $request->input('start_time');
+    $NewsEvent->end_time = $request->input('end_time');
     $NewsEvent->eventdate = $request->input('eventdate');
     $NewsEvent->image = $file_name;
+    $NewsEvent->category_id =$request->input('categories[]');
     $NewsEvent->save();
     return redirect()->back()->with('success', 'NewsEvent updated successfully.');
 }

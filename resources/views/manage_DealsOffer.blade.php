@@ -57,7 +57,7 @@
         <div class="card-header mt-5">
             <div class="card-header">
                 <div class="card-toolbar">
-                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#create_category" data-bs-toggle="modal">
+                    <a href="#" class="btn btn-flex btn-primary me-3" data-bs-target="#create_category" data-bs-toggle="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                         <span class="svg-icon svg-icon-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -69,6 +69,9 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->New Deal/Offer
+                    </a>
+                     <a href="{{route('DealLabel')}}" class="btn btn-flex btn-info" >
+                        Add/Edit Label
                     </a>
                 </div>
             </div>
@@ -92,11 +95,12 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-250px">Image/Title</th>
-                            <th class="min-w-50px">Type</th>
+                            <th class="min-w-100px">Image/Title</th>
+                            <th class="min-w-30px">Type</th>
                             <th class="min-w-250px">Description</th>
-                            <th class="min-w-90px">Status</th>
-                            <th class="min-w-50px text">Action</th>
+                            <th class="min-w-40px">ManageIcons</th>
+                            <th class="min-w-40px">Status</th>
+                            <th class="min-w-200px text">Action</th>
                         </tr>
                     </thead>
                     <!--end::Head-->
@@ -114,7 +118,7 @@
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
                                                 <img alt="Pic" 
-                                                src="{{ asset('/deals/'.$data->image) }}" 
+                                                src="{{ asset('public/deals/'.$data->image) }}" 
                                                 />
                                             </div>
                                             <!--end::Avatar-->
@@ -139,6 +143,12 @@
                                      {{$data->description}}
 
                                 </td> 
+
+                                <td>
+                                   <a href="{{ route('editDealIcons', ['id' => $data->id]) }}"
+                                        class="btn btn-success btn-sm">Icons</a>
+
+                                </td> 
                               
 
                                 <td>
@@ -150,7 +160,7 @@
                                 </td>
 
                                <td>
-                                    <a href="{{ route('editDealsOffer', ['id' => $data->id]) }}"
+                                         <a href="{{ route('editDealsOffer', ['id' => $data->id]) }}"
                                         class="btn btn-info btn-sm">Edit</a>
 
                                     @if ($data->status == 1)
@@ -174,6 +184,7 @@
         </div>
         <!--end::Card body-->
     </div>
+
 
 
 
@@ -285,8 +296,100 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <input type="text" id="editor" class="form-control form-control-lg form-control-solid"
-                                                name="description" placeholder="Enter" required />
+                                             <textarea  style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="description"  placeholder=""
+                                                        ></textarea>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+
+                                             <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Kid</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="kid" placeholder="" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                             <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Kid Title</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="kid_title" placeholder="" />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                         <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                       
+                                                        <span class="required">kid_image</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"> 
+                                                        </i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="file"
+                                                        class="form-control form-control-lg form-control-solid" min="100" name="kid_image"  />
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+                                            </div>
+                                        </div> 
+                                           <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Background Color</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="color"class="form-control form-control-lg form-control-solid"
+                                                name="background_color" placeholder="Enter" required />
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -323,4 +426,5 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
+
 @endsection

@@ -103,13 +103,11 @@ if ($existing) {
     public function remove_homepage(Request $req, $id)
     {
         //insert menu_id into user_menu by current user_id
-
+// return $id; $req->user_id;
         $remove = DB::table('home_roles')
             ->where('homepage_id', $id)
             ->where('role_id', $req->user_id)
             ->delete();
-
-
         //check if menu removed
         if ($remove) {
 

@@ -16,6 +16,24 @@ class WebMenuController extends Controller
         $this->middleware('auth');
     }
 
+
+
+public function updateO(Request $request)
+{
+    $posts = WebMenu::all();
+
+    foreach ($posts as $post) {
+        foreach ($request->order as $order) {
+            if ($order['id'] == $post->id) {
+                $post->update(['orderby' => $order['position']]);
+            }
+        }
+    }
+    
+    return redirect()->back()->with('success', 'WebMenu deleted successfully.');
+}
+
+
 public function index(){
 
   $totalmenus =WebMenu::count();
@@ -41,21 +59,27 @@ public function SubMenu(){
 
 public function addWebMenu(Request $req){
 
+$highestOrderValue = WebMenu::max('orderby');
+$newOrderValue = $highestOrderValue + 1;
+
 
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            
+                        
         ]);
 
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+       $link ='/'.str_replace(' ', '', $req->input('title'));
         // Create a new WebMenu with validated data
         $WebMenu = new WebMenu();
         $WebMenu->title = $req->input('title');
         $WebMenu->description = $req->input('description');
+        $WebMenu->orderby = $newOrderValue ;
+        $WebMenu->link = $link ;
         $WebMenu->save();
   return redirect()->back();
     }
@@ -113,9 +137,12 @@ public function editWebMenu(Request $req, $id)
   }
 
 public function updateWebMenu(Request $request, $id) {
+    $link ='/'.str_replace(' ', '', $request->input('title'));
     $WebMenu = WebMenu::find($id);
     $WebMenu->title = $request->input('title');
     $WebMenu->description = $request->input('description');
+    $WebMenu->orderby = $request->input('orderby');
+    $WebMenu->link = $link;
     $WebMenu->save();
     return redirect()->back()->with('success', 'WebMenu updated successfully.');
 }

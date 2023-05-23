@@ -113,7 +113,7 @@
                                         <div class="me-5 position-relative">
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="{{ asset('/Bonus/'.$data->image) }}" 
+                                                <img alt="Pic" src="{{ asset('public/Bonus/'.$data->image) }}" 
                                                  />
                                             </div>
                                             <!--end::Avatar-->
@@ -289,11 +289,7 @@
                                     </div>
                                 </div>
 
-                                 
-
-                              
-
-                                
+                                             
 
                                 <button type="submit" class="btn btn-lg btn-primary">Create
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
