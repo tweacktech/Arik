@@ -101,7 +101,8 @@
                         <!--begin::Logo-->
                         <div class="aside-logo flex-column-auto pt-10 pt-lg-20" id="kt_aside_logo">
                             <a href="{{ route('home') }}">
-                               <h3>ARIK</h3>
+                               <!-- <h3>ARIK</h3> -->
+                             <img style="width: 100%;" id="logo" src="{{ asset('/public/logo.png') }}">
                             </a>
                         </div>
                         <!--end::Logo-->

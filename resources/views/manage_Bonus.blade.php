@@ -54,7 +54,7 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
             <div class="card-header">
-                @if(count($data)==0)
+               @if(count($data)==0 || count($data)<4)
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-flex btn-primary" data-bs-target="#create_category" data-bs-toggle="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -92,11 +92,11 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-250px">Image/Title</th>
+                            <th class="min-w-150px">Image/Title</th>
                             <th class="min-w-250px">Description</th>
                             <th class="min-w-50px">URL</th>
                             <th class="min-w-90px">Status</th>
-                            <th class="min-w-50px text">Action</th>
+                            <th class="min-w-160px text">Action</th>
                         </tr>
                     </thead>
                     <!--end::Head-->

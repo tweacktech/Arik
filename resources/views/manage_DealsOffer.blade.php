@@ -51,6 +51,74 @@
     }, 5000);
 </script>
 
+  <div class="modal fade" id="category" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered ">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header">
+                    <!--begin::Modal title-->
+                    <h2>Create Category</h2>
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <form method="POST" action="{{route('addDealCat')}}" >
+                         @csrf
+                        <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Title</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="title" placeholder="Add category" require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" name="">
+                        
+                    </form>
+
+                    <table>
+                        <thead>
+                         <th class="min-w-250px">Title</th>
+                            <th class="min-w-250px">Action</th>
+                    </thead>
+                    <tbody>
+                        @php $tata=DB::table('deal_cats')->get(); @endphp
+                        @foreach($tata as $da)
+                        <tr>
+                            <td>{{$da->title}}</td>
+                            <td> <a href="{{ route('deleteDealCat', ['id' => $da->id]) }}"
+                                        class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#category" data-bs-toggle="modal">
+                        Deal Category
+                    </a>
+                </div>
+
 
     <div class="card card-flush m-6">
         <!--begin::Card header-->
@@ -140,7 +208,7 @@
 
                                 </td> 
                                 <td>
-                                     {{$data->description}}
+                                     {!!$data->description!!}
 
                                 </td> 
 
@@ -270,11 +338,10 @@
                                             <!--begin::Input-->
                                             <select type="text" class="form-control form-control-lg form-control-solid"
                                                 name="type" placeholder=""require />
-                                                <option value="Basic">Basic</option>
-                                                <option value="Arik_Biz">Arik Biz</option>
-                                                <option value="Arik_Plus">Arik Plus</option>
-                                                <option value="Arik_Go">Arik Go</option>
-
+         @php $categories=DB::table('deal_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->title }}">{{ $category->title }}</option>
+        @endforeach
                                             </select>
                                             <!--end::Input-->
                                         </div>
@@ -296,10 +363,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                             <textarea  style="height: 150px;" type="text"
-                                                        class="form-control form-control-lg form-control-solid"
-                                                        name="description"  placeholder=""
-                                                        ></textarea>
+                                             <textarea id="editors" style="height:80px;" class="form-control form-control-lg form-control-solid" name="description"></textarea>
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -426,5 +490,16 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+
+  <!-- Include TinyMCE JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+
+  <!-- Initialize TinyMCE -->
+  <script>
+    tinymce.init({
+      selector: '#editors',
+         });
+  </script>
 
 @endsection

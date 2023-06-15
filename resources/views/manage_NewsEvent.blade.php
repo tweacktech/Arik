@@ -197,7 +197,7 @@
                                 </td>
                                
                                 <td>
-                                     {{$data->description}}
+                                     {!!$data->description!!}
 
                                 </td> 
 
@@ -427,10 +427,8 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                             <textarea style="height: 150px;" type="text"
-                                                        class="form-control form-control-lg form-control-solid"
-                                                        name="description"  placeholder=""
-                                                        ></textarea>
+                                            <textarea id="editors" class="form-control form-control-lg form-control-solid" name="description"></textarea>
+
                                             <!--end::Input-->
                                         </div>
                                         <!--end::Input group-->
@@ -467,5 +465,18 @@
         </div>
         <!--end::Modal body-->
     </div>
+      <!-- Include TinyMCE CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+
+  <!-- Include TinyMCE JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+
+  <!-- Initialize TinyMCE -->
+  <script>
+    tinymce.init({
+      selector: '#editors',
+      height: 150
+    });
+  </script>
     <!--end::Modal content-->
 @endsection

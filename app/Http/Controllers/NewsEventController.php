@@ -53,7 +53,7 @@ return redirect()->back()->with('error', 'Could not perform this action');
 public function NewsEvent($id){
 
   $id=$id;
-  $data =NewsEvent::all()->where('homepage_id',$id);
+  $data =NewsEvent::all();
 
   return view('manage_NewsEvent',compact('data','id'));
 }

@@ -101,10 +101,11 @@
                                             <select type="text" class="form-control form-control-lg form-control-solid"
                                                 name="type" placeholder=""require />
                                                 <option value="{{ $update->type }}">{{ $update->type }}</option>
-                                                <option value="Basic">Basic</option>
-                                                <option value="Arik Biz">Arik Biz</option>
-                                                <option value="Arik Plus">Arik Plus</option>
-                                                <option value="Arik Go">Arik Go</option>
+                                                  @php $categories=DB::table('deal_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->title }}">{{ $category->title }}
+            </option>
+        @endforeach
 
                                             </select>
                                             <!--end::Input-->
@@ -154,10 +155,7 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <textarea style="height: 150px;" type="text"
-                                                        class="form-control form-control-lg form-control-solid"
-                                                        name="description"  placeholder=""
-                                                        >{{ $update->description }} </textarea>
+                                                     <textarea id="editors" class="form-control form-control-lg form-control-solid" name="description">{{ $update->description }}   </textarea>
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -296,4 +294,16 @@
         </div>
         <!--end::Card body-->
     </div>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+
+  <!-- Include TinyMCE JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+
+  <!-- Initialize TinyMCE -->
+  <script>
+    tinymce.init({
+      selector: '#editors',
+      height: 150
+    });
+  </script>
 @endsection

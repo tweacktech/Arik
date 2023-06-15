@@ -27,6 +27,7 @@ use App\Http\Controllers\CompanyHistoryController;
 use App\Http\Controllers\AppStoreController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\EventCatController;
+use App\Http\Controllers\DealCatController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -350,3 +351,6 @@ Route::get('/deleteRouting/{id}', [RoutingController::class, 'deleteRouting'])->
 //App store links
 Route::post('/add-EventCat', [EventCatController::class, 'addEventCat'])->name('addEventCat');
 Route::get('/deleteEventCat/{id}', [EventCatController::class, 'deleteEventCat'])->name('deleteEventCat');
+
+Route::post('/add-DealCat', [DealCatController::class, 'addDealCat'])->name('addDealCat');
+Route::get('/deleteDealCat/{id}', [DealCatController::class, 'deleteDealCat'])->name('deleteDealCat');

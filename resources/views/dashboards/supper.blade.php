@@ -177,7 +177,7 @@
         </div>
         <!--end::Row-->
 
-         <div class="row g-5 g-xl-8 pt-3">
+         <div class="row g-5 g-xl-8 pt-3 mb-5">
                     <!--begin::Col-->@php
                                           $homepage = DB::table('home_pages')
                                                          ->get();
@@ -256,8 +256,13 @@
                                     </div>
                                     <!--end::Menu-->
                                 </div>
-
+                                                               <div class="row">
+                                            <div class="col-md-12 mt-3"> 
+                                                <img id="mock" style=" margin-bottom: 20px; width: 100%; height: 160px; position: ; z-index: 9999; " src="{{ asset('public/'.$homepage->img) }}"> </div>
+                                        </div>
+                                     
                             </div>
+
                             <!--end::Body-->
                         </div>
                         <!--end::Mixed Widget 8-->
@@ -269,11 +274,14 @@
                    
                     <!--end::Col-->
          </div>
+         <div class="col-xl-4 mt-4" style=" top: 80px;clear:both;">
+            
+         </div>
 
 
             <div class="card mb-xl-8">
                     <!--begin::Header-->
-                    <div class="card-header border-0 pt-5">
+                    <div class="card-header border-0 pt-8">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="card-label fw-bolder fs-3 mb-1">Activities</span>
                             
@@ -373,3 +381,4 @@
         return false;
     });
 </script>
+

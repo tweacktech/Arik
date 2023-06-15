@@ -25,6 +25,7 @@ use App\Http\Controllers\APIRoutingController;
 
 
 
+Route::post('/website', [APIWebMenuController::class, 'website'])->name('website');
 Route::post('/homepage', [APIHomePageController::class, 'homepage'])->name('homepage');
 
 Route::post('/menu', [APIWebMenuController::class, 'menu'])->name('menu');

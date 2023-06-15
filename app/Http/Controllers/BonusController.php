@@ -69,7 +69,7 @@ public function deleteBonus($id) {
 
 public function unhideBonus(Request $req, $id)
   {
-    $update = DB::table('Bonuses')->where('id', $id)->update(['status' => '1']);
+    $update = DB::table('bonuses')->where('id', $id)->update(['status' => '1']);
     if ($update) {
       DB::table('activities')
         ->insert([
@@ -85,7 +85,7 @@ public function unhideBonus(Request $req, $id)
   public function hideBonus(Request $req, $id)
   {
     //$data = ['status' => 0];
-    $update = DB::table('Bonuses')->where('id', $id)->update(['status' => '0']);
+    $update = DB::table('bonuses')->where('id', $id)->update(['status' => '0']);
     if ($update) {
       DB::table('activities')
         ->insert([
