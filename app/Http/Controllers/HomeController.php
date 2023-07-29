@@ -36,6 +36,12 @@ class HomeController extends Controller
      	return view('home', compact( "activities"));
         
     }
+    public function Service()
+    {
+       
+        return view('Service');
+        
+    }
 
    
 }

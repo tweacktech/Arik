@@ -22,6 +22,15 @@ use App\Http\Controllers\APIQuickBoxController;
 use App\Http\Controllers\APIMissionVissionController;
 use App\Http\Controllers\APIAppStoreController;
 use App\Http\Controllers\APIRoutingController;
+use App\Http\Controllers\APICafeController;
+use App\Http\Controllers\APIHotelController;
+use App\Http\Controllers\APICareRentController;
+use App\Http\Controllers\APIContactController;
+use App\Http\Controllers\APIBaggageController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\APICabinController;
+use App\Http\Controllers\APITrainController;
+use App\Http\Controllers\APIDealController;
 
 
 
@@ -103,3 +112,38 @@ Route::get('/appstore/{id}', [APIAppStoreController::class, 'showAppStore'])->na
 
 Route::post('/routing', [APIRoutingController::class, 'Routing'])->name('Routing');
 Route::get('/routing/{id}', [APIRoutingController::class, 'showRouting'])->name('showRouting');
+
+
+Route::post('/cafe', [APICafeController::class, 'Cafe'])->name('Cafe');
+Route::get('/cafe/{id}', [APICafeController::class, 'showCafe'])->name('showCafe');
+
+Route::post('/cafe-cat', [APICafeController::class, 'CafeCat'])->name('CafeCat');
+Route::get('/cafe-cat/{id}', [APICafeController::class, 'showCafecat'])->name('showCafeCat');
+
+Route::post('/hotel', [APIHotelController::class, 'Hotel'])->name('Hotel');
+Route::get('/hotel/{id}', [APIHotelController::class, 'showHotel'])->name('showHotel');
+
+
+Route::post('/care', [APICareRentController::class, 'CareRent'])->name('CareRent');
+Route::get('/care/{id}', [APICareRentController::class, 'showCareRent'])->name('showCareRent');
+
+
+Route::post('/contact', [APIContactController::class, 'Contact'])->name('Contact');
+Route::post('/contactForm', [APIContactController::class, 'ContactForm'])->name('ContactForm');
+// Route::get('/contact/{id}', [APIContactController::class, 'showContact'])->name('showContact');
+
+
+// for Baggage kg per price
+Route::post('/baggage-price', [APIBaggageController::class, 'Baggage'])->name('Baggage');
+
+Route::get('verify-payment/{reference}', [PaymentController::class, 'Paymen'])->name('payment.verify');
+
+Route::post('/cabin', [APICabinController::class, 'Cabin'])->name('Cabin');
+Route::get('/cabin/{id}', [APICabinController::class, 'showCabin'])->name('showCabin');
+
+
+Route::post('/deal', [APIDealController::class, 'Deal'])->name('Deal');
+Route::get('/deal/{id}', [APIDealController::class, 'showDeal'])->name('showDeal');
+
+
+Route::post('/training', [APITrainController::class, 'Training'])->name('Training');

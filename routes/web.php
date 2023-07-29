@@ -28,6 +28,18 @@ use App\Http\Controllers\AppStoreController;
 use App\Http\Controllers\RoutingController;
 use App\Http\Controllers\EventCatController;
 use App\Http\Controllers\DealCatController;
+use App\Http\Controllers\CafeController;
+use App\Http\Controllers\CafeCatController;
+use App\Http\Controllers\HotelController;
+use App\Http\Controllers\CareRentController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\BaggageController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CabinController;
+use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\DealController;
+use App\Http\Controllers\TouristController;
+use App\Http\Controllers\TouristCatController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -64,6 +76,7 @@ Route::get('/api', function () {
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/Service', [App\Http\Controllers\HomeController::class, 'Service'])->name('Service');
 // Otp
 Route::get('/verify-otp', [App\Http\Controllers\OtpController::class, 'indexotp'])->name('verify-otp');
 Route::get('/verify-otp/{otp}', [App\Http\Controllers\OtpController::class, 'indexotpurl'])->name('verify-otp-url');
@@ -354,3 +367,104 @@ Route::get('/deleteEventCat/{id}', [EventCatController::class, 'deleteEventCat']
 
 Route::post('/add-DealCat', [DealCatController::class, 'addDealCat'])->name('addDealCat');
 Route::get('/deleteDealCat/{id}', [DealCatController::class, 'deleteDealCat'])->name('deleteDealCat');
+
+
+
+
+
+//Manage Cafe
+Route::get('/manage-Cafe', [CafeController::class, 'Cafe'])->name('Cafe');
+Route::post('/add-Cafe', [CafeController::class, 'addCafe'])->name('addCafe');
+Route::get('/hideCafe/{id}', [CafeController::class, 'hideCafe'])->name('hideCafe');
+Route::get('/unhideCafe/{id}', [CafeController::class, 'unhideCafe'])->name('unhideCafe');
+Route::get('/editCafe/{id}', [CafeController::class, 'editCafe'])->name('editCafe');
+Route::put('/updateCafe/{id}', [CafeController::class, 'updateCafe'])->name('updateCafe');
+Route::get('/deleteCafe/{id}', [CafeController::class, 'deleteCafe'])->name('deleteCafe');
+
+//Manage Cafe categories
+Route::post('/add-CafeCat', [CafeCatController::class, 'addCafeCat'])->name('addCafeCat');
+Route::get('/deleteCafeCat/{id}', [CafeCatController::class, 'deleteCafeCat'])->name('deleteCafeCat');
+
+
+
+//Manage Hotel
+Route::get('/manage-Hotel', [HotelController::class, 'Hotel'])->name('Hotel');
+Route::post('/add-Hotel', [HotelController::class, 'addHotel'])->name('addHotel');
+Route::get('/hideHotel/{id}', [HotelController::class, 'hideHotel'])->name('hideHotel');
+Route::get('/unhideHotel/{id}', [HotelController::class, 'unhideHotel'])->name('unhideHotel');
+Route::get('/editHotel/{id}', [HotelController::class, 'editHotel'])->name('editHotel');
+Route::put('/updateHotel/{id}', [HotelController::class, 'updateHotel'])->name('updateHotel');
+Route::get('/deleteHotel/{id}', [HotelController::class, 'deleteHotel'])->name('deleteHotel');
+
+//Manage CareRent
+Route::get('/manage-CareRent', [CareRentController::class, 'CareRent'])->name('CareRent');
+Route::post('/add-CareRent', [CareRentController::class, 'addCareRent'])->name('addCareRent');
+Route::get('/hideCareRent/{id}', [CareRentController::class, 'hideCareRent'])->name('hideCareRent');
+Route::get('/unhideCareRent/{id}', [CareRentController::class, 'unhideCareRent'])->name('unhideCareRent');
+Route::get('/editCareRent/{id}', [CareRentController::class, 'editCareRent'])->name('editCareRent');
+Route::put('/updateCareRent/{id}', [CareRentController::class, 'updateCareRent'])->name('updateCareRent');
+Route::get('/deleteCareRent/{id}', [CareRentController::class, 'deleteCareRent'])->name('deleteCareRent');
+
+
+//Manage ContactUs
+Route::get('/manage-Contact', [ContactController::class, 'Contact'])->name('Contact');
+Route::post('/add-Contact', [ContactController::class, 'addContact'])->name('addContact');
+Route::get('/hideContact/{id}', [ContactController::class, 'hideContact'])->name('hideContact');
+Route::get('/unhideContact/{id}', [ContactController::class, 'unhideContact'])->name('unhideContact');
+Route::get('/editContact/{id}', [ContactController::class, 'editContact'])->name('editContact');
+Route::put('/updateContact/{id}', [ContactController::class, 'updateContact'])->name('updateContact');
+Route::get('/deleteContact/{id}', [ContactController::class, 'deleteContact'])->name('deleteContact');
+
+
+Route::post('/add-Baggage', [BaggageController::class, 'addBaggage'])->name('addBaggage');
+Route::put('/updateBaggage/{id}', [BaggageController::class, 'updateBaggage'])->name('updateBaggage');
+
+
+Route::get('/Baggage', function () {
+  return view('bagagge');
+});
+
+Route::get('verify-payment/{reference}', [PaymentController::class, 'Paymen'])->name('payment.verify');
+Route::get('/paymentList', [PaymentController::class, 'paymentList'])->name('paymentList');
+
+
+//Manage Cabin
+Route::get('/manage-Cabin', [CabinController::class, 'Cabin'])->name('Cabin');
+Route::post('/add-Cabin', [CabinController::class, 'addCabin'])->name('addCabin');
+Route::get('/hideCabin/{id}', [CabinController::class, 'hideCabin'])->name('hideCabin');
+Route::get('/unhideCabin/{id}', [CabinController::class, 'unhideCabin'])->name('unhideCabin');
+Route::get('/editCabin/{id}', [CabinController::class, 'editCabin'])->name('editCabin');
+Route::put('/updateCabin/{id}', [CabinController::class, 'updateCabin'])->name('updateCabin');
+Route::get('/deleteCabin/{id}', [CabinController::class, 'deleteCabin'])->name('deleteCabin');
+
+
+
+//Manage Deal
+Route::get('/manage-Deal', [DealController::class, 'Deal'])->name('Deal');
+Route::post('/add-Deal', [DealController::class, 'addDeal'])->name('addDeal');
+Route::get('/hideDeal/{id}', [DealController::class, 'hideDeal'])->name('hideDeal');
+Route::get('/unhideDeal/{id}', [DealController::class, 'unhideDeal'])->name('unhideDeal');
+Route::get('/editDeal/{id}', [DealController::class, 'editDeal'])->name('editDeal');
+Route::put('/updateDeal/{id}', [DealController::class, 'updateDeal'])->name('updateDeal');
+Route::get('/deleteDeal/{id}', [DealController::class, 'deleteDeal'])->name('deleteDeal');
+
+
+
+
+Route::get('/editTraining', [TrainingController::class, 'editTraining'])->name('editTraining');
+Route::put('/updateTraining/{id}', [TrainingController::class, 'updateTraining'])->name('updateTraining');
+
+
+//Manage Tourist
+Route::get('/manage-Tourist', [TouristController::class, 'Tourist'])->name('Tourist');
+Route::post('/add-Tourist', [TouristController::class, 'addTourist'])->name('addTourist');
+Route::get('/hideTourist/{id}', [TouristController::class, 'hideTourist'])->name('hideTourist');
+Route::get('/unhideTourist/{id}', [TouristController::class, 'unhideTourist'])->name('unhideTourist');
+Route::get('/editTourist/{id}', [TouristController::class, 'editTourist'])->name('editTourist');
+Route::put('/updateTourist/{id}', [TouristController::class, 'updateTourist'])->name('updateTourist');
+Route::get('/deleteTourist/{id}', [TouristController::class, 'deleteTourist'])->name('deleteTourist');
+
+//Manage Tourist categories
+Route::post('/add-TouristCat', [TouristCatController::class, 'addTouristCat'])->name('addTouristCat');
+Route::get('/deleteTouristCat/{id}', [TouristCatController::class, 'deleteTouristCat'])->name('deleteTouristCat');
+

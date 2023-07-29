@@ -13,6 +13,7 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{route('web_content')}}">Web Content</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{ route('MissionVission') }}">Mission and Vission</a>
                     </li>
@@ -28,6 +29,10 @@
                         <a class="nav-link text-active-primary me-6" href="{{ route('Policy') }} ">Policy</a>
                     </li>
                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-Contact')}}" >Contact Us</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{ route('About') }} ">About Us</a>
                     </li>
                     <li class="nav-item">

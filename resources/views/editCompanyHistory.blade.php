@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit Mission and Vission'])
+@extends('layouts.app', ['title' => 'Edit Company History'])
 
 @section('content')
 
