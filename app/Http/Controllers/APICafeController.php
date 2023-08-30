@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Cafe;
 use App\Models\CafeCat;
+use App\Models\CafeHeader;
 use Illuminate\Support\Facades\Validator;
 use DB;
 use Auth;
@@ -22,6 +23,18 @@ class APICafeController extends Controller
 
     public function showCafe($id){
         $data=Cafe::find($id);
+         return response()->json(['data'=>$data]);
+    }
+
+    public function CafeHeader(){
+
+  $data =CafeHeader::all();
+
+  return response()->json(['data'=>$data]);
+    }
+
+    public function showCafeHeader($id){
+        $data=CafeHeader::find($id);
          return response()->json(['data'=>$data]);
     }
 

@@ -15,6 +15,9 @@
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
                       <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-CafeHeader')}}">Header  </a>
+                    </li> 
+                    <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
             </ul>
@@ -198,7 +201,7 @@
                                 </td>
                                  
                                 <td>
-                                     {{$data->description}}
+                                  {!!$data->description!!}
 
                                 </td> 
 
@@ -324,7 +327,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <textarea style="height: 150px;" type="text"
+                                            <textarea id="editors" style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="description"  placeholder="Enter"
                                                         > </textarea>
@@ -335,7 +338,68 @@
                                     </div>
                                 </div>     
 
-                                            
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Address</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="address" placeholder=""require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                    <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Openhours</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="openhours" placeholdser=""require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
+                                    <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Phone</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"  class="form-control form-control-lg form-control-solid"
+                                                placeholdser=""require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
 
 
                                 <div class="row">

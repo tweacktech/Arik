@@ -177,7 +177,7 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <textarea style="height: 150px;" type="text"
+                                                    <textarea id="editors" style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="description"  placeholder=""
                                                         >{{ $update->description }} </textarea>

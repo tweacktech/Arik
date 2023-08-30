@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\ValidationException;
 use DB;
 use Hash;
 use Auth;
@@ -14,6 +15,30 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+
+public function changePassword(Request $request)
+{
+    $request->validate([
+        'current_password' => ['required', function ($attribute, $value, $fail) {
+            if (!Hash::check($value, Auth::user()->password)) {
+                $fail(__('The current password is incorrect.'));
+            }
+        }],
+        'new_password' => ['required', 'string', 'min:8', 'confirmed'],
+    ]);
+
+    Auth::user()->update([
+        'password' => Hash::make($request->new_password),
+    ]);
+
+    return back()->with('success', 'Password changed successfully.');
+}
+
+public function show()
+{
+    return view('users.profile');
+}
+
     public function manage_users()
     {
 

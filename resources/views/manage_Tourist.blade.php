@@ -14,6 +14,9 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{route('TouristHeader')}}">Header</a>
+                    </li>
                       <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
@@ -102,7 +105,7 @@
                                         class="btn btn-danger btn-sm">Delete</a></td>
                         </tr>
                         @endforeach
-                        {{ $tata->links() }}
+                   
                     </tbody>
                     </table>
                 </div>

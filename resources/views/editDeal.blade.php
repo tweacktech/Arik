@@ -227,6 +227,32 @@
                                             </div>
                                         </div>
 
+                                       <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Category</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select type="text" class="form-control form-control-lg form-control-solid"
+                                                name="category" placeholder=""require />
+         @php $categories=DB::table('deal_offer_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+        @endforeach
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+
                                           <div class="row">
                                             <div class="w-100">
                                                 <!--begin::Input group-->

@@ -18,6 +18,7 @@ class CreateCafesTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('location');   
+            $table->string('phone');   
             $table->string('image'); 
             $table->BigInteger('status')->default(1);
             $table->timestamps();

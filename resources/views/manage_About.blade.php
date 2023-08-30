@@ -15,6 +15,12 @@
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
                       <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-Award')}}">Award Page</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-CompanyHistory')}}">Company History</a>
+                    </li>
+                      <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
             </ul>
@@ -306,7 +312,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                                <textarea style="height: 150px;" type="text"
+                                                <textarea id="editors" style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="description"  placeholder=""
                                                         > </textarea>
@@ -348,4 +354,17 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+
+  <!-- Include TinyMCE JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+
+  <!-- Initialize TinyMCE -->
+  <script>
+    tinymce.init({
+      selector: '#editors',
+         });
+  </script>
+
 @endsection
+ 

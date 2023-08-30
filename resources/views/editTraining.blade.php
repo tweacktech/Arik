@@ -1,7 +1,36 @@
-@extends('layouts.app', ['title' => 'Manage Cabin'])
+@extends('layouts.app', ['title' => 'Manage Training'])
 
 @section('content')
+ <div class="card ">
+        <div class="card-body pt-1 pb-0">
 
+            <!--end::Details-->
+            <div class="separator"></div>
+            <!--begin::Nav wrapper-->
+            <div class="d-flex overflow-auto h-55px">
+                <!--begin::Nav links-->
+                <ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder flex-nowrap"
+                    style="padding-left:40px">
+                    <!--begin::Nav item-->
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="">Overview</a>
+                    </li>
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{route('assistform')}}" >Filled list  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{route('Course')}}">Courses</a>
+                    </li>
+
+                      <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="javascript:history.back()" >Back  </a>
+                    </li>
+            </ul>
+
+            </div>
+            <!--end::Nav wrapper-->
+        </div>
+    </div>
 @if (session('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
@@ -26,11 +55,13 @@
     }, 5000);
 </script>
 
-    <div class="card card-flush m-20">
+    <div class="card card-flush m-10">
         <!--begin::Card header-->
         <div class="card-header mt-5">
 
-<a href="javascript:history.back()" class="btn btn-primary">Back</a>
+
+ 
+
 
             <!--begin::Card toolbar-->
         </div>
@@ -128,6 +159,76 @@
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="benefit"  placeholder=""
                                                         >{{ $update->benefit }} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+                                    <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">OBJECTIVES</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="objective"  placeholder=""
+                                                        >{{ $update->objective}} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+
+                                          <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">AUDIENCE</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="audience"  placeholder=""
+                                                        >{{ $update->audience}} </textarea>
+                                                    <!--end::Input-->
+                                                </div>
+                                                <!--end::Input group-->
+
+                                            </div>
+                                        </div>
+                                 <div class="row">
+                                            <div class="w-100">
+                                                <!--begin::Input group-->
+                                                <div class="fv-row mb-10">
+                                                    <!--begin::Label-->
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">DELIVERY OPTIONS</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Specify your unique app name"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <textarea style="height: 150px;" type="text"
+                                                        class="form-control form-control-lg form-control-solid"
+                                                        name="delivery"  placeholder=""
+                                                        >{{ $update->delivery}} </textarea>
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->

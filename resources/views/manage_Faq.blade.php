@@ -15,6 +15,10 @@
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
                       <li class="nav-item">
+                       <a class="nav-link text-active-primary me-6" href="{{route('BaggageTable')}}">Baggage Table  </a>
+                    </li>
+                      </li>
+                      <li class="nav-item">
                        <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
             </ul>

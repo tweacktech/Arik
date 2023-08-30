@@ -16,6 +16,9 @@
                     </li>
                  
                       <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{route('DealHeader')}}">Header</a>
+                    </li>
+                      <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
             </ul>
@@ -49,6 +52,73 @@
     }, 5000);
 </script>
 
+ <div class="modal fade" id="category" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered ">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header">
+                    <!--begin::Modal title-->
+                    <h2>Create Category</h2>
+                </div>
+                <!--end::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body py-lg-10 px-lg-10">
+                    <form method="POST" action="{{route('addDealOfferCat')}}" >
+                         @csrf
+                        <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Title</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <input type="text" class="form-control form-control-lg form-control-solid"
+                                                name="title" placeholder="Add category" require />
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+                                <input type="submit" class="btn btn-primary" name="">
+                        
+                    </form>
+
+                    <table>
+                        <thead>
+                         <th class="min-w-250px">Title</th>
+                            <th class="min-w-250px">Action</th>
+                    </thead>
+                    <tbody>
+                        @php $tata=DB::table('deal_offer_cats')->get(); @endphp
+                        @foreach($tata as $da)
+                        <tr>
+                            <td>{{$da->title}}</td>
+                            <td> <a href="{{ route('deleteDealOfferCat', ['id' => $da->id]) }}"
+                                        class="btn btn-danger btn-sm">Delete</a></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    
+                <div class="card-toolbar">
+                    <a href="#" class="btn btn-flex btn-primary" data-bs-target="#category" data-bs-toggle="modal">
+                        Offer Category
+                    </a>
+                </div>
 
 
     <div class="card card-flush m-6">
@@ -93,12 +163,12 @@
                     <thead class="fs-7 text-gray-400 text-uppercase">
                         <tr>
 
-                            <th class="min-w-150px">Image/locations</th>
-                            <th class="min-w-30px">promodays</th>
+                            <th class="min-w-100px">Image/locations</th>
+                            <th class="min-w-20px">promodays</th>
                             <th class="min-w-30px">promocode</th>
                             <th class="min-w-30px">promomonth</th>
-                            <th class="min-w-250px">Description</th>
-                            
+                            <th class="min-w-50px">Category</th>
+                            <th class="min-w-210px">Description</th>
                             <th class="min-w-30px">Status</th>
                             <th class="min-w-100px text">Action</th>
                         </tr>
@@ -146,9 +216,13 @@
                                 <td>
                                      {{$data->promomonth}}
 
-                                </td> 
+                                </td>
+                                   <td>
+                                   @php $da=DB::table('deal_offer_cats')->where('id',$data->category)->first(); @endphp  {{$da->title}}
+
+                                </td>  
                                 <td>
-                                     {{$data->description}}
+                                     {!!$data->description!!}
 
                                 </td> 
 
@@ -334,6 +408,33 @@
 
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="w-100">
+                                        <!--begin::Input group-->
+                                        <div class="fv-row mb-10">
+                                            <!--begin::Label-->
+                                            <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                <span class="required">Category</span>
+                                                <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                                    title="Specify your unique app name"></i>
+                                            </label>
+                                            <!--end::Label-->
+                                            <!--begin::Input-->
+                                            <select type="text" class="form-control form-control-lg form-control-solid"
+                                                name="category" placeholder=""require />
+         @php $categories=DB::table('deal_offer_cats')->get(); @endphp
+        @foreach($categories as $category)
+            <option value="{{ $category->id }}">{{ $category->title }}</option>
+        @endforeach
+                                            </select>
+                                            <!--end::Input-->
+                                        </div>
+                                        <!--end::Input group-->
+
+                                    </div>
+                                </div>
+                                          
                
 
                                 <div class="row">

@@ -28,6 +28,9 @@ public function updateTraining(Request $request, $id) {
     $Training->title = $request->input('title');
     $Training->description = $request->input('description');
     $Training->benefit = $request->input('benefit');
+    $Training->objective = $request->input('objective');
+    $Training->audience = $request->input('audience');
+    $Training->delivery = $request->input('delivery');
     $Training->complimentary = $request->input('complimentary');
     $Training->save();
     return redirect()->back()->with('success', 'Training updated successfully.');

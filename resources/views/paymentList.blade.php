@@ -75,8 +75,9 @@
                         <tr>
 
                             <th class="min-w-150px">Payer Name</th>
-                            <th class="min-w-150px">KG/Price</th>
-                            <th class="min-w-250px">Contact</th>
+                            <th class="min-w-100px">KG/Price</th>
+                            <th class="min-w-250px">Contacts</th>
+                            <th class="min-w-30px">Ticket</th>
                             <th class="min-w-30px">Status</th>
                             <th class="min-w-100px ">Action</th>
                         </tr>

@@ -8,7 +8,7 @@
 				<div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20" >
 					<!--begin::Logo-->
 					<a href="" class="mb-12">
-						ARIK
+						 <img style="width: 100%;  height: 80px;" id="logo" src="{{ asset('/public/logo.png') }}" alt="ARIK">
 					</a>
 					<!--end::Logo-->
 					<!--begin::Wrapper-->
@@ -52,9 +52,7 @@
 									<!--begin::Label-->
 									<label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
 									<!--end::Label-->
-									<!--begin::Link-->
-									<a href="{{route('reset-password')}}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
-									<!--end::Link-->
+									
 								</div>
 								<!--end::Wrapper-->
 								<!--begin::Input-->
@@ -86,17 +84,7 @@
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Content-->
-				<!--begin::Footer-->
-				<div class="d-flex flex-center flex-column-auto p-10">
-					<!--begin::Links-->
-					<div class="d-flex align-items-center fw-bold fs-6">
-						<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-						<a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-						<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-					</div>
-					<!--end::Links-->
-				</div>
-				<!--end::Footer-->
+				
 			</div>
 			<!--end::Authentication - Sign-in-->
 		</div>

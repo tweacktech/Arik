@@ -84,7 +84,7 @@
                                                     <!--begin::Input-->
                                                     <input type="file"
                                                         class="form-control form-control-lg form-control-solid" min="100" 
-                                                        name="image" placeholder=""
+                                                        name="image" 
                                                         />
                                                     <!--end::Input-->
                                                 </div>
@@ -108,7 +108,7 @@
                                                     <!--begin::Input-->
                                                     <input type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="slide_title" placeholder="" value="{{ $update->slide_title }}" />
+                                                        name="slide_title"  value="{{ $update->slide_title }}" />
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
@@ -116,10 +116,6 @@
                                             </div>
                                         </div>
 
-
-
-
-                                            
 
                                           <div class="row">
                                             <div class="w-100">
@@ -136,7 +132,7 @@
                                                     <!--begin::Input-->
                                                     <textarea style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="slide_description"  placeholder=""
+                                                        name="slide_description"  
                                                         >{{ $update->slide_description }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -158,14 +154,13 @@
                                                     <!--begin::Input-->
                                                     <input type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="title" placeholder="" value="{{ $update->title }}" />
+                                                        name="title"  value="{{ $update->title }}" />
                                                     <!--end::Input-->
                                                 </div>
                                                 <!--end::Input group-->
 
                                             </div>
                                         </div>
-
 
                                           <div class="row">
                                             <div class="w-100">
@@ -180,9 +175,9 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <textarea style="height: 150px;" type="text"
+                                                    <textarea id="" style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="description"  placeholder=""
+                                                        name="description"  
                                                         >{{ $update->description }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -206,7 +201,7 @@
                                                     <!--begin::Input-->
                                                     <textarea style="height: 120px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="phone_number"  placeholder=""
+                                                        name="phone_number"  
                                                         >{{ $update->phone_number }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -230,7 +225,7 @@
                                                     <!--begin::Input-->
                                                     <textarea style="height: 120px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="whatsapp"  placeholder=""
+                                                        name="whatsapp"  
                                                         >{{ $update->whatsapp }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -254,7 +249,7 @@
                                                     <!--begin::Input-->
                                                     <textarea style="height: 120px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="emails"  placeholder=""
+                                                        name="emails"  
                                                         >{{ $update->emails }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -276,9 +271,9 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <textarea style="height: 120px;" type="text"
+                                                    <textarea id="editors" style="height: 120px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
-                                                        name="others"  placeholder=""
+                                                        name="others"  
                                                         >{{ $update->others }} </textarea>
                                                     <!--end::Input-->
                                                 </div>
@@ -287,8 +282,6 @@
                                             </div>
                                         </div>
   
-
-
                                         <button type="submit" class="btn btn-lg btn-primary">Update
                                             <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                             <span class="svg-icon svg-icon-3 ms-1 me-0">

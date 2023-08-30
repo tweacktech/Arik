@@ -35,14 +35,22 @@ public function aboutimage(){
 }
 public function terms(){
 
-    $data=DB::table('website')->select('terms')->get();
+   $data=DB::table('policies')->where('type','terms')->get();
+   
+
+    return response()->json(['data'=>$data]);
+}
+public function termheader(){
+
+   $data=DB::table('term_headers')->get();
    
 
     return response()->json(['data'=>$data]);
 }
 public function policy(){
 
-    $data=DB::table('policies')->get();
+    // $data=DB::table('policies')->get();
+    $data=DB::table('policies')->where('type','policy')->get();
 
     return response()->json(['data'=>$data]);
 }
@@ -56,7 +64,7 @@ public function policyimage(){
 
     public function baggage(){
 
-    $data=DB::table('policies')->where('name','baggage')->get();
+    $data=DB::table('policies')->where('type','baggage')->get();
 
     return response()->json(['data'=>$data]);
 }

@@ -490,16 +490,6 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
 
-  <!-- Include TinyMCE JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
-
-  <!-- Initialize TinyMCE -->
-  <script>
-    tinymce.init({
-      selector: '#editors',
-         });
-  </script>
 
 @endsection

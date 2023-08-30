@@ -14,7 +14,13 @@
                     <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="">Overview</a>
                     </li>
-                      <li class="nav-item">
+                      <!-- <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{route('Term')}}">Terms & Condition  </a>
+                    </li> -->
+                    <li class="nav-item">
+                       <a class="nav-link text-active-primary me-6" href="{{route('BaggageTable')}}">Baggage Table  </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="javascript:history.back()">Back  </a>
                     </li>
             </ul>
@@ -54,7 +60,7 @@
         <!--begin::Card header-->
         <div class="card-header mt-5">
             <div class="card-header">
-               @if(count($data)==0 || count($data)<4)
+               @if(count($data)==0 || count($data)<3)
                 <div class="card-toolbar">
                     <a href="#" class="btn btn-flex btn-primary" data-bs-target="#create_category" data-bs-toggle="modal">
                         <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
@@ -137,7 +143,9 @@
 
                                 </td> 
                                  <td>
-                                     {{$data->description}}
+                                    
+                                        {!!  substr(($data->description),0,50) !!}..
+
 
                                 </td> 
                                 <td>
@@ -149,7 +157,7 @@
 
                                 </td> 
                                 <td>
-                                     {{$data->content}}
+                                    {!! $data->content !!}
 
                                 </td> 
                               
@@ -327,7 +335,7 @@
                                             </label>
                                             <!--end::Label-->
                                             <!--begin::Input-->
-                                            <textarea style="height: 150px;" type="text"
+                                            <textarea id="editors"  style="height: 150px;" type="text"
                                                         class="form-control form-control-lg form-control-solid"
                                                         name="description"  placeholder=""
                                                         ></textarea>
@@ -369,4 +377,15 @@
         <!--end::Modal body-->
     </div>
     <!--end::Modal content-->
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: '#editor',
+      plugins: 'table lists', // Include the 'table' and 'lists' plugins
+      toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table', // Customize the toolbar
+      menubar: 'table', // Enable the 'Table' menu in the menubar
+    });
+  </script>
 @endsection

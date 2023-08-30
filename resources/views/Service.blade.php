@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Web Content '])
+@extends('layouts.app', ['title' => 'Web Services '])
 
 @section('content')
 							  @include('layouts.serviceNav')

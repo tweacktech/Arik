@@ -34,6 +34,7 @@ public function addDeal(Request $req){
             'promocode' => 'required|string|max:255',
             'promomonth' => 'required|string|max:255',
             'promoprice' => 'required|string|max:255',
+            'category' => 'required',
             'description' => 'required|string',
             'image' => 'required|image'
         ]);
@@ -55,6 +56,7 @@ public function addDeal(Request $req){
         $Deal->promocode = $req->input('promocode');
         $Deal->promomonth = $req->input('promomonth');
         $Deal->promoprice = $req->input('promoprice');
+        $Deal->category = $req->input('category'); 
         $Deal->description = $req->input('description'); 
         $Deal->image = $file_name;
         $Deal->save();
@@ -118,6 +120,7 @@ if ($request->file('image')=="") {
     $Deal->promocode = $request->input('promocode');
     $Deal->promomonth = $request->input('promomonth');
     $Deal->promoprice = $request->input('promoprice');
+    $Deal->category = $request->input('category');
     $Deal->description = $request->input('description');
     $Deal->save();
     return redirect()->back()->with('success', 'Deal updated successfully.');
@@ -131,6 +134,7 @@ if ($request->file('image')=="") {
     $Deal->promocode = $request->input('promocode');
     $Deal->promomonth = $request->input('promomonth');
     $Deal->promoprice = $request->input('promoprice');
+    $Deal->category = $request->input('category');
     $Deal->description = $request->input('description');
     $Deal->image = $file_name;
     $Deal->save();

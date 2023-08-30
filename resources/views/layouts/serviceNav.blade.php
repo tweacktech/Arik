@@ -27,7 +27,9 @@
                       <li class="nav-item">
                         <a class="nav-link text-active-primary me-6" href="{{url('editTraining')}}"  >Manage Training</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-Park')}}"  >Manage car park</a>
+                    </li>
                     <li class="nav-item">
                           <a href="#" class="nav-link text-active-primary me-6" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                          Other Pages
@@ -48,9 +50,33 @@
                                    manage Tourist
                                     </a>
                                    </div>
+                               <!--end::Menu item-->       
+
+                                  <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                   <a href="{{url('manage-TravelExtra')}}" class="menu-link px-3">
+                                   TravelExtra
+                                    </a>
+                                   </div>
+                               <!--end::Menu item-->     
+                                  <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                   <a href="{{url('manage-Special')}}" class="menu-link px-3">
+                                   Specail Assist
+                                    </a>
+                                   </div>
+                               <!--end::Menu item-->      
+
+                                 <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                   <a href="{{url('manage-Seat')}}" class="menu-link px-3">
+                                   Seat 
+                                    </a>
+                                   </div>
                                <!--end::Menu item-->                
                               </div>
                             </li>
+                               
             </ul>
 
             </div>

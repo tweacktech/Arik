@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Contact;
+use App\Models\ContactDetail;
 use App\Models\ContactForm;
 use Illuminate\Support\Facades\Validator;
 use DB;
@@ -62,6 +63,18 @@ if ($details) {
 
     public function showContact($id){
         $data=Contact::find($id);
+         return response()->json(['data'=>$data]);
+    }
+
+      public function ContactDetail(){
+
+  $data =DB::table('state')->get();
+
+  return response()->json(['data'=>$data]);
+    }
+
+    public function showContactDetail($id){
+        $data=ContactDetail::where('state',$id)->get();
          return response()->json(['data'=>$data]);
     }
 

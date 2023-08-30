@@ -31,6 +31,9 @@ public function addCafe(Request $req){
       $validator = Validator::make($req->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
+            'address' => 'required|string',
+            'openhours' => 'required|string',
+            'phone' => 'required',
             'location' => 'required|string',
             'image' => 'required|image'
         ]);
@@ -49,6 +52,9 @@ public function addCafe(Request $req){
         $Cafe = new Cafe();
         $Cafe->title = $req->input('title');
         $Cafe->description = $req->input('description');
+        $Cafe->address = $req->input('address');
+        $Cafe->openhours = $req->input('openhours');
+        $Cafe->phone = $req->input('phone');
         $Cafe->location = $req->input('location');
         $Cafe->image = $file_name;
         $Cafe->save();
@@ -61,8 +67,6 @@ public function deleteCafe($id) {
     
     return redirect()->back()->with('success', 'Cafe deleted successfully.');
 }
-
-
 
 
 public function unhideCafe(Request $req, $id)
@@ -109,6 +113,9 @@ if ($request->file('image')=="") {
      $Cafe = Cafe::find($id);
     $Cafe->title = $request->input('title');
     $Cafe->description = $request->input('description');
+    $Cafe->address = $request->input('address');
+    $Cafe->openhours = $request->input('openhours');
+    $Cafe->phone = $request->input('phone');
     $Cafe->location = $request->input('location');
     $Cafe->save();
     return redirect()->back()->with('success', 'Cafe updated successfully.');
@@ -119,6 +126,9 @@ if ($request->file('image')=="") {
     $Cafe = Cafe::find($id);
     $Cafe->title = $request->input('title');
     $Cafe->description = $request->input('description');
+    $Cafe->address = $request->input('address');
+    $Cafe->openhours = $request->input('openhours');
+    $Cafe->phone = $request->input('phone');
     $Cafe->location = $request->input('location');
     $Cafe->image = $file_name;
     $Cafe->save();

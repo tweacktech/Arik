@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserController; 
 use App\Http\Controllers\APIWebController;
 use App\Http\Controllers\APINewsletterController;
 use App\Http\Controllers\APIPromoController;
@@ -31,6 +31,16 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\APICabinController;
 use App\Http\Controllers\APITrainController;
 use App\Http\Controllers\APIDealController;
+use App\Http\Controllers\APITouristController;
+use App\Http\Controllers\APITravelExtraController;
+use App\Http\Controllers\APISpecialController;
+use App\Http\Controllers\SubscriptionController;
+use App\Http\Controllers\APIAwardController;
+use App\Http\Controllers\APISeatController;
+use App\Http\Controllers\APISpecialOffersController;
+use App\Http\Controllers\APIParkingSpotController;
+use App\Http\Controllers\ParkPaymentController;
+use App\Http\Controllers\APIBaggageTableController;
 
 
 
@@ -45,6 +55,7 @@ Route::post('/history', [APIWebController::class, 'history'])->name('history');
 Route::post('/aboutimage', [APIWebController::class, 'aboutimage'])->name('aboutimage');
 Route::post('/aboutus', [APIWebController::class, 'aboutus'])->name('aboutus');
 Route::post('/terms', [APIWebController::class, 'terms'])->name('terms');
+Route::post('/termheader', [APIWebController::class, 'termheader'])->name('termheader');
 Route::post('/policy', [APIWebController::class, 'policy'])->name('policy');
 Route::post('/policyimage', [APIWebController::class, 'policyimage'])->name('policyimage');
 
@@ -120,17 +131,29 @@ Route::get('/cafe/{id}', [APICafeController::class, 'showCafe'])->name('showCafe
 Route::post('/cafe-cat', [APICafeController::class, 'CafeCat'])->name('CafeCat');
 Route::get('/cafe-cat/{id}', [APICafeController::class, 'showCafecat'])->name('showCafeCat');
 
+Route::post('/cafe-header', [APICafeController::class, 'CafeHeader'])->name('CafeHeader');
+Route::get('/cafe-header/{id}', [APICafeController::class, 'showCafeHeader'])->name('showCafeHeader');
+
 Route::post('/hotel', [APIHotelController::class, 'Hotel'])->name('Hotel');
 Route::get('/hotel/{id}', [APIHotelController::class, 'showHotel'])->name('showHotel');
+
+Route::post('/hotelslider', [APIHotelController::class, 'HotelSlider'])->name('HotelSlider');
+Route::get('/hotelslider/{id}', [APIHotelController::class, 'showHotelSlider'])->name('showHotelSlider');
 
 
 Route::post('/care', [APICareRentController::class, 'CareRent'])->name('CareRent');
 Route::get('/care/{id}', [APICareRentController::class, 'showCareRent'])->name('showCareRent');
 
+Route::post('/careheader', [APICareRentController::class, 'CareHeader'])->name('CareHeader');
+Route::get('/careheader/{id}', [APICareRentController::class, 'showCareHeader'])->name('showCareHeader');
+
 
 Route::post('/contact', [APIContactController::class, 'Contact'])->name('Contact');
+
 Route::post('/contactForm', [APIContactController::class, 'ContactForm'])->name('ContactForm');
 // Route::get('/contact/{id}', [APIContactController::class, 'showContact'])->name('showContact');
+Route::post('/contactstate', [APIContactController::class, 'ContactDetail'])->name('ContactDetail');
+Route::get('/contactstate/{id}', [APIContactController::class, 'showContactDetail'])->name('showContactDetail');
 
 
 // for Baggage kg per price
@@ -146,4 +169,73 @@ Route::post('/deal', [APIDealController::class, 'Deal'])->name('Deal');
 Route::get('/deal/{id}', [APIDealController::class, 'showDeal'])->name('showDeal');
 
 
+Route::post('/offercat', [APIDealController::class, 'DealOfferCat'])->name('DealOfferCat');
+Route::get('/offercat/{id}', [APIDealController::class, 'showDealOfferCat'])->name('showDealOfferCat');
+
+Route::post('/dealheader', [APIDealController::class, 'DealHeader'])->name('DealHeader');
+Route::get('/dealheader/{id}', [APIDealController::class, 'showDealHeader'])->name('showDealHeader');
+
+
 Route::post('/training', [APITrainController::class, 'Training'])->name('Training');
+Route::post('/coursecat', [APITrainController::class, 'CourseCat'])->name('CourseCat');
+Route::get('/coursecat/{id}', [APITrainController::class, 'showCourseCat'])->name('showCourseCat');
+Route::post('/course', [APITrainController::class, 'Course'])->name('Course');
+Route::get('/course/{id}', [APITrainController::class, 'showCourse'])->name('showCourse');
+
+Route::post('/tourist', [APITouristController::class, 'Tourist'])->name('Tourist');
+Route::get('/tourist/{id}', [APITouristController::class, 'showTourist'])->name('showTourist');
+
+Route::get('/touristheader/{id}', [APITouristController::class, 'showTouristHeader'])->name('showTouristHeader');
+Route::post('/touristheader', [APITouristController::class, 'TouristHeader'])->name('TouristHeader');
+
+Route::post('/tourist-cat', [APITouristController::class, 'TouristCat'])->name('TouristCat');
+Route::get('/tourist-cat/{id}', [APITouristController::class, 'showTouristcat'])->name('showTouristCat');
+
+
+Route::post('/travelextra', [APITravelExtraController::class, 'TravelExtra'])->name('TravelExtra');
+Route::get('/travelextra/{id}', [APITravelExtraController::class, 'showTravelExtra'])->name('showTravelExtra');
+Route::post('/travelextraslider', [APITravelExtraController::class, 'TravelExtraSlider'])->name('TravelExtraSlider');
+Route::post('/travelextrafooter', [APITravelExtraController::class, 'TravelExtraFooter'])->name('TravelExtraFooter');
+
+Route::post('/special', [APISpecialController::class, 'Special'])->name('Special');
+Route::get('/special/{id}', [APISpecialController::class, 'showSpecial'])->name('showSpecial');
+
+Route::post('/assist', [APISpecialController::class, 'Assist'])->name('Assist');
+Route::get('/assist/{id}', [APISpecialController::class, 'showAssist'])->name('showAssist');
+
+Route::post('/specialslider', [APISpecialController::class, 'SpecialSlider'])->name('SpecialSlider');
+Route::post('/specialform', [APISpecialController::class, 'SpecialForm'])->name('SpecialForm');
+
+Route::post('/subscribe', [SubscriptionController::class, 'processSubscription'])->name('subscribe.submit');
+Route::post('/unsubscribe/', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
+
+Route::post('/award', [APIAwardController::class, 'Award'])->name('Award');
+Route::get('/award/{id}', [APIAwardController::class, 'showAward'])->name('showAward');
+
+
+Route::post('/seat', [APISeatController::class, 'Seat'])->name('Seat');
+Route::get('/seat/{id}', [APISeatController::class, 'showSeat'])->name('showSeat');
+
+Route::post('/seatheader', [APISeatController::class, 'SeatHeader'])->name('SeatHeader');
+Route::post('/seatfooter', [APISeatController::class, 'SeatFooter'])->name('SeatFooter');
+Route::get('/seatheader/{id}', [APISeatController::class, 'showSeatHeader'])->name('showSeatHeader');
+
+Route::post('/seat-cat', [APISeatController::class, 'SeatCat'])->name('SeatCat');
+Route::get('/seat-cat/{id}', [APISeatController::class, 'showSeatcat'])->name('showSeatCat');
+
+
+Route::post('/parkingspot', [APIParkingSpotController::class, 'ParkingSpot'])->name('ParkingSpot');
+Route::get('/parkingspot/{id}', [APIParkingSpotController::class, 'showParkingSpot'])->name('showParkingSpot');
+
+Route::post('/parkheader', [APIParkingSpotController::class, 'ParkHeader'])->name('ParkHeader');
+Route::get('/parkheader/{id}', [APIParkingSpotController::class, 'showParkHeader'])->name('showParkHeader');
+
+
+Route::get('verify-parkpayment/{reference}', [ParkPaymentController::class, 'Paymen'])->name('payment.verify');
+
+
+Route::post('/specialoffers', [APISpecialOffersController::class, 'SpecialOffers'])->name('SpecialOffers');
+Route::get('/specialoffers/{id}', [APISpecialOffersController::class, 'showSpecialOffers'])->name('showSpecialOffers');
+
+Route::post('/baggagetable', [APIBaggageTableController::class, 'BaggageTable'])->name('BaggageTable');
+Route::get('/baggagetable/{id}', [APIBaggageTableController::class, 'showBaggageTable'])->name('showBaggageTable');
