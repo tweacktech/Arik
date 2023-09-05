@@ -52,7 +52,7 @@ class BookingSlotNotification extends Notification
             ->line('Booking End Date: ' . $this->reservation->booking_end_date)
             ->line('Booking End Time: ' . $this->reservation->booking_end_time);
     }
-    }
+    
 
     /**
      * Get the array representation of the notification.

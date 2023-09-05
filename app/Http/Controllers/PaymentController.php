@@ -15,8 +15,6 @@ class PaymentController extends Controller
 
  public function Paymen($reference)
 {
-  
-
       $kg = $_GET['kg'];
         $name = $_GET['name'];
         $phone = $_GET['phone'];

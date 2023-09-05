@@ -76,6 +76,10 @@
                                <!--end::Menu item-->                
                               </div>
                             </li>
+                             <li class="nav-item">
+                        <a class="nav-link text-active-primary me-6" href="{{url('manage-WebBonus')}}"  >Manage WebBonus</a>
+                    </li>
+
                                
             </ul>
 

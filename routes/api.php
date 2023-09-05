@@ -41,6 +41,7 @@ use App\Http\Controllers\APISpecialOffersController;
 use App\Http\Controllers\APIParkingSpotController;
 use App\Http\Controllers\ParkPaymentController;
 use App\Http\Controllers\APIBaggageTableController;
+use App\Http\Controllers\APIWebBonusController;
 
 
 
@@ -239,3 +240,7 @@ Route::get('/specialoffers/{id}', [APISpecialOffersController::class, 'showSpeci
 
 Route::post('/baggagetable', [APIBaggageTableController::class, 'BaggageTable'])->name('BaggageTable');
 Route::get('/baggagetable/{id}', [APIBaggageTableController::class, 'showBaggageTable'])->name('showBaggageTable');
+
+
+Route::post('/webbonus', [APIWebBonusController::class, 'WebBonus'])->name('WebBonus');
+Route::get('/webbonus/{id}', [APIWebBonusController::class, 'showWebBonus'])->name('showWebBonus');

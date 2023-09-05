@@ -63,6 +63,7 @@ use App\Http\Controllers\DealHeaderController;
 use App\Http\Controllers\CareHeaderController;
 use App\Http\Controllers\CourseCatController;
 use App\Http\Controllers\DealOfferCatController;
+use App\Http\Controllers\WebBonusController;
 use Illuminate\Http\Request;
 
 Route::get('/home', function () {
@@ -726,3 +727,13 @@ Route::get('/unhideCourse/{id}', [CourseController::class, 'unhideCourse'])->nam
 Route::get('/editCourse/{id}', [CourseController::class, 'editCourse'])->name('editCourse');
 Route::put('/updateCourse/{id}', [CourseController::class, 'updateCourse'])->name('updateCourse');
 Route::get('/deleteCourse/{id}', [CourseController::class, 'deleteCourse'])->name('deleteCourse');
+
+
+//Manage WebBonus
+Route::get('/manage-WebBonus', [WebBonusController::class, 'WebBonus'])->name('WebBonus');
+Route::post('/add-WebBonus', [WebBonusController::class, 'addWebBonus'])->name('addWebBonus');
+Route::get('/hideWebBonus/{id}', [WebBonusController::class, 'hideWebBonus'])->name('hideWebBonus');
+Route::get('/unhideWebBonus/{id}', [WebBonusController::class, 'unhideWebBonus'])->name('unhideWebBonus');
+Route::get('/editWebBonus/{id}', [WebBonusController::class, 'editWebBonus'])->name('editWebBonus');
+Route::put('/updateWebBonus/{id}', [WebBonusController::class, 'updateWebBonus'])->name('updateWebBonus');
+Route::get('/deleteWebBonus/{id}', [WebBonusController::class, 'deleteWebBonus'])->name('deleteWebBonus');
