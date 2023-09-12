@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WebController;
@@ -9,11 +10,11 @@ use App\Http\Controllers\NewsEventController;
 use App\Http\Controllers\WebMenuController;
 use App\Http\Controllers\SubMenuController;
 use App\Http\Controllers\FeatureController;
-use App\Http\Controllers\SocialController;  
+use App\Http\Controllers\SocialController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\DealsOfferController;
-use App\Http\Controllers\CommercialController;  
-use App\Http\Controllers\FooterController;  
+use App\Http\Controllers\CommercialController;
+use App\Http\Controllers\FooterController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
@@ -93,8 +94,8 @@ Route::get('/offsite', function () {
 
 
 Route::get('/api', function () {
-    $routes = Route::getRoutes()->getRoutesByMethod();
-    return view('APIs', ['routes' => $routes]);
+  $routes = Route::getRoutes()->getRoutesByMethod();
+  return view('APIs', ['routes' => $routes]);
 });
 
 
@@ -737,3 +738,21 @@ Route::get('/unhideWebBonus/{id}', [WebBonusController::class, 'unhideWebBonus']
 Route::get('/editWebBonus/{id}', [WebBonusController::class, 'editWebBonus'])->name('editWebBonus');
 Route::put('/updateWebBonus/{id}', [WebBonusController::class, 'updateWebBonus'])->name('updateWebBonus');
 Route::get('/deleteWebBonus/{id}', [WebBonusController::class, 'deleteWebBonus'])->name('deleteWebBonus');
+
+
+
+// Route for Human Resources
+
+Route::get('/job-listings', [HumanResourcesController::class, 'joblistings']);
+Route::post('/add-job-listings', [HumanResourcesController::class, 'addJobListings']);
+Route::get('/delete-job-listings/{id}', [HumanResourcesController::class, 'deleteJobListings']);
+Route::post('/update-job-listings/{id}', [HumanResourcesController::class, 'updateJobListings']);
+
+//Route for Job Applicants
+Route::post('applicant_register', [HumanResourcesController::class, 'applicant_register']);
+Route::post('update_applicant_profile', [HumanResourcesController::class, 'update_applicant_profile']);
+Route::get('applicant_information/{id}', [HumanResources::class, 'applicant_information']);
+Route::get('/delete_applicant/{id}', [HumanResources::class, 'delete_applicant']);
+
+//Route for Job Applications
+Route::get('/job_applicants/{id}', [HumanResources::class, 'job_applicants']);
