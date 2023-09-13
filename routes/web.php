@@ -746,16 +746,24 @@ Route::get('/deleteWebBonus/{id}', [WebBonusController::class, 'deleteWebBonus']
 
 Route::get('/job-listings', [HumanResourceController::class, 'joblistings']);
 Route::get('/add-listings', [HumanResourceController::class, 'addlistings']);
+Route::get('/edit-listings/{id}', [HumanResourceController::class, 'editlistings']);
+
 
 Route::post('/add-job-listings', [HumanResourceController::class, 'addJobListings']);
+
 Route::get('/delete-job-listings/{id}', [HumanResourceController::class, 'deleteJobListings']);
-Route::post('/update-job-listings/{id}', [HumanResourceController::class, 'updateJobListings']);
+
+Route::get('/makeinactive/{id}', [HumanResourceController::class, 'makeInactive']);
+Route::post('/update-job-listings', [HumanResourceController::class, 'updateJobListings']);
+Route::get('/all_applicants', [HumanResourceController::class, 'allApplicants']);
+
 
 //Route for Job Applicants
 Route::post('applicant_registeration', [HumanResourceController::class, 'applicant_registeration']);
 Route::post('update_applicant_profile', [HumanResourceController::class, 'update_applicant_profile']);
+
 Route::get('applicant_information/{id}', [HumanResourceController::class, 'applicant_information']);
-Route::get('/delete_applicant/{id}', [HumanResourceController::class, 'delete_applicant']);
+// Route::get('/delete_applicant/{id}', [HumanResourceController::class, 'delete_applicant']);
 
 //Route for Job Applications
 Route::get('/job_applicants/{id}', [HumanResourceController::class, 'job_applicants']);
