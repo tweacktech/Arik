@@ -22,13 +22,13 @@
 
             <div class="p-4">
                 <h1 class="mb-5">
-                    Add New Openings
+                    Add New Opening
                 </h1>
 
                 <div id="formClass" class="shadow p-4 rounded-2 mb-5">
 
                     <form action="" method="post">
-
+                        @csrf
                         <div class="mb-3">
                             <label for="job_title">Title</label>
                             <input type="text" class="form-control" placeholder="enter position title" name="job_title">
@@ -87,4 +87,22 @@
         <!--end::Container-->
     </div>
     <!--end::Content-->
+
+    {{-- 
+        Applications DB
+
+        Applicant ID
+        Job ID
+        Cover Letter
+        Resume Uploaded
+        LinkedIn Profile 
+
+        Applicant DB
+        First Name
+        Last Name
+        Profile Photo
+        State of Origin
+        Local Government Area
+        Date of Birth
+        --}}
 @endsection

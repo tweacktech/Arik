@@ -70,7 +70,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <h5>
-                            10 applicants
+                            10 applicants <a class="btn btn-danger text-white  btn-sm">View</a>
                         </h5>
                     </div>
                     <h5 class="bg-success text-white p-2 rounded">

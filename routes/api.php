@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController; 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\APIWebController;
 use App\Http\Controllers\APINewsletterController;
 use App\Http\Controllers\APIPromoController;
@@ -41,6 +41,7 @@ use App\Http\Controllers\APISpecialOffersController;
 use App\Http\Controllers\APIParkingSpotController;
 use App\Http\Controllers\ParkPaymentController;
 use App\Http\Controllers\APIBaggageTableController;
+use App\Http\Controllers\APIJobController;
 use App\Http\Controllers\APIWebBonusController;
 
 
@@ -103,7 +104,7 @@ Route::get('/commercial/{id}', [APICommercialController::class, 'showCommercial'
 Route::post('/category', [APICategoryController::class, 'category'])->name('category');
 Route::post('/subcategory', [APICategoryController::class, 'subcategory'])->name('subcategory');
 
-	
+
 Route::post('/footer', [APIFooterController::class, 'footer'])->name('footer');
 
 
@@ -244,3 +245,8 @@ Route::get('/baggagetable/{id}', [APIBaggageTableController::class, 'showBaggage
 
 Route::post('/webbonus', [APIWebBonusController::class, 'WebBonus'])->name('WebBonus');
 Route::get('/webbonus/{id}', [APIWebBonusController::class, 'showWebBonus'])->name('showWebBonus');
+
+
+//Api Route for Job portal login and application.
+
+Route::post('/job_applicant_login', [APIJobController::class, 'login']);
