@@ -749,7 +749,7 @@ Route::get('/delete-job-listings/{id}', [HumanResourcesController::class, 'delet
 Route::post('/update-job-listings/{id}', [HumanResourcesController::class, 'updateJobListings']);
 
 //Route for Job Applicants
-Route::post('applicant_register', [HumanResourcesController::class, 'applicant_register']);
+Route::post('applicant_registeration', [HumanResourcesController::class, 'applicant_registeration']);
 Route::post('update_applicant_profile', [HumanResourcesController::class, 'update_applicant_profile']);
 Route::get('applicant_information/{id}', [HumanResources::class, 'applicant_information']);
 Route::get('/delete_applicant/{id}', [HumanResources::class, 'delete_applicant']);
