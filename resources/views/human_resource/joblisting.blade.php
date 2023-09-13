@@ -1,77 +1,90 @@
-@extends('layouts.app', ['title' => 'Manage FAQ'])
+@extends('layouts.app', ['title' => 'Dashboard'])
 
 @section('content')
-                  @include('layouts.webnav')
-										
-										<div class="mx-auto " novalidate="novalidate" id="kt_create_account_form" style="width:100%;">
-											
-                                        <div class="fv-row">
-														
-                                            <!-- display msg if there is any -->
-                                            @if(Session::has('message'))
-                                            <div class="col-lg-16" style="text-align:center; flex:1">
-                                                    
-                                                    <input type="radio" class="btn-check" name="account_type" value="personal" checked="checked" id="kt_create_account_form_account_type_personal" />
-                                                    <label class="btn btn-outline btn-outline-dashed btn-outline-default p-7 d-flex align-items-center mb-10" for="kt_create_account_form_account_type_personal">
-                                                        
-                                                        <!--begin::Info-->
-                                                        <span class="d-block fw-bold text-start">
-                                                      
-                                                         <span class="text-muted fw-bold fs-3 badge badge-light-info" ><p  style = "color:red; text-align:center; align-items: center;display:flex; flex:1;"> {{Session('message')}}</p> </span>
+    <style>
+        #formClass {
+            /* font-size: 18px; */
+        }
+    </style>
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Container-->
+        <div class="container-xxl" id="kt_content_container">
+            <!--begin::Row-->
+            <div class="row g-5 g-xl-8">
+                <!--begin::Col-->
+                @include('human_resource.human_menu')
+                <!-- menu display -->
 
-                                                         
-                                                            
-                                                        </span>
-                                                        <!--end::Info-->
-                                                    </label>
-                                                    <!--end::Option-->
-                                                    <!-- endloop here -->
-                                                </div>
-                                                @endif
+                <!--end::Col-->
+            </div>
+            <!--end::Row-->
 
-                                            <!-- end msg -->
-                                            
-                                          
-                                                <!--begin::Card-->
-                                                <div class="card">
-                                                    <!--begin::Body-->
-                                                    <div class="card-body">
-                                                       <h4>Frequently Asked Questions</h4>
-                                                        <!--begin::Border-->
-                                                        <div class="separator separator-dashed my-8"></div>                                        
-                                                        
-                                                        <div class="col-md-8">
-                                                            <div class="mb-5">
-                                                                <label class="fs-6 form-label fw-bolder text-dark">Frequently Asked Questions</label>
-                                                               
-                                                                <div id="editor_1" name="faq" >
-                                                                    <p>{!!$website->faq!!}</p>
-                                                                    
-                                                                  </div>
-                                                            </div>
-    
-                                                            <div class="mb-5">
-                                        
-                                                                <input onclick="getData()" type="button" value="Update" class="btn btn-primary">
-                                                            </div>
-                                                            <!--end::Action-->
-                                                        </div>
-                                                    </div>
-                                                    <!--end::Body-->
-                                                </div>
-                                                <!--end::Card-->
-                                           
-                                        </div>
-                                        <!--end::Input group-->       
+            <div class="p-4">
+                <h1 class="mb-5">
+                    Add New Openings
+                </h1>
 
-												
-										</div>	
-									</div>
-									<!--end::Stepper-->
-								</div>
-								<!--end::Card body-->
-							</div>
-							<!--end::Card-->
-					
-    
+                <div id="formClass" class="shadow p-4 rounded-2 mb-5">
+
+                    <form action="" method="post">
+
+                        <div class="mb-3">
+                            <label for="job_title">Title</label>
+                            <input type="text" class="form-control" placeholder="enter position title" name="job_title">
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_title">Description</label>
+                            <textarea type="text" class="form-control" placeholder="enter position description" name="job_description"></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="job_title">Role</label>
+                            <input type="text" class="form-control" placeholder="enter position role" name="job_role">
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_department">Department</label>
+                            <input type="text" class="form-control" placeholder="enter position department"
+                                name="job_department">
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_title">Qualifications Needed</label>
+                            <textarea type="text" rows="10" class="form-control" placeholder="enter position minimum qualifications"
+                                name="job_qualifications"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_title">Location</label>
+                            <select type="text" class="form-control" placeholder="enter position location type"
+                                name="job_location">
+                                <option value="Remote">Remote</option>
+                                <option value="Hybrid">Hybrid</option>
+                                <option value="state">Type Location</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 d-none">
+                            <label for="job_locale">State</label>
+                            <input type="text" class="form-control" placeholder="enter position state"
+                                name="job_location">
+                        </div>
+                        <div class="mb-3">
+                            <label for="job_type">Type</label>
+                            <select type="text" class="form-control" placeholder="enter position type" name="job_type">
+                                <option value="part_time">Part Time</option>
+                                <option value="full_time">Full Time</option>
+                            </select>
+                        </div>
+
+
+                        <button type="submit" class="p-3 btn btn-danger"> Add Job</button>
+
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Content-->
 @endsection

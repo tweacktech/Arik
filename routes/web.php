@@ -64,6 +64,7 @@ use App\Http\Controllers\DealHeaderController;
 use App\Http\Controllers\CareHeaderController;
 use App\Http\Controllers\CourseCatController;
 use App\Http\Controllers\DealOfferCatController;
+use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\WebBonusController;
 use Illuminate\Http\Request;
 
@@ -743,16 +744,18 @@ Route::get('/deleteWebBonus/{id}', [WebBonusController::class, 'deleteWebBonus']
 
 // Route for Human Resources
 
-Route::get('/job-listings', [HumanResourcesController::class, 'joblistings']);
-Route::post('/add-job-listings', [HumanResourcesController::class, 'addJobListings']);
-Route::get('/delete-job-listings/{id}', [HumanResourcesController::class, 'deleteJobListings']);
-Route::post('/update-job-listings/{id}', [HumanResourcesController::class, 'updateJobListings']);
+Route::get('/job-listings', [HumanResourceController::class, 'joblistings']);
+Route::get('/add-listings', [HumanResourceController::class, 'addlistings']);
+
+Route::post('/add-job-listings', [HumanResourceController::class, 'addJobListings']);
+Route::get('/delete-job-listings/{id}', [HumanResourceController::class, 'deleteJobListings']);
+Route::post('/update-job-listings/{id}', [HumanResourceController::class, 'updateJobListings']);
 
 //Route for Job Applicants
-Route::post('applicant_registeration', [HumanResourcesController::class, 'applicant_registeration']);
-Route::post('update_applicant_profile', [HumanResourcesController::class, 'update_applicant_profile']);
-Route::get('applicant_information/{id}', [HumanResources::class, 'applicant_information']);
-Route::get('/delete_applicant/{id}', [HumanResources::class, 'delete_applicant']);
+Route::post('applicant_registeration', [HumanResourceController::class, 'applicant_registeration']);
+Route::post('update_applicant_profile', [HumanResourceController::class, 'update_applicant_profile']);
+Route::get('applicant_information/{id}', [HumanResourceController::class, 'applicant_information']);
+Route::get('/delete_applicant/{id}', [HumanResourceController::class, 'delete_applicant']);
 
 //Route for Job Applications
-Route::get('/job_applicants/{id}', [HumanResources::class, 'job_applicants']);
+Route::get('/job_applicants/{id}', [HumanResourceController::class, 'job_applicants']);
