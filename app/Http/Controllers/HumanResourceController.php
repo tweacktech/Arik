@@ -45,6 +45,16 @@ class HumanResourceController extends Controller
             return redirect()->back();
         }
     }
+    function makeactive($id)
+    {
+        $data = [
+            'status' => 'active',
+        ];
+        $update = DB::table('job_listing')->where('id', $id)->update($data);
+        if ($update) {
+            return redirect()->back();
+        }
+    }
     function deleteJobListings($id)
     {
         $delete = DB::table('job_listing')->where('id', $id)->delete();
@@ -106,7 +116,9 @@ class HumanResourceController extends Controller
             ->select('*', 'ja.created_at as application_date', 'ja.uploaded_resume as resume')
             ->get();
 
-        return view('human_resource.applicants', compact('applicants'));
+        $id = null;
+
+        return view('human_resource.applicants', compact('applicants', 'id'));
     }
     function job_applicants($id)
     {
@@ -118,6 +130,6 @@ class HumanResourceController extends Controller
             ->select('*', 'ja.created_at as application_date', 'ja.uploaded_resume as resume')
             ->get();
 
-        return view('human_resource.applicants', compact('applicants'));
+        return view('human_resource.applicants', compact('applicants', 'id'));
     }
 }

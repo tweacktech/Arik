@@ -34,8 +34,20 @@
                                 <a class="pe-3" href="/edit-listings/{{ $job->id }}">Edit</a>
                                 <a href="/delete-job-listings/{{ $job->id }}">Delete</a>
                             </div>
-                            <a class="btn btn-danger btn-sm text-white" href="/makeinactive/{{ $job->id }}">Stop
-                                Applications</a>
+                            <a
+                                @if ($job->status == 'active') class="btn btn-danger btn-sm text-white"
+                                href="/makeinactive/{{ $job->id }}"
+                            @else 
+                            class="btn btn-success btn-sm text-white"
+                            href="/makeactive/{{ $job->id }}" @endif>
+                                @if ($job->status == 'active')
+                                    Stop
+                                    Applications
+                                @else
+                                    Resume
+                                    Applications
+                                @endif
+                            </a>
                         </div>
 
                     </div>

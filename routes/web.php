@@ -754,6 +754,7 @@ Route::post('/add-job-listings', [HumanResourceController::class, 'addJobListing
 Route::get('/delete-job-listings/{id}', [HumanResourceController::class, 'deleteJobListings']);
 
 Route::get('/makeinactive/{id}', [HumanResourceController::class, 'makeInactive']);
+Route::get('/makeactive/{id}', [HumanResourceController::class, 'makeactive']);
 Route::post('/update-job-listings', [HumanResourceController::class, 'updateJobListings']);
 Route::get('/all_applicants', [HumanResourceController::class, 'allApplicants']);
 
