@@ -16,7 +16,6 @@ class HumanResourceController extends Controller
 
     function joblistings()
     {
-
         return view('home');
     }
 

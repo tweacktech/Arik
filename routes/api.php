@@ -248,5 +248,17 @@ Route::get('/webbonus/{id}', [APIWebBonusController::class, 'showWebBonus'])->na
 
 
 //Api Route for Job portal login and application.
+Route::post('/job_signup', [APIJobController::class, 'sign_up']);
 
-Route::post('/job_applicant_login', [APIJobController::class, 'login']);
+Route::post('/job_login', [APIJobController::class, 'login']);
+Route::get('/joblist', [APIJobController::class, 'joblists']);
+Route::get('/jobdetails/{id}', [APIJobController::class, 'jobdetails']);
+Route::get('/jobschedules/{id}', [APIJobController::class, 'jobschedules']);
+Route::get('/myapplications/{id}', [APIJobController::class, 'myapplications']);
+Route::post('/addtosavedjobs', [APIJobController::class, 'addtosavedjobs']);
+
+Route::get('/view_saved_jobs/{id}', [APIJobController::class, 'view_saved_jobs']);
+Route::get('/delete_saved_jobs/{id}', [APIJobController::class, 'delete_saved_jobs']);
+
+
+Route::get('/search_jobs/{id}', [APIJobController::class, 'searchJobs']);
