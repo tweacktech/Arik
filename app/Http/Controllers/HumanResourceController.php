@@ -7,6 +7,13 @@ use Illuminate\Support\Facades\DB;
 
 class HumanResourceController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     function joblistings()
     {
     }
@@ -27,6 +34,16 @@ class HumanResourceController extends Controller
         return view('human_resource.joblisting', compact('id', 'job'));
     }
 
+    function makeInactive($id)
+    {
+        $data = [
+            'status' => 'inactive',
+        ];
+        $update = DB::table('job_listing')->where('id', $id)->update($data);
+        if ($update) {
+            return redirect()->back();
+        }
+    }
     function deleteJobListings($id)
     {
         $delete = DB::table('job_listing')->where('id', $id)->delete();
