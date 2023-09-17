@@ -11,7 +11,7 @@ class APIJobController extends Controller
     public function sign_up(Request $request)
     {
         $data = [
-            'email' => $request->email,
+            'email_address' => $request->email_address,
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'country' => $request->country,
@@ -19,9 +19,16 @@ class APIJobController extends Controller
             'lga' => $request->lga,
             'password' => Hash::make($request->password),
         ];
+
+        $check  = DB::table('job_applicants')->where('email_address', $request->email_address)->exists();
+
+        if ($check) {
+            return response()->json(['status' => 'error', 'message' => 'Email Address Already Registered']);
+        }
         $save  = DB::table('job_applicants')->insert($data);
         if ($save) {
-            return response()->json(['status' => 'success', 'message' => 'registration successful']);
+            $user  = DB::table('job_applicants')->where('email_address', $request->email_address)->first();
+            return response()->json(['status' => 'success', 'message' => 'registration successful', 'user' => $user]);
         } else {
             return response()->json(['status' => 'success', 'message' => 'registration failed']);
         }
@@ -36,19 +43,23 @@ class APIJobController extends Controller
         if ($check) {
             $verify = Hash::check($password, $check->password);
             if ($verify) {
-                return response()->json(['status' => 'success', 'message' => 'login successful', 'user' => $check]);
+                return response()->json(['status' => 'success', 'message' => 'Login Successful', 'user' => $check], 200);
             } else {
-                return response()->json(['status' => 'success', 'message' => 'Wrong email or Password ']);
+                return response()->json(['status' => 'error', 'message' => 'Wrong email or Password ']);
             }
         } else {
-            return response()->json(['status' => 'success', 'message' => 'Wrong email or Password']);
+            return response()->json(['status' => 'error', 'message' => 'Wrong email or Password']);
         }
     }
     public function joblists()
     {
         $data = DB::table('job_listing')->where('status', 'active')->get();
 
-        return response()->json(['status' => 'success', 'data' => $data]);
+        if ($data) {
+            return response()->json(['status' => 'success', 'data' => $data]);
+        } else {
+            return response()->json(['status' => 'error', 'data' => $data]);
+        }
     }
     public function jobdetails($id)
     {
@@ -97,5 +108,18 @@ class APIJobController extends Controller
     }
     public function searchJobs($id)
     {
+
+        $query = $id;
+
+        $data = DB::table('job_listing')->where('job_title', 'LIKE', "%" . $query . "%")
+            ->orwhere('job_department', 'LIKE', "%" . $query . "%")
+            ->orwhere('job_role', 'LIKE', "%" . $query . "%")
+            ->where('status', 'active')->get();
+
+        if ($data) {
+            return response()->json(['status' => 'success', 'data' => $data]);
+        } else {
+            return response()->json(['status' => 'error', 'data' => $data]);
+        }
     }
 }
