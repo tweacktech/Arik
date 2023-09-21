@@ -135,4 +135,45 @@ class APIJobController extends Controller
             return response()->json(['status' => 'error', 'data' => $data]);
         }
     }
+
+    public function apply_for_jobs(Request $request)
+    {
+        $job_id = $request->input('job_id');
+        $applicant_id = $request->input('applicant_id');
+        $cover_letter = $request->input('cover_letter');
+        $linkeding_url = $request->input('linkeding_url');
+
+        if ($request->hasFile('uploaded_resume')) {
+            $file = $request->file('uploaded_resume');
+            $fileName = $file->getClientOriginalName();
+            $destinationPath = public_path('/uploaded_resume');
+            $file->move($destinationPath, $fileName);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'No Resume added']);
+        }
+
+        $checkIfApplied = DB::table('job_applications')->where('job_id', $job_id)->where('applicant_id', $applicant_id)->exists();
+
+        if ($checkIfApplied) {
+            return response()->json(['status' => 'error', 'message' => 'Already Applied for Job']);
+        }
+
+        $data = [
+            'job_id' => $job_id,
+            'applicant_id' => $applicant_id,
+            'cover_letter' => $cover_letter,
+            'uploaded_resume' => $fileName,
+            "linkedin_url" => $linkeding_url,
+            "status" => 'pending',
+            "created_at" => now(),
+            "updated_at" => now(),
+        ];
+
+        $insert = DB::table('job_applications')->insert($data);
+        if ($insert) {
+            return response()->json(['status' => 'success', 'messsage' => 'Job Application Succesfull']);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Job Application Not Successful']);
+        }
+    }
 }
