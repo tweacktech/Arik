@@ -258,13 +258,13 @@ Route::get('/jobdetails/{id}', [APIJobController::class, 'jobdetails']); //done
 
 Route::get('/jobschedules/{id}', [APIJobController::class, 'jobschedules']);
 
-Route::get('/myapplications/{id}', [APIJobController::class, 'myapplications']);
+Route::get('/myapplications/{id}', [APIJobController::class, 'myapplications']); //done
 
 Route::post('/addtosavedjobs', [APIJobController::class, 'addtosavedjobs']); //done
 
 
 Route::get('/view_saved_jobs/{id}', [APIJobController::class, 'view_saved_jobs']); //done
 
-Route::get('/delete_saved_jobs/{id}', [APIJobController::class, 'delete_saved_jobs']);
+Route::get('/delete_saved_jobs/{id}', [APIJobController::class, 'delete_saved_jobs']); //done
 
-Route::get('/search_jobs/{id}', [APIJobController::class, 'searchJobs']);//done
+Route::post('/apply_for_jobs', [APIJobController::class, 'apply_for_jobs']);

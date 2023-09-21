@@ -174,7 +174,8 @@
                                             {{ $applicant->created_at }}
                                         </td>
                                         <td>
-                                            <a href="/{{ $applicant->resume }}">{{ $applicant->resume }}</a>
+                                            <a
+                                                href="/uploaded_resume/{{ $applicant->resume }}">{{ $applicant->resume }}</a>
                                         </td>
                                         <td>
                                             <a href="" class="btn btn-sm btn-success">View</a>
