@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Welcome;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class APIJobController extends Controller
 {
@@ -27,6 +29,12 @@ class APIJobController extends Controller
         }
         $save  = DB::table('job_applicants')->insert($data);
         if ($save) {
+            $username = $request->first_name . ' ' . $request->last_name;
+            $token = rand(11111, 999999);
+
+            Mail::to($request->email_address)->send(new Welcome($username, $token));
+            $update  = DB::table('job_applicants')->where('email_address', $request->email_address)->update(['token' => $token]);
+
             $user  = DB::table('job_applicants')->where('email_address', $request->email_address)->first();
             return response()->json(['status' => 'success', 'message' => 'registration successful', 'user' => $user]);
         } else {
@@ -76,6 +84,7 @@ class APIJobController extends Controller
         // $data = DB::table('job_applications')->where('applicant_id', $id)->get();
         $data = DB::table('job_applications as sj')->where('applicant_id', $id)
             ->leftjoin('job_listing as jl', 'jl.id', 'sj.job_id')
+            ->select('*', 'sj.status as status')
             ->get();
         return response()->json(['status' => 'success', 'data' => $data]);
     }

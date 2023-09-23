@@ -178,8 +178,21 @@
                                                 href="/uploaded_resume/{{ $applicant->resume }}">{{ $applicant->resume }}</a>
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-success">View</a>
-                                            {{-- <a href="" class="btn btn-sm btn-danger">Delete</a> --}}
+
+                                            <a href="" class="btn btn-sm btn-warning">View</a>
+
+                                            @if ($applicant->status == 'pending')
+                                                <a href="/accepted_job/{{ $applicant->id }}"
+                                                    class="btn btn-sm btn-success">Accepted</a>
+                                                <a href="/rejected_job/{{ $applicant->id }}"
+                                                    class="btn btn-sm btn-danger">Rejected</a>
+                                            @elseif($applicant->status == 'accepted')
+                                                <a class="btn btn-sm btn-success text-white">Accepted</a>
+                                            @else
+                                                <a class="btn btn-sm btn-danger text-white">Rejected</a>
+                                            @endif
+
+
                                         </td>
                                     </tr>
                                 @endforeach

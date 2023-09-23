@@ -43,8 +43,7 @@ use App\Http\Controllers\ParkPaymentController;
 use App\Http\Controllers\APIBaggageTableController;
 use App\Http\Controllers\APIJobController;
 use App\Http\Controllers\APIWebBonusController;
-
-
+use App\Http\Controllers\VerifyEmailController;
 
 Route::post('/website', [APIWebMenuController::class, 'website'])->name('website');
 Route::post('/homepage', [APIHomePageController::class, 'homepage'])->name('homepage');
@@ -262,9 +261,19 @@ Route::get('/myapplications/{id}', [APIJobController::class, 'myapplications']);
 
 Route::post('/addtosavedjobs', [APIJobController::class, 'addtosavedjobs']); //done
 
+Route::get('/search_jobs/{id}', [APIJobController::class, 'searchJobs']); //done
 
 Route::get('/view_saved_jobs/{id}', [APIJobController::class, 'view_saved_jobs']); //done
 
 Route::get('/delete_saved_jobs/{id}', [APIJobController::class, 'delete_saved_jobs']); //done
 
-Route::post('/apply_for_jobs', [APIJobController::class, 'apply_for_jobs']);
+Route::post('/apply_for_jobs', [APIJobController::class, 'apply_for_jobs']); //done
+
+
+// Verification and Reset Password
+
+Route::get('/verify_email/{email}', [VerifyEmailController::class, 'verify_email']);
+Route::post('/change_password', [VerifyEmailController::class, 'change_password']);
+
+Route::post('/verify_email_token', [VerifyEmailController::class, 'verify_email_token']);
+Route::post('/resend_otp', [VerifyEmailController::class, 'resend_otp']);
