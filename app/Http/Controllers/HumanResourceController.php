@@ -144,6 +144,7 @@ class HumanResourceController extends Controller
             ->select('*', 'ja.created_at as application_date', 'ja.id as  id', 'ja.status as status', 'ja.uploaded_resume as resume')
             ->first();
 
+
         $username = $applicants->first_name . ' ' . $applicants->last_name;
         $title = "Job Update";
         $body_of_message = "We received your application for the Job position of a " . $applicants->job_title . " We are very happy to inform you that you have made it to the next stage. Kindly check your portal for more information on what next to do.";
