@@ -61,7 +61,13 @@ class APIJobController extends Controller
     }
     public function joblists()
     {
-        $data = DB::table('job_listing')->where('status', 'active')->get();
+        $data = DB::table('job_listing as jl')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->where('status', 'active')
+            ->select('*', 'jl.created_at as created_at', 'jl.id as id', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
+            ->get();
 
         if ($data) {
             return response()->json(['status' => 'success', 'data' => $data]);
@@ -71,12 +77,27 @@ class APIJobController extends Controller
     }
     public function jobdetails($id)
     {
-        $data = DB::table('job_listing')->where('id', $id)->first();
+        $data = DB::table('job_listing as jl')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->where('jl.id', $id)
+            ->select('*', 'jl.id as id', 'jl.created_at as created_at', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
+            ->first();
+        // $data = DB::table('job_listing')->first();
         return response()->json(['status' => 'success', 'data' => $data]);
     }
     public function jobschedules($id)
     {
-        $data = DB::table('job_listing')->where('job_type', $id)->get();
+        // $data = DB::table('job_listing')->get();
+        $data = DB::table('job_listing as jl')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->where('job_type', $id)
+            ->select('*', 'jl.id as id', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
+            ->get();
+
         return response()->json(['status' => 'success', 'data' => $data]);
     }
     public function myapplications($id)
@@ -84,7 +105,10 @@ class APIJobController extends Controller
         // $data = DB::table('job_applications')->where('applicant_id', $id)->get();
         $data = DB::table('job_applications as sj')->where('applicant_id', $id)
             ->leftjoin('job_listing as jl', 'jl.id', 'sj.job_id')
-            ->select('*', 'sj.status as status')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->select('*', 'sj.status as status',  'jl.created_at as created_at', 'jl.created_at as created_at', 'jl.id as id', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
             ->get();
         return response()->json(['status' => 'success', 'data' => $data]);
     }
@@ -116,9 +140,14 @@ class APIJobController extends Controller
     }
     public function view_saved_jobs($id)
     {
-        $data = DB::table('saved_jobs as sj')->where('applicant_id', $id)
+        $data = DB::table('saved_jobs as sj')
+            ->where('sj.applicant_id', $id)
             ->leftjoin('job_listing as jl', 'jl.id', 'sj.job_id')
-            ->select('*', 'sj.id as id')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->select('*',  'jl.created_at as created_at', 'jl.created_at as created_at', 'jl.id as id', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
+            // ->select('*', 'sj.id as id')
             ->get();
         return response()->json(['status' => 'success', 'data' => $data]);
     }
@@ -151,6 +180,12 @@ class APIJobController extends Controller
         $applicant_id = $request->input('applicant_id');
         $cover_letter = $request->input('cover_letter');
         $linkeding_url = $request->input('linkeding_url');
+        $functional_area = $request->input('functional_area');
+        $current_salary = $request->input('current_salary');
+        $expected_salary = $request->input('expected_salary');
+
+
+
 
         if ($request->hasFile('uploaded_resume')) {
             $file = $request->file('uploaded_resume');
@@ -173,6 +208,9 @@ class APIJobController extends Controller
             'cover_letter' => $cover_letter,
             'uploaded_resume' => $fileName,
             "linkedin_url" => $linkeding_url,
+            "functional_area" => $functional_area,
+            "current_salary" => $current_salary,
+            "expected_salary" => $expected_salary,
             "status" => 'pending',
             "created_at" => now(),
             "updated_at" => now(),

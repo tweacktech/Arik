@@ -34,12 +34,14 @@
 
     <link href="https://stockmgt.gapaautoparts.com/public/assets/plugins/custom/datatables/datatables.bundle.css"
         rel="stylesheet" type="text/css" />
-<!-- for drag and drop -->
- <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!-- for drag and drop -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- this is for drop and drog in this arrange of wish order (need) -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css"/> 
-    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iconify/2.0.0/iconify.js"
         integrity="sha512-vX/u24VoVNEFnY4hejf35cn0a3id3sciX/7WHtSO0DjjeViFQI0OgpGdQykHTjW+IKpLRDN6jWwvnGX98QiRIA=="
@@ -60,40 +62,44 @@
     <script src="//cdn.quilljs.com/1.3.6/quill.core.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Sales', 'Expenses'],
+                ['2004', 1000, 400],
+                ['2005', 1170, 460],
+                ['2006', 660, 1120],
+                ['2007', 1030, 540]
+            ]);
 
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
+            var options = {
+                title: 'Company Performance',
+                curveType: 'function',
+                legend: {
+                    position: 'bottom'
+                }
+            };
 
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-        chart.draw(data, options);
-      }
+            chart.draw(data, options);
+        }
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/themes/silver/theme.min.css">
 
-  <!-- Include TinyMCE JavaScript -->
-  <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
+    <!-- Include TinyMCE JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/tinymce@5.9.2/tinymce.min.js"></script>
 
-  <!-- Initialize TinyMCE -->
-  <script>
-    tinymce.init({
-      selector: '#editors',
-         });
-  </script>
+    <!-- Initialize TinyMCE -->
+    <script>
+        tinymce.init({
+            selector: '#editors',
+        });
+    </script>
 </head>
 
 <body>
@@ -111,8 +117,8 @@
                         <!--begin::Logo-->
                         <div class="aside-logo flex-column-auto pt-10 pt-lg-20" id="kt_aside_logo">
                             <a href="{{ route('home') }}">
-                               <!-- <h3>ARIK</h3> -->
-                             <img style="width: 100%;" id="logo" src="{{ asset('/public/logo.png') }}">
+                                <!-- <h3>ARIK</h3> -->
+                                <img style="width: 100%;" id="logo" src="{{ asset('/public/logo.png') }}">
                             </a>
                         </div>
                         <!--end::Logo-->
@@ -133,12 +139,13 @@
                                         <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                             data-bs-toggle="tooltip" data-bs-trigger="hover" href="{{ route('home') }}"
                                             title="Dashboard">
-                                            <span class="menu-icon" style="background-color:rgb(121, 0, 48); color:#fff">
+                                            <span class="menu-icon"
+                                                style="background-color:rgb(121, 0, 48); color:#fff">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                                 <span class="svg-icon svg-icon-primary svg-icon-2x">
                                                     <!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Home/Cupboard.svg--><svg
-                                                        height="24px" version="1.1" viewBox="0 0 24 24" width="24px"
-                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        height="24px" version="1.1" viewBox="0 0 24 24"
+                                                        width="24px" xmlns:xlink="http://www.w3.org/1999/xlink"
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <g fill-rule="evenodd" fill="yellow" stroke-width="1"
                                                             stroke="none">
@@ -160,14 +167,14 @@
                                         </a>
                                     </div>
 
-                                   @php
-                                      $menu = DB::table('user_menu')
-                                    ->join('menu', 'menu.id', 'user_menu.menu_id')
-                                    ->where('user_menu.status', '1')
-                                    ->where('menu.status', '1')
-                                    ->where('user_menu.user_id', Auth::user()->id)
-                                    ->orderBy('menu.id', 'asc') // Order the results by the 'id' column in ascending order
-                                    ->get();
+                                    @php
+                                        $menu = DB::table('user_menu')
+                                            ->join('menu', 'menu.id', 'user_menu.menu_id')
+                                            ->where('user_menu.status', '1')
+                                            ->where('menu.status', '1')
+                                            ->where('user_menu.user_id', Auth::user()->id)
+                                            ->orderBy('menu.id', 'asc') // Order the results by the 'id' column in ascending order
+                                            ->get();
                                     @endphp
 
 
@@ -176,7 +183,8 @@
                                             <a class="menu-link" data-bs-dismiss="click" data-bs-placement="right"
                                                 data-bs-toggle="tooltip" data-bs-trigger="hover"
                                                 href="{{ $m->link }}" title="{{ $m->title }}">
-                                                <span class="menu-icon" style="background-color:rgb(121, 0, 48); color:#fff">
+                                                <span class="menu-icon"
+                                                    style="background-color:rgb(121, 0, 48); color:#fff">
                                                     <!--begin::Svg Icon | path: icons/duotune/general/gen025.svg-->
                                                     <span class="svg-icon svg-icon-2x">
 
@@ -289,7 +297,7 @@
                             <h1 class="d-flex flex-column text-dark fw-bolder my-1">
                                 <span class="text-white fs-1">
                                     @isset($title)
-                                    ARIK Admin | {{ $title }}
+                                        ARIK Admin | {{ $title }}
                                     @endisset
                                 </span>
                             </h1>
@@ -304,7 +312,8 @@
                                 <div class="me-3">
                                     <a class="btn btn-icon btn-custom btn-active-color-primary position-relative"
                                         data-kt-menu-attach="parent" data-kt-menu-placement="bottom-end"
-                                        data-kt-menu-trigger="click" href="#" style="background-color:rgb(35, 49, 129)">
+                                        data-kt-menu-trigger="click" href="#"
+                                        style="background-color:rgb(35, 49, 129)">
                                         <!--begin::Svg Icon | path: icons/duotune/general/gen007.svg-->
                                         <span class="svg-icon svg-icon-1 svg-icon-white">
                                             <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
@@ -693,12 +702,12 @@
                                                         <!--end::Action-->
                                                     </div>
                                                     <!--end::Section-->
-                                                   
+
                                                 </div>
                                                 <!--end::Wrapper-->
                                             </div>
                                             <!--end::Tab panel-->
-                                            
+
                                         </div>
                                         <!--end::Tab content-->
                                     </div>
@@ -740,7 +749,7 @@
                                                             class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
                                                     </div>
                                                     <a class="fw-bold text-muted text-hover-primary fs-7"
-                                                        href="{{url('profile')}}"> {{ Auth::user()->email }}</a>
+                                                        href="{{ url('profile') }}"> {{ Auth::user()->email }}</a>
                                                 </div>
                                                 <!--end::Username-->
                                             </div>
@@ -3913,7 +3922,6 @@
 
 
             }
-      
         </script>
 
         <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -3949,68 +3957,78 @@
 
 
 
- <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
         <script>
-                        ClassicEditor
-                                .create( document.querySelector( '#editor' ) )
-                                .then( editor => {
-                                        console.log( editor );
-                                } )
-                                .catch( error => {
-                                        console.error( error );
-                                } );
-                </script>
+            ClassicEditor
+                .create(document.querySelector('#editor'))
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        </script>
 
 
 
 
+        {{-- Script for Exporting Data --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.4/xlsx.full.min.js"></script>
 
-                
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
-    <script type="text/javascript">
-      $(function () {
-        $("#table").DataTable();
-// this is need to Move Ordera accordin user wish Arrangement
-        $( "#tablecontents" ).sortable({
-          items: "tr",
-          cursor: 'move',
-          opacity: 0.6,
-          update: function() {
-              sendOrderToServer();
-          }
-        });
-        function sendOrderToServer() {
-          var order = [];
-          var token = $('meta[name="csrf-token"]').attr('content');
-        //   by this function User can Update hisOrders or Move to top or under
-          $('tr.row1').each(function(index,element) {
-            order.push({
-              id: $(this).attr('data-id'),
-              position: index+1
-            });
-          });
-// the Ajax Post update 
-          $.ajax({
-            type: "POST", 
-            dataType: "json", 
-            url: "{{ url('Custom-sortable') }}",
-                data: {
-              order: order,
-              _token: token
-            },
-            success: function(response) {
-                if (response.status == "success") {
-                  console.log(response);
-                } else {
-                  console.log(response);
+        {{-- Ckeditor --}}
+        <script src="https://cdn.ckeditor.com/4.21.0/standard/ckeditor.js"></script>
+        <script>
+            CKEDITOR.replace('editor_ck1');
+            CKEDITOR.replace('editor_ck2');
+            CKEDITOR.replace('editor_ck3');
+        </script>
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.12/datatables.min.js"></script>
+        <script type="text/javascript">
+            $(function() {
+                $("#table").DataTable();
+                // this is need to Move Ordera accordin user wish Arrangement
+                $("#tablecontents").sortable({
+                    items: "tr",
+                    cursor: 'move',
+                    opacity: 0.6,
+                    update: function() {
+                        sendOrderToServer();
+                    }
+                });
+
+                function sendOrderToServer() {
+                    var order = [];
+                    var token = $('meta[name="csrf-token"]').attr('content');
+                    //   by this function User can Update hisOrders or Move to top or under
+                    $('tr.row1').each(function(index, element) {
+                        order.push({
+                            id: $(this).attr('data-id'),
+                            position: index + 1
+                        });
+                    });
+                    // the Ajax Post update 
+                    $.ajax({
+                        type: "POST",
+                        dataType: "json",
+                        url: "{{ url('Custom-sortable') }}",
+                        data: {
+                            order: order,
+                            _token: token
+                        },
+                        success: function(response) {
+                            if (response.status == "success") {
+                                console.log(response);
+                            } else {
+                                console.log(response);
+                            }
+                        }
+                    });
                 }
-            }
-          });
-        }
-      });
-    </script>
+            });
+        </script>
 
     </body>
 
@@ -4038,15 +4056,18 @@
                     <!--begin::Content-->
                     <div class="flex-row-fluid py-lg-5 px-lg-15">
                         <!--begin::Form-->
-                        <form class="form" novalidate="novalidate" id="kt_modal_create_app_form" enctype="multipart/form-data"
-                            action="{{ route('updateBaggage', ['id' => 1]) }}" method="POST">
+                        <form class="form" novalidate="novalidate" id="kt_modal_create_app_form"
+                            enctype="multipart/form-data" action="{{ route('updateBaggage', ['id' => 1]) }}"
+                            method="POST">
                             @csrf
                             @method('put')
                             <!--begin::Step 1-->
                             <input type="hidden" name="id" value="1">
 
                             @php
-                            $data = DB::table('baggage')->where('id', '1')->first();
+                                $data = DB::table('baggage')
+                                    ->where('id', '1')
+                                    ->first();
                             @endphp
                             <div class="row">
                                 <div class="w-100">
@@ -4060,8 +4081,9 @@
                                         </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="number" min="1" class="form-control form-control-lg form-control-solid"
-                                            name="kg" placeholder="" disabled value="{{ $data->kg ?? 1 }}" required />
+                                        <input type="number" min="1"
+                                            class="form-control form-control-lg form-control-solid" name="kg"
+                                            placeholder="" disabled value="{{ $data->kg ?? 1 }}" required />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -4080,8 +4102,9 @@
                                         </label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="number" min="100" class="form-control form-control-lg form-control-solid"
-                                            name="price" value="{{ $data->price ?? '' }}" placeholder="" required />
+                                        <input type="number" min="100"
+                                            class="form-control form-control-lg form-control-solid" name="price"
+                                            value="{{ $data->price ?? '' }}" placeholder="" required />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->
@@ -4092,10 +4115,11 @@
                             <button type="submit" class="btn btn-lg btn-primary">Update
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr064.svg-->
                                 <span class="svg-icon svg-icon-3 ms-1 me-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                        fill="none">
-                                        <rect opacity="0.5" x="18" y="13" width="13" height="2" rx="1"
-                                            transform="rotate(-180 18 13)" fill="black" />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="18" y="13" width="13"
+                                            height="2" rx="1" transform="rotate(-180 18 13)"
+                                            fill="black" />
                                         <path
                                             d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z"
                                             fill="black" />

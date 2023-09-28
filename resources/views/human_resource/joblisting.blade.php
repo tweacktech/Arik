@@ -52,28 +52,66 @@
                         @endif
                         <div class="mb-3">
                             <label for="job_title">Description</label>
-                            <textarea type="text" class="form-control" required placeholder="enter position description" name="job_description">
+                            <textarea type="text" id="editor_ck3" class="form-control" required placeholder="enter position description"
+                                name="job_description">
                         @if ($job != null)
-{{ $job->job_description }}
+{!! $job->job_description !!}
 @endif
 </textarea>
                         </div>
 
                         <div class="mb-3">
                             <label for="job_title">Role</label>
-                            <input type="text" class="form-control"
-                                @if ($job != null) value="{{ $job->job_role }}" @endif required
-                                placeholder="enter position role" name="job_role">
+                            <textarea type="text" id="editor_ck2" class="form-control" required placeholder="enter position role"
+                                name="job_role">  @if ($job != null)
+{!! $job->job_role !!}
+@endif </textarea>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="job_title">Category</label>
+                            <select type="text" id="category" class="form-control main_category"
+                                onchange="categoryselected()"
+                                @if ($job != null) value="{{ $job->job_location }}" @endif required
+                                name="category">
+                                <option selected value="0">-- Select Category --</option>
+                                @php
+                                    $category = DB::table('job_category')->get();
+                                @endphp
+
+                                @foreach ($category as $cat)
+                                    <option value={{ $cat->id }}>{{ $cat->cat_title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="job_title">Sub Category</label>
+                            <select type="text" id="sub_category" class="form-control"
+                                @if ($job != null) value="{{ $job->job_location }}" @endif required
+                                name="sub_category">
+                                <option selected value="0">-- Select Sub Category --</option>
+                            </select>
+                        </div>
+
                         <div class="mb-3">
                             <label for="job_department">Department</label>
-                            <input type="text" class="form-control"
+                            <select type="text" id="category" class="form-control main_category"
                                 @if ($job != null) value="{{ $job->job_department }}" @endif required
-                                placeholder="enter position department" name="job_department">
+                                name="job_department">
+                                <option selected value="0">-- Select Department --</option>
+                                @php
+                                    $department = DB::table('job_department')->get();
+                                @endphp
+
+                                @foreach ($department as $dept)
+                                    <option value={{ $dept->id }}>{{ $dept->job_department }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label for="job_title">Qualifications Needed</label>
-                            <textarea type="text" rows="10" class="form-control" required
+                            <textarea type="text" id="editor_ck1" rows="10" class="form-control" required
                                 placeholder="enter position minimum qualifications" name="job_qualifications"> 
                                 @if ($job != null)
 {!! $job->job_qualifications !!}
@@ -82,7 +120,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="job_title">Location</label>
-                            <select type="text" class="form-control"
+                            <select type="text" id="location_select" class="form-control" onchange="typeJobLocation()"
                                 @if ($job != null) value="{{ $job->job_location }}" @endif required
                                 placeholder="enter position location type" name="job_location">
                                 <option selected value="Remote">Remote</option>
@@ -91,11 +129,11 @@
                             </select>
                         </div>
 
-                        {{-- <div class="mb-3 d-none">
-                            <label for="job_locale">State</label>
-                            <input type="text" class="form-control" required placeholder="enter position state"
+                        <div class="mb-3 d-none location_type">
+                            <label for="job_locale">Enter Prefered Location</label>
+                            <input type="text" class="form-control" placeholder="please type job location"
                                 name="job_location">
-                        </div> --}}
+                        </div>
                         <div class="mb-3">
                             <label for="job_type">Type</label>
                             <select type="text" class="form-control"
@@ -122,26 +160,45 @@
         <!--end::Container-->
     </div>
     <!--end::Content-->
+    <script>
+        function typeJobLocation() {
+            let val = $('#location_select').val();
 
-    {{-- 
-        Applications DB
+            if (val === 'state') {
+                $('.location_type').removeClass('d-none');
+                $('#location_select').attr('name', '')
+            } else {
+                $('.location_type').addClass('d-none');
+                $('.location_type').attr('name', '');
+                $('#location_select').attr('name', 'job_location')
+            }
+            console.log(val)
+        }
 
-        Applicant ID
-        Job ID
-        Cover Letter
-        Resume Uploaded
-        LinkedIn Profile 
+        function categoryselected() {
 
+            let cat_id = $('.main_category').val();
 
-        
-        Applicant DB
+            if (cat_id) {
 
-        First Name
-        Last Name
-        Profile Photo
-        State of Origin
-        Local Government Area
-        Date of Birth
-
-        --}}
+                fetch(`/get_sub/${cat_id}`)
+                    .then(response => {
+                        if (response.ok) {
+                            return response.json();
+                        } else {
+                            throw new Error('Failed to fetch sub-categories');
+                        }
+                    })
+                    .then(data => {
+                        $('#sub_category').empty();
+                        let elements = $(data.data)
+                        elements.appendTo('#sub_category')
+                    })
+                    .catch(error => console.error(error));
+            } else {
+                // Handle the case when no main category is selected
+                console.error('No main category selected');
+            }
+        }
+    </script>
 @endsection

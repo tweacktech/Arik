@@ -16,12 +16,21 @@ class HumanResourceController extends Controller
     }
 
 
-    function joblistings()
+
+
+    public function applicant_information($id)
+    {
+        $applicant = DB::table('job_applicants')->where('id', $id)->first();
+
+        return view('human_resource.applicant_info', compact('applicant'));
+    }
+
+    public function joblistings()
     {
         return view('home');
     }
 
-    function addlistings()
+    public function addlistings()
     {
         $id = null;
         $job = null;
@@ -29,7 +38,7 @@ class HumanResourceController extends Controller
         return view('human_resource.joblisting', compact('id', 'job'));
     }
 
-    function editlistings($id)
+    public function editlistings($id)
     {
 
         $job = DB::table('job_listing')->where('id', $id)->first();
@@ -37,7 +46,7 @@ class HumanResourceController extends Controller
         return view('human_resource.joblisting', compact('id', 'job'));
     }
 
-    function makeInactive($id)
+    public function makeInactive($id)
     {
         $data = [
             'status' => 'inactive',
@@ -47,7 +56,7 @@ class HumanResourceController extends Controller
             return redirect()->back();
         }
     }
-    function makeactive($id)
+    public function makeactive($id)
     {
         $data = [
             'status' => 'active',
@@ -57,7 +66,7 @@ class HumanResourceController extends Controller
             return redirect()->back();
         }
     }
-    function deleteJobListings($id)
+    public function deleteJobListings($id)
     {
         $delete = DB::table('job_listing')->where('id', $id)->delete();
 
@@ -66,7 +75,7 @@ class HumanResourceController extends Controller
         }
     }
 
-    function addJobListings(Request $request)
+    public function addJobListings(Request $request)
     {
         $data = [
             "job_title" => $request->job_title,
@@ -76,6 +85,8 @@ class HumanResourceController extends Controller
             "job_qualifications" => $request->job_qualifications,
             "job_location" => $request->job_location,
             "job_type" => $request->job_type,
+            "category" => $request->category,
+            "sub_category" => $request->sub_category,
             "status" => 'active',
             'created_at' => now(),
             'updated_at' => now(),
@@ -89,28 +100,40 @@ class HumanResourceController extends Controller
         }
     }
 
-    function updateJobListings(Request $request)
+    public function updateJobListings(Request $request)
     {
         $data = [
-            "job_title" => $request->job_title,
-            "job_description" => $request->job_description,
-            "job_role" => $request->job_role,
-            "job_department" => $request->job_department,
-            "job_qualifications" => $request->job_qualifications,
-            "job_location" => $request->job_location,
-            "job_type" => $request->job_type,
             "status" => 'active',
             'updated_at' => now(),
         ];
+
+        $fields = [
+            "job_title",
+            "job_description",
+            "job_role",
+            "job_department",
+            "job_qualifications",
+            "job_location",
+            "job_type",
+            "category",
+            "sub_category",
+        ];
+
+        foreach ($fields as $field) {
+            if (isset($request->$field)) {
+                $data[$field] = $request->$field;
+            }
+        }
+
         $update = DB::table('job_listing')->where('id', $request->job_id)->update($data);
+
         if ($update) {
             return redirect('/home');
         } else {
             return redirect('/home');
         }
     }
-    function allApplicants()
-
+    public function allApplicants()
     {
         $applicants = DB::table('job_applications as ja')
             ->join('job_applicants as jas', 'jas.id', 'ja.applicant_id')
@@ -122,9 +145,8 @@ class HumanResourceController extends Controller
 
         return view('human_resource.applicants', compact('applicants', 'id'));
     }
-    function job_applicants($id)
+    public function job_applicants($id)
     {
-
         $applicants = DB::table('job_applications as ja')
             ->join('job_applicants as jas', 'jas.id', 'ja.applicant_id')
             ->join('job_listing as jl', 'jl.id', 'ja.job_id')
@@ -134,8 +156,7 @@ class HumanResourceController extends Controller
 
         return view('human_resource.applicants', compact('applicants', 'id'));
     }
-
-    function accepted_job($id)
+    public function accepted_job($id)
     {
         $applicants = DB::table('job_applications as ja')
             ->join('job_applicants as jas', 'jas.id', 'ja.applicant_id')
@@ -143,8 +164,6 @@ class HumanResourceController extends Controller
             ->where('ja.id', $id)
             ->select('*', 'ja.created_at as application_date', 'ja.id as  id', 'ja.status as status', 'ja.uploaded_resume as resume')
             ->first();
-
-
         $username = $applicants->first_name . ' ' . $applicants->last_name;
         $title = "Job Update";
         $body_of_message = "We received your application for the Job position of a " . $applicants->job_title . " We are very happy to inform you that you have made it to the next stage. Kindly check your portal for more information on what next to do.";
@@ -160,7 +179,7 @@ class HumanResourceController extends Controller
             return redirect()->back();
         }
     }
-    function rejected_job($id)
+    public function rejected_job($id)
     {
         $applicants = DB::table('job_applications as ja')
             ->join('job_applicants as jas', 'jas.id', 'ja.applicant_id')

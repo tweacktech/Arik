@@ -12,6 +12,58 @@ use Illuminate\Support\Facades\Mail;
 class VerifyEmailController extends Controller
 {
     //
+    public function applicant_change_password(Request $request)
+    {
+
+        $user = DB::table('job_applicants')->where('id', $request->applicantId)->first();
+
+        if (Hash::check($request->oldpassword, $user->password)) {
+
+            $data = [
+                "password" =>   Hash::make($request->newPassword),
+                "updated_at" => now(),
+            ];
+
+            $update = DB::table('job_applicants')->where('id', $request->applicantId)->update($data);
+
+            if ($update) {
+                $user = DB::table('job_applicants')->where('id', $request->applicantId)->first();
+                return response()->json(['status' => 'success', 'message' => 'Password Updated Successfully', 'data' => $user]);
+            } else {
+                return response()->json(['status' => 'error', 'message' => 'Password Failed to Update']);
+            }
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Old Password Incorrect, If you have forgotten Kindly do a reset']);
+        }
+    }
+
+    public function applicant_info_update(Request $request)
+    {
+
+
+        $data = [
+            "country" =>    $request->country,
+            "date_of_birth" =>   $request->date_of_birth,
+            "first_name" => $request->first_name,
+            "house_address" => $request->house_address,
+            "last_name" => $request->last_name,
+            "marital_status" =>  $request->marital_status,
+            "national_id_no"  =>   $request->national_id_no,
+            "state_of_origin" => $request->state,
+
+        ];
+
+        $update = DB::table('job_applicants')->where('id', $request->applicantId)->update($data);
+
+
+        if ($update) {
+            $user = DB::table('job_applicants')->where('id', $request->applicantId)->first();
+
+            return response()->json(['status' => 'success', 'message' => 'Info Updated Successfully', 'data' => $user]);
+        } else {
+            return response()->json(['status' => 'error', 'message' => 'Info Failed to Update']);
+        }
+    }
 
     public function verify_email($email)
     {

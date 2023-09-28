@@ -43,6 +43,7 @@ use App\Http\Controllers\ParkPaymentController;
 use App\Http\Controllers\APIBaggageTableController;
 use App\Http\Controllers\APIJobController;
 use App\Http\Controllers\APIWebBonusController;
+use App\Http\Controllers\HumanResourceController;
 use App\Http\Controllers\VerifyEmailController;
 
 Route::post('/website', [APIWebMenuController::class, 'website'])->name('website');
@@ -277,3 +278,7 @@ Route::post('/change_password', [VerifyEmailController::class, 'change_password'
 
 Route::post('/verify_email_token', [VerifyEmailController::class, 'verify_email_token']);
 Route::post('/resend_otp', [VerifyEmailController::class, 'resend_otp']);
+
+
+Route::post('/applicant_info_update', [VerifyEmailController::class, 'applicant_info_update']);
+Route::post('/applicant_change_password', [VerifyEmailController::class, 'applicant_change_password']);

@@ -68,7 +68,7 @@
 
                         <h4>Job Description</h4>
 
-                        <p>{{ $job->job_description }}</p>
+                        <p>{!! $job->job_description !!}</p>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">

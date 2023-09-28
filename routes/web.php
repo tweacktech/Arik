@@ -62,6 +62,7 @@ use App\Http\Controllers\ContactDetailController;
 use App\Http\Controllers\BaggageTableController;
 use App\Http\Controllers\DealHeaderController;
 use App\Http\Controllers\CareHeaderController;
+use App\Http\Controllers\CategoryAndDepartmentCont;
 use App\Http\Controllers\CourseCatController;
 use App\Http\Controllers\DealOfferCatController;
 use App\Http\Controllers\HumanResourceController;
@@ -756,10 +757,11 @@ Route::get('/all_applicants', [HumanResourceController::class, 'allApplicants'])
 
 
 //Route for Job Applicants
-Route::post('applicant_registeration', [HumanResourceController::class, 'applicant_registeration']);
-Route::post('update_applicant_profile', [HumanResourceController::class, 'update_applicant_profile']);
-Route::get('applicant_information/{id}', [HumanResourceController::class, 'applicant_information']);
+Route::post('/applicant_registeration', [HumanResourceController::class, 'applicant_registeration']);
+Route::post('/update_applicant_profile', [HumanResourceController::class, 'update_applicant_profile']);
+Route::get('/applicant_information/{id}', [HumanResourceController::class, 'applicant_information']);
 // Route::get('/delete_applicant/{id}', [HumanResourceController::class, 'delete_applicant']);
+
 
 //Route for Job Applications
 Route::get('/job_applicants/{id}', [HumanResourceController::class, 'job_applicants']);
@@ -772,3 +774,25 @@ Route::get('/rejected_job/{id}', [HumanResourceController::class, 'rejected_job'
 Route::get('/email_template_designer', function () {
   return view('emails.welcome_email');
 });
+
+
+// Category side
+Route::get('/all_job_category', [CategoryAndDepartmentCont::class, 'all_job_category']);
+Route::post('/add_job_category', [CategoryAndDepartmentCont::class, 'add_job_category']);
+Route::post('/edit_job_category', [CategoryAndDepartmentCont::class, 'edit_job_category']);
+Route::get('/delete_job_category/{id}', [CategoryAndDepartmentCont::class, 'delete_job_category']);
+
+//Sub Category Side
+
+Route::get('/all_sub_job_category/{id}', [CategoryAndDepartmentCont::class, 'all_sub_job_category']);
+Route::post('/add_sub_job_category', [CategoryAndDepartmentCont::class, 'add_sub_job_category']);
+Route::post('/edit_sub_job_category', [CategoryAndDepartmentCont::class, 'edit_sub_job_category']);
+Route::get('/delete_sub_job_category/{id}', [CategoryAndDepartmentCont::class, 'delete_sub_job_category']);
+Route::get('/get_sub/{id}', [CategoryAndDepartmentCont::class, 'get_sub']);
+
+//Department Side
+
+Route::get('/all_job_department', [CategoryAndDepartmentCont::class, 'all_job_department']);
+Route::post('/add_job_department', [CategoryAndDepartmentCont::class, 'add_job_department']);
+Route::post('/edit_job_department', [CategoryAndDepartmentCont::class, 'edit_job_department']);
+Route::get('/delete_job_department/{id}', [CategoryAndDepartmentCont::class, 'delete_job_department']);

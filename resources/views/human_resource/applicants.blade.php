@@ -31,7 +31,8 @@
             </div>
 
             <div @if ($job != null) class="row justify-content-between" @endif>
-                <div @if ($job != null) class="pt-4 col-4 order-2" @else class="pt-4 d-none" @endif>
+                <div
+                    @if ($job != null) class="pt-4 col-12 col-lg-4 order-2" @else class="pt-4 d-none" @endif>
 
                     @if ($job != null)
                         <div class="shadow p-4 job_item rounded-2 mb-5">
@@ -75,17 +76,17 @@
 
                                 <h4>Job Description</h4>
 
-                                <p>{{ $job->job_description }}</p>
+                                <p>{!! $job->job_description !!}</p>
                             </div>
 
                             <div>
                                 <h4>Job Role</h4>
-                                <p>{{ $job->job_role }}</p>
+                                <p>{!! $job->job_role !!}</p>
                             </div>
                             <div>
 
                                 <h4>Job Qualifications</h4>
-                                <p>{{ $job->job_qualifications }}</p>
+                                <p>{!! $job->job_qualifications !!}</p>
                             </div>
                             <div class="justify-content-between align-items-center">
 
@@ -139,11 +140,16 @@
 
 
                 </div>
-                <div @if ($job != null) class="pt-4 col-8 order-1" @else class="pt-4" @endif>
-                    <h1 class="mb-5">
-                        All Applicants
-                    </h1>
-                    <div id="formClass" class="shadow p-4 rounded-2 mb-5">
+                <div @if ($job != null) class="pt-4 col-12 col-lg-8 order-1" @else class="pt-4" @endif>
+                    <div class="d-flex mb-5 align-items-center justify-content-between">
+
+                        <h1 class="">
+                            All Applicants
+                        </h1>
+                        <button id="exportButton" class="btn  btn-success">Export as Sheet ></button>
+                    </div>
+
+                    <div id="formClass" class="shadow p-4 table-responsive rounded-2 mb-5">
 
                         <table class="table table-sm table-hover">
                             <thead style="font-weight: bold;">
@@ -179,7 +185,8 @@
                                         </td>
                                         <td>
 
-                                            <a href="" class="btn btn-sm btn-warning">View</a>
+                                            <a href="/applicant_information/{{ $applicant->id }}"
+                                                class="btn btn-sm btn-warning">View</a>
 
                                             @if ($applicant->status == 'pending')
                                                 <a href="/accepted_job/{{ $applicant->id }}"
@@ -262,21 +269,41 @@
     </div>
     <!--end::Content-->
 
-    {{-- 
-        Applications DB
 
-        Applicant ID
-        Job ID
-        Cover Letter
-        Resume Uploaded
-        LinkedIn Profile 
+    <script>
+        let products = @json($applicants);
 
-        Applicant DB
-        First Name
-        Last Name
-        Profile Photo
-        State of Origin
-        Local Government Area
-        Date of Birth
-        --}}
+        const currentDate = new Date();
+        const formattedDate = currentDate.toISOString().slice(0, 10); // Format as YYYY-MM-DD
+
+        const fileName = `Applicants${formattedDate}.xlsx`;
+
+        function exportToExcel(data, fileName, fields) {
+            const filteredData = data.map(item => {
+                const filteredItem = {};
+                fields.forEach(field => {
+                    if (item.hasOwnProperty(field)) {
+                        filteredItem[field] = item[field];
+                    }
+                });
+                return filteredItem;
+            });
+
+            const worksheet = XLSX.utils.json_to_sheet(filteredData);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+            XLSX.writeFile(workbook, fileName + '.xlsx');
+        }
+
+        document.getElementById('exportButton').addEventListener('click', function() {
+            // Replace this with your data retrieval logic
+            const data = products;
+
+            const selectedFields = ["first_name", "last_name", 'job_title', "status", "created_at"];
+
+            exportToExcel(data, fileName, selectedFields); // Call the export function
+        });
+
+        // console.log(products);
+    </script>
 @endsection
