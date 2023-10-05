@@ -9,27 +9,20 @@ use Illuminate\Support\Facades\Mail;
 
 class HumanResourceController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
-
-
-
-
     public function applicant_information($id)
     {
         $applicant = DB::table('job_applicants')->where('id', $id)->first();
 
         return view('human_resource.applicant_info', compact('applicant'));
     }
-
     public function joblistings()
     {
         return view('home');
     }
-
     public function addlistings()
     {
         $id = null;
@@ -37,7 +30,6 @@ class HumanResourceController extends Controller
 
         return view('human_resource.joblisting', compact('id', 'job'));
     }
-
     public function editlistings($id)
     {
 
@@ -45,7 +37,6 @@ class HumanResourceController extends Controller
 
         return view('human_resource.joblisting', compact('id', 'job'));
     }
-
     public function makeInactive($id)
     {
         $data = [
@@ -79,6 +70,7 @@ class HumanResourceController extends Controller
     {
         $data = [
             "job_title" => $request->job_title,
+            'opening_type' => $request->opening_type,
             "job_description" => $request->job_description,
             "job_role" => $request->job_role,
             "job_department" => $request->job_department,
@@ -89,6 +81,7 @@ class HumanResourceController extends Controller
             "sub_category" => $request->sub_category,
             "status" => 'active',
             'created_at' => now(),
+            'end_date' => $request->end_date,
             'updated_at' => now(),
         ];
 
@@ -109,6 +102,7 @@ class HumanResourceController extends Controller
 
         $fields = [
             "job_title",
+            "opening_type",
             "job_description",
             "job_role",
             "job_department",
@@ -117,6 +111,7 @@ class HumanResourceController extends Controller
             "job_type",
             "category",
             "sub_category",
+            "end_date",
         ];
 
         foreach ($fields as $field) {

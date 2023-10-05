@@ -15,8 +15,10 @@
         <!--end::Row-->
 
         @php
-            $jobs = DB::table('job_listing')
-                ->orderBy('created_at', 'desc')
+            $jobs = DB::table('job_listing as jl')
+                ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+                ->select('*', 'jl.id as id', 'jl.created_at as created_at')
+                ->orderBy('jl.created_at', 'desc')
                 ->get();
         @endphp
 
@@ -25,7 +27,6 @@
             <h1 class="mb-5">
                 Job Openings
             </h1>
-
             @foreach ($jobs as $job)
                 <div class="shadow p-4 job_item rounded-2 mb-5">
                     <div class="editbtns d-none">
@@ -59,6 +60,11 @@
                             <h5 class="text-white p-2 rounded" style="background-color: #761a33;">
                                 <span style="font-weight:bold;">Date Posted:</span>
                                 {{ $job->created_at }}
+                            </h5>
+                            <h5 class="text-white p-2 rounded"
+                                style="text-transform: capitalize; background-color:rgb(35, 49, 129)">
+                                <span style="font-weight:bold;">Opening Type</span>
+                                {{ $job->opening_type ?? 'none' }}
                             </h5>
                         </div>
 
@@ -98,7 +104,8 @@
                     <div class="d-flex align-items-center justify-content-between">
                         <div>
                             @php
-                                $number = DB::table('job_applications')
+                                $number = DB::table('job_applications as ja')
+                                    ->join('job_applicants as jas', 'jas.id', 'ja.applicant_id')
                                     ->where('job_id', $job->id)
                                     ->count();
                             @endphp

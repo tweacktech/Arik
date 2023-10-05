@@ -27,7 +27,9 @@ class VerifyEmailController extends Controller
             $update = DB::table('job_applicants')->where('id', $request->applicantId)->update($data);
 
             if ($update) {
-                $user = DB::table('job_applicants')->where('id', $request->applicantId)->first();
+                $user = DB::table('job_applicants')->where('id', $request->applicantId)
+                    ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                    ->first();
                 return response()->json(['status' => 'success', 'message' => 'Password Updated Successfully', 'data' => $user]);
             } else {
                 return response()->json(['status' => 'error', 'message' => 'Password Failed to Update']);
@@ -57,7 +59,9 @@ class VerifyEmailController extends Controller
 
 
         if ($update) {
-            $user = DB::table('job_applicants')->where('id', $request->applicantId)->first();
+            $user = DB::table('job_applicants')->where('id', $request->applicantId)
+                ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                ->first();
 
             return response()->json(['status' => 'success', 'message' => 'Info Updated Successfully', 'data' => $user]);
         } else {
@@ -65,9 +69,11 @@ class VerifyEmailController extends Controller
         }
     }
 
-    public function verify_email($email)
+    public function verify_email(Request $request)
     {
 
+        $email = $request->email;
+        $url = $request->url;
         $check  = DB::table('job_applicants')->where('email_address', $email)->first();
 
         if ($check) {
@@ -76,8 +82,10 @@ class VerifyEmailController extends Controller
 
             $update  = DB::table('job_applicants')->where('email_address', $email)->update(['reset_token' => $token, 'updated_at' => now()]);
 
-            Mail::to($email)->send(new Verify_Email($username, $token));
-            $user  = DB::table('job_applicants')->where('email_address', $email)->first();
+            Mail::to($email)->send(new Verify_Email($username, $token, $url));
+            $user  = DB::table('job_applicants')->where('email_address', $email)
+                ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                ->first();
             return response()->json(['status' => 'success', 'message' => 'Verification Email Sent',]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Email Does Not Exist',]);
@@ -128,7 +136,9 @@ class VerifyEmailController extends Controller
             $body_of_message = "Your email address have been verified successfully.";
 
             Mail::to($check->email_address)->send(new Update($username, $title, $body_of_message));
-            $user  = DB::table('job_applicants')->where('token', $token)->first();
+            $user  = DB::table('job_applicants')->where('token', $token)
+                ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                ->first();
             return response()->json(['status' => 'success', 'message' => 'Verification Successfull', 'data' => $user]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Wrong Token',]);
@@ -149,7 +159,9 @@ class VerifyEmailController extends Controller
             $body_of_message = "Dear user Kindly use this " . $token . " for your verification";
 
             Mail::to($check->email_address)->send(new Update($username, $title, $body_of_message));
-            $user  = DB::table('job_applicants')->where('email_address', $token_email)->first();
+            $user  = DB::table('job_applicants')->where('email_address', $token_email)
+                ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                ->first();
             return response()->json(['status' => 'success', 'message' => 'OTP resent Successfull', 'data' => $user]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Email Does not Exist',]);

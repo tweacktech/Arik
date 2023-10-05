@@ -22,7 +22,7 @@
                 You initiated a Reset Password, Kindly Click the link below to change your password.
             </p>
             <a
-                href="http://localhost:3000/career/verify/{{ $token ?? '' }}">http://localhost:3000/career/verify/{{ $token ?? '' }}</a>
+                href="{{ $url }}/career/verify/{{ $token ?? '' }}">{{ $url }}/career/verify/{{ $token ?? '' }}</a>
             <p>If you are not the one that initiated this kindly disregard.</p>
         </div>
 

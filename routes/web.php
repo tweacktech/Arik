@@ -796,3 +796,9 @@ Route::get('/all_job_department', [CategoryAndDepartmentCont::class, 'all_job_de
 Route::post('/add_job_department', [CategoryAndDepartmentCont::class, 'add_job_department']);
 Route::post('/edit_job_department', [CategoryAndDepartmentCont::class, 'edit_job_department']);
 Route::get('/delete_job_department/{id}', [CategoryAndDepartmentCont::class, 'delete_job_department']);
+
+
+// Users Side
+
+Route::get('/all_users', [CategoryAndDepartmentCont::class, 'all_users']);
+Route::post('/upload_staff_details', [CategoryAndDepartmentCont::class, 'upload_staff_details']);

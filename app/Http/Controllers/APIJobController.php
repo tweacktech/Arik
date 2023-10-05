@@ -35,7 +35,9 @@ class APIJobController extends Controller
             Mail::to($request->email_address)->send(new Welcome($username, $token));
             $update  = DB::table('job_applicants')->where('email_address', $request->email_address)->update(['token' => $token]);
 
-            $user  = DB::table('job_applicants')->where('email_address', $request->email_address)->first();
+            $user  = DB::table('job_applicants')->where('email_address', $request->email_address)
+                ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                ->first();
             return response()->json(['status' => 'success', 'message' => 'registration successful', 'user' => $user]);
         } else {
             return response()->json(['status' => 'success', 'message' => 'registration failed']);
@@ -46,12 +48,16 @@ class APIJobController extends Controller
         $email = $request->email;
         $password = $request->password;
 
-        $check  = DB::table('job_applicants')->where('email_address', $email)->first();
+        $check  = DB::table('job_applicants')->where('email_address', $email)
+            ->first();
 
         if ($check) {
             $verify = Hash::check($password, $check->password);
             if ($verify) {
-                return response()->json(['status' => 'success', 'message' => 'Login Successful', 'user' => $check], 200);
+                $user  = DB::table('job_applicants')->where('email_address', $email)
+                    ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
+                    ->first();
+                return response()->json(['status' => 'success', 'message' => 'Login Successful', 'user' => $user], 200);
             } else {
                 return response()->json(['status' => 'error', 'message' => 'Wrong email or Password ']);
             }
@@ -163,10 +169,17 @@ class APIJobController extends Controller
     public function searchJobs($id)
     {
         $query = $id;
-        $data = DB::table('job_listing')->where('job_title', 'LIKE', "%" . $query . "%")
-            ->orwhere('job_department', 'LIKE', "%" . $query . "%")
+        $data = DB::table('job_listing as jl')->where('job_title', 'LIKE', "%" . $query . "%")
+            ->orwhere('jl.job_department', 'LIKE', "%" . $query . "%")
             ->orwhere('job_role', 'LIKE', "%" . $query . "%")
-            ->where('status', 'active')->get();
+            ->orwhere('opening_type', 'LIKE', "%" . $query . "%")
+            ->where('status', 'active')
+            ->leftjoin('job_category as jc', 'jc.id', 'jl.category')
+            ->leftjoin('job_sub_category as jsc', 'jsc.id', 'jl.sub_category')
+            ->leftjoin('job_department as jd', 'jd.id', 'jl.job_department')
+            ->where('status', 'active')
+            ->select('*', 'jl.created_at as created_at', 'jl.id as id', 'jd.job_department as department', 'jsc.sub_cat_title as sub_cat', 'jc.cat_title as cat')
+            ->get();
         if ($data) {
             return response()->json(['status' => 'success', 'data' => $data]);
         } else {
@@ -184,12 +197,9 @@ class APIJobController extends Controller
         $current_salary = $request->input('current_salary');
         $expected_salary = $request->input('expected_salary');
 
-
-
-
         if ($request->hasFile('uploaded_resume')) {
             $file = $request->file('uploaded_resume');
-            $fileName = $file->getClientOriginalName();
+            $fileName =  time() . str_replace(' ', '', $file->getClientOriginalName());
             $destinationPath = public_path('/uploaded_resume');
             $file->move($destinationPath, $fileName);
         } else {

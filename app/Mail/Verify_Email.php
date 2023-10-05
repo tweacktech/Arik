@@ -13,16 +13,19 @@ class Verify_Email extends Mailable
 
     public $username;
     public $token;
+    public $url;
+
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($username, $token)
+    public function __construct($username, $token, $url)
     {
         $this->username = $username;
         $this->token = $token;
+        $this->url = $url;
     }
 
     /**

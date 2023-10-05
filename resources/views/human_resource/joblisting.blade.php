@@ -46,6 +46,17 @@
                                 @if ($job != null) value="{{ $job->job_title }}" @endif
                                 placeholder="enter position title" name="job_title">
                         </div>
+                        <div class="mb-3">
+                            <label for="opening_type">Opening Type</label>
+                            <select name="opening_type" id="opening" class="form-select"
+                                @if ($job != null) value="{{ $job->opening_type }}" @endif>
+                                <option value="internal">Internal Opening </option>
+                                <option value="external">External Opening </option>
+                            </select>
+                            {{-- <input type="text" class="form-control" required
+                                @if ($job != null) value="{{ $job->job_title }}" @endif
+                                placeholder="enter  title" name="job_title"> --}}
+                        </div>
 
                         @if ($id != null)
                             <input type="text" value="{{ $id }}" hidden name="job_id">
@@ -143,6 +154,14 @@
                                 <option value="full_time">Full Time</option>
                             </select>
                         </div>
+
+                        <div class="mb-3">
+                            <label for="end_date">End Date</label>
+                            <input type="date" class="form-control" required
+                                @if ($job != null) value="{{ $job->end_date }}" @endif
+                                placeholder="enter position title" name="end_date">
+                        </div>
+
                         <button type="submit" class="p-3 btn btn-danger">
                             @if ($id != null)
                                 Update Job

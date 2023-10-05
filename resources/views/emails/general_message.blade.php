@@ -19,7 +19,7 @@
         <p style="font-weight:bold;">Hi {{ $username ?? '' }},</p>
         <div style="margin-bottom:30px;">
             <p>
-                {{ $body_of_message ?? '' }}
+                {!! $body_of_message ?? '' !!}
             </p>
         </div>
 

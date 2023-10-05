@@ -273,7 +273,7 @@ Route::post('/apply_for_jobs', [APIJobController::class, 'apply_for_jobs']); //d
 
 // Verification and Reset Password
 
-Route::get('/verify_email/{email}', [VerifyEmailController::class, 'verify_email']);
+Route::post('/verify_email', [VerifyEmailController::class, 'verify_email']);
 Route::post('/change_password', [VerifyEmailController::class, 'change_password']);
 
 Route::post('/verify_email_token', [VerifyEmailController::class, 'verify_email_token']);
