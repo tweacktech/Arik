@@ -100,7 +100,8 @@
                                             <td>
                                                 @if ($view == 'cat')
                                                     <a class="btn btn-primary btn-sm me-1"
-                                                        href="/all_sub_job_category/{{ $cat->id }}">View</a>
+                                                        href="/all_sub_job_category/{{ $cat->id }}">View
+                                                        SubCategory</a>
                                                 @endif
                                                 <a onclick="editJob('{{ $cat->id }}', '{{ $view == 'cat' ? $cat->cat_title : $cat->sub_cat_title }}')"
                                                     class="btn btn-warning btn-sm me-1">Edit</a>

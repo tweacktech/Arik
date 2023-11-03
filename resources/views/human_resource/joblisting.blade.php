@@ -83,9 +83,9 @@
                             <label for="job_title">Category</label>
                             <select type="text" id="category" class="form-control main_category"
                                 onchange="categoryselected()"
-                                @if ($job != null) value="{{ $job->job_location }}" @endif required
+                                @if ($job != null) value={{ $job->category }} @endif required
                                 name="category">
-                                <option selected value="0">-- Select Category --</option>
+                                <option selected>-- Select Category --</option>
                                 @php
                                     $category = DB::table('job_category')->get();
                                 @endphp
@@ -99,7 +99,7 @@
                         <div class="mb-3">
                             <label for="job_title">Sub Category</label>
                             <select type="text" id="sub_category" class="form-control"
-                                @if ($job != null) value="{{ $job->job_location }}" @endif required
+                                @if ($job != null) value={{ $job->sub_category }} @endif required
                                 name="sub_category">
                                 <option selected value="0">-- Select Sub Category --</option>
                             </select>
@@ -108,9 +108,9 @@
                         <div class="mb-3">
                             <label for="job_department">Department</label>
                             <select type="text" id="category" class="form-control main_category"
-                                @if ($job != null) value="{{ $job->job_department }}" @endif required
+                                @if ($job != null) value={{ $job->job_department }} @endif required
                                 name="job_department">
-                                <option selected value="0">-- Select Department --</option>
+                                <option selected>-- Select Department --</option>
                                 @php
                                     $department = DB::table('job_department')->get();
                                 @endphp
@@ -158,7 +158,7 @@
                         <div class="mb-3">
                             <label for="end_date">End Date</label>
                             <input type="date" class="form-control" required
-                                @if ($job != null) value="{{ $job->end_date }}" @endif
+                                @if ($job != null) value={{ $job->end_date }} @endif
                                 placeholder="enter position title" name="end_date">
                         </div>
 

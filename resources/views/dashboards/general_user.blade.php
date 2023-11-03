@@ -29,7 +29,7 @@
             </h1>
             @foreach ($jobs as $job)
                 <div class="shadow p-4 job_item rounded-2 mb-5">
-                    <div class="editbtns d-none">
+                    <div class="editbtns">
                         <div class="d-flex justify-content-between align-items-center">
                             <div>
                                 <a class="pe-3" href="/edit-listings/{{ $job->id }}">Edit</a>
@@ -135,13 +135,3 @@
     <!--end::Container-->
 </div>
 <!--end::Content-->
-<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous"></script>
-<script>
-    $('.job_item').on('mouseenter', function() {
-        $(this).children('.editbtns').removeClass('d-none');
-    })
-    $('.job_item').on('mouseleave', function() {
-        $(this).children('.editbtns').addClass('d-none');
-    })
-</script>

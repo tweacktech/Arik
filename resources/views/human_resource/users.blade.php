@@ -38,6 +38,7 @@
                                 @endif
                             </div>
                             <div class="add_cat">
+                                <a class="btn btn-sm btn-success mb-3" href="/public/excelsample.xlsx">Download Sample</a>
                                 <h3>Upload Staff Details</h3>
                                 <form action={{ '/upload_staff_details' }} enctype="multipart/form-data" method="post">
                                     @csrf

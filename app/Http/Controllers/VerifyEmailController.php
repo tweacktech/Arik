@@ -71,7 +71,6 @@ class VerifyEmailController extends Controller
 
     public function verify_email(Request $request)
     {
-
         $email = $request->email;
         $url = $request->url;
         $check  = DB::table('job_applicants')->where('email_address', $email)->first();
@@ -79,14 +78,12 @@ class VerifyEmailController extends Controller
         if ($check) {
             $username = $check->first_name . ' ' . $check->last_name;
             $token = md5(rand(00000, 999999));
-
             $update  = DB::table('job_applicants')->where('email_address', $email)->update(['reset_token' => $token, 'updated_at' => now()]);
-
             Mail::to($email)->send(new Verify_Email($username, $token, $url));
             $user  = DB::table('job_applicants')->where('email_address', $email)
                 ->select('id', 'type', 'email_address', 'first_name', 'last_name', 'gender', 'marital_status', 'phone_number', 'country', 'state_of_origin', 'house_address', 'national_id_no', 'date_of_birth', 'email_verified_at', 'created_at', 'updated_at')
                 ->first();
-            return response()->json(['status' => 'success', 'message' => 'Verification Email Sent',]);
+            return response()->json(['status' => 'success', 'message' => 'Verification Email Sent', 'user' => $user]);
         } else {
             return response()->json(['status' => 'error', 'message' => 'Email Does Not Exist',]);
         }

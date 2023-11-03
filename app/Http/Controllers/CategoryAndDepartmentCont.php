@@ -17,6 +17,7 @@ class CategoryAndDepartmentCont extends Controller
 
     public function upload_staff_details(Request $request)
     {
+
         $request->validate([
             'excel_file' => 'required|mimes:xlsx,xls',
         ]);

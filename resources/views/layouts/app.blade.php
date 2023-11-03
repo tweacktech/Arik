@@ -2,19 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <meta
-        content="The most advanced Bootstrap Admin Theme on Themeforest trusted by 94,000 beginners and professionals. Multi-demo, Dark Mode, RTL support and complete React, Angular, Vue &amp; Laravel versions. Grab your copy now and get life-time updates for free."
-        name="description" />
-    <meta
-        content="Metronic, bootstrap, bootstrap 5, Angular, VueJs, React, Laravel, admin themes, web design, figma, web development, free templates, free admin themes, bootstrap theme, bootstrap template, bootstrap dashboard, bootstrap dak mode, bootstrap button, bootstrap datepicker, bootstrap timepicker, fullcalendar, datatables, flaticon"
-        name="keywords" />
+    <meta name="description" />
+    <meta content="Arik Admin Career Portal" name="keywords" />
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta charset="utf-8" />
     <meta content="en_US" property="og:locale" />
     <meta content="article" property="og:type" />
-    <meta content="Metronic - Bootstrap 5 HTML, VueJS, React, Angular &amp; Laravel Admin Dashboard Theme"
-        property="og:title" />
-    <meta content="https://keenthemes.com/metronic" property="og:url" />
+    <meta content="Arik AdminDashbord" property="og:title" />
     <meta content="Keenthemes | Metronic" property="og:site_name" />
     <link href="https://preview.keenthemes.com/metronic8" rel="canonical" />
     <meta content="{{ csrf_token() }}" name="csrf-token">
@@ -149,8 +143,7 @@
                                                         xmlns="http://www.w3.org/2000/svg">
                                                         <g fill-rule="evenodd" fill="yellow" stroke-width="1"
                                                             stroke="none">
-                                                            <rect height="24" width="24" x="0"
-                                                                y="0" />
+                                                            <rect height="24" width="24" x="0" y="0" />
                                                             <path
                                                                 d="M3.5,3 L9.5,3 C10.3284271,3 11,3.67157288 11,4.5 L11,18.5 C11,19.3284271 10.3284271,20 9.5,20 L3.5,20 C2.67157288,20 2,19.3284271 2,18.5 L2,4.5 C2,3.67157288 2.67157288,3 3.5,3 Z M9,9 C8.44771525,9 8,9.44771525 8,10 L8,12 C8,12.5522847 8.44771525,13 9,13 C9.55228475,13 10,12.5522847 10,12 L10,10 C10,9.44771525 9.55228475,9 9,9 Z"
                                                                 fill="#000000" opacity="0.3" />
@@ -199,6 +192,10 @@
                                             </a>
                                         </div>
                                     @endforeach
+                                    @if (Auth::user()->type !== 'Supper' || Auth::user()->type !== 'Owner')
+                                        @include('svgs.job_applicants_menu');
+                                    @endif
+
 
                                 </div>
                             </div>
@@ -307,7 +304,7 @@
                         <!--begin::Wrapper-->
                         <div class="d-flex align-items-center flex-wrap">
 
-                            <!--begin::Action-->
+                            {{-- <!--begin::Action-->
                             <div class="d-flex align-items-center py-3 py-lg-0">
                                 <div class="me-3">
                                     <a class="btn btn-icon btn-custom btn-active-color-primary position-relative"
@@ -782,7 +779,7 @@
                                     <!--end::Menu-->
                                 </div>
                                 <!--<a class="btn btn-primary" data-bs-target="#kt_modal_create_app" data-bs-toggle="modal" href="#">New Goal</a>-->
-                            </div>
+                            </div> --}}
                             <!--end::Action-->
                         </div>
                         <!--end::Wrapper-->
@@ -835,11 +832,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -1455,11 +1450,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -2009,11 +2002,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -2343,11 +2334,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -2963,11 +2952,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -3182,16 +3169,13 @@
                                                                                     x="5" y="5" />
                                                                                 <rect fill="#000000" height="5"
                                                                                     opacity="0.3" rx="1"
-                                                                                    width="5" x="14"
-                                                                                    y="5" />
+                                                                                    width="5" x="14" y="5" />
                                                                                 <rect fill="#000000" height="5"
                                                                                     opacity="0.3" rx="1"
-                                                                                    width="5" x="5"
-                                                                                    y="14" />
+                                                                                    width="5" x="5" y="14" />
                                                                                 <rect fill="#000000" height="5"
                                                                                     opacity="0.3" rx="1"
-                                                                                    width="5" x="14"
-                                                                                    y="14" />
+                                                                                    width="5" x="14" y="14" />
                                                                             </g>
                                                                         </svg>
                                                                     </span>
@@ -3703,8 +3687,7 @@
                                                     <svg fill="none" height="24" viewBox="0 0 24 24"
                                                         width="24" xmlns="http://www.w3.org/2000/svg">
                                                         <rect fill="black" height="2" opacity="0.5"
-                                                            rx="1" width="13" x="6"
-                                                            y="11" />
+                                                            rx="1" width="13" x="6" y="11" />
                                                         <path
                                                             d="M8.56569 11.4343L12.75 7.25C13.1642 6.83579 13.1642 6.16421 12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75L5.70711 11.2929C5.31658 11.6834 5.31658 12.3166 5.70711 12.7071L11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25C13.1642 17.8358 13.1642 17.1642 12.75 16.75L8.56569 12.5657C8.25327 12.2533 8.25327 11.7467 8.56569 11.4343Z"
                                                             fill="black" />
@@ -3789,11 +3772,9 @@
                                 <svg fill="none" height="24" viewBox="0 0 24 24" width="24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <rect fill="black" height="2" opacity="0.5" rx="1"
-                                        transform="rotate(-45 6 17.3137)" width="16" x="6"
-                                        y="17.3137" />
+                                        transform="rotate(-45 6 17.3137)" width="16" x="6" y="17.3137" />
                                     <rect fill="black" height="2" rx="1"
-                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422"
-                                        y="6" />
+                                        transform="rotate(45 7.41422 6)" width="16" x="7.41422" y="6" />
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
@@ -4117,9 +4098,8 @@
                                 <span class="svg-icon svg-icon-3 ms-1 me-0">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
-                                        <rect opacity="0.5" x="18" y="13" width="13"
-                                            height="2" rx="1" transform="rotate(-180 18 13)"
-                                            fill="black" />
+                                        <rect opacity="0.5" x="18" y="13" width="13" height="2"
+                                            rx="1" transform="rotate(-180 18 13)" fill="black" />
                                         <path
                                             d="M15.4343 12.5657L11.25 16.75C10.8358 17.1642 10.8358 17.8358 11.25 18.25C11.6642 18.6642 12.3358 18.6642 12.75 18.25L18.2929 12.7071C18.6834 12.3166 18.6834 11.6834 18.2929 11.2929L12.75 5.75C12.3358 5.33579 11.6642 5.33579 11.25 5.75C10.8358 6.16421 10.8358 6.83579 11.25 7.25L15.4343 11.4343C15.7467 11.7467 15.7467 12.2533 15.4343 12.5657Z"
                                             fill="black" />
